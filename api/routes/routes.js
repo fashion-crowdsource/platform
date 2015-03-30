@@ -1,7 +1,6 @@
 var controller = require('../controllers/controller.js');
 
 module.exports = [
-
 	{path: "/{file*}",					method: "GET",	config: controller.serveFile},
 
 	{path: '/', 						method: 'GET', 		config: controller.homeView},
