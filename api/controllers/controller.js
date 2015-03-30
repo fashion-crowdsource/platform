@@ -1,7 +1,6 @@
 var Bell 	 = require("bell");
-var path 	 = require("path");
+var Path 	 = require("path");
 var Joi 	 = require("joi");
-var stripe 	 = require("stripe")(require("../config.js").stripe.sk);
 var config 	 = require('../config.js');
 
 
@@ -50,6 +49,12 @@ module.exports = {
 		handler: function (request, reply ){
 			request.auth.session.clear();
 			return reply.redirect('/');
+		}
+	},
+
+	homeView: {
+		handler: function (request, reply ){
+			return reply.view('index.jade');
 		}
 	},
 
@@ -131,7 +136,7 @@ module.exports = {
 		}
 	},
 
-	adminViewDesign:  {
+	adminDesignView:  {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// ADD UPVOTE/PREORDER T
