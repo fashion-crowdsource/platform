@@ -1,0 +1,8 @@
+// check and insert 'block' and add the upload icon link in head after adam pushes
+extends ./layout.jade
+
+	img#background(src="../../public/img/fikay-girl.png")
+	form(enctype="multipart/form-data" action="/{username}/upload" method="post")
+		button#upbutton
+			div(data-icon="ei-share-apple" data-size="m")
+				span#uptext UPLOAD
