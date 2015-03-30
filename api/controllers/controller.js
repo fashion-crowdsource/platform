@@ -63,6 +63,9 @@ module.exports = {
 
 	profileView: {
 		handler: function (request, reply ){
+			if (request.auth.isAuthenticated) {
+
+			}
 			return reply.view('profile.jade');
 		}
 	},
