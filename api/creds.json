@@ -1,0 +1,18 @@
+{
+	"database" : {
+		"dbuser"	: "admin",
+		"dbpwd"		: "fac57289302",
+		"dburl"		: "ds039291.mongolab.com:39291/fikay"
+	},
+	"github" : {
+		"secret"	: "githubsecretword",
+		"cKey"		: "ckeyhere",
+		"cSecret"	: "csecrethere"
+	},
+	"twitter" : {
+		"secret"	: "twittersecretword",
+		"cKey"		: "ckeyhere",
+		"cSecret"	: "csecrethere"
+	},
+	"cookieSecret"	: "secretwordyo"
+}
