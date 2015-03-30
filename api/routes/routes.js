@@ -6,7 +6,7 @@ module.exports = [
 
 	{path: '/', 						method: 'GET', 		config: controller.home},
 	{path: '/login', 					method: 'POST', 	config: controller.login},
-	{path: '/logout', 					method: 'GET', 		config: controller.login},
+	{path: '/logout', 					method: 'GET', 		config: controller.logout},
 
 	{path: '/{username}', 				method: 'GET', 		config: controller.profileView},
 	{path: '/{username}', 				method: 'PUT', 		config: controller.editUser},
@@ -15,7 +15,7 @@ module.exports = [
 	{path: '/{username}/upload', 		method: 'GET', 		config: controller.uploadView},
 	{path: '/{username}/upload', 		method: 'POST', 	config: controller.uploadNewDesign},
 
-	{path: '/{username}/submit',		method: 'GET', 		config: controller.preSubmitView},
+	{path: '/{username}/submit',		method: 'GET', 		config: controller.submitView},
 	{path: '/{username}/submit', 		method: 'POST', 	config: controller.submitDesign},
 	{path: '/{username}/submit',		method: 'PUT', 		config: controller.editDesign},
 	{path: '/{username}/submit', 		method: 'DELETE', 	config: controller.binDesign},
