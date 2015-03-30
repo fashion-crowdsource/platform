@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "lab -v -c",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,19 @@
   "bugs": {
     "url": "https://github.com/fikay/fikay-designs/issues"
   },
-  "homepage": "https://github.com/fikay/fikay-designs"
+  "homepage": "https://github.com/fikay/fikay-designs",
+  "dependencies": {
+    "bell": "^2.2.0",
+    "hapi": "^8.4.0",
+    "hapi-auth-cookie": "^2.0.0",
+    "jade": "^1.9.2",
+    "joi": "^6.0.8",
+    "mongoose": "^4.0.1"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-lab": "^1.0.5",
+    "lab": "^5.5.1"
+  }
 }
