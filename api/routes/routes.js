@@ -27,9 +27,3 @@ module.exports = [
     {path: '/admin/{username}/{design}', method: 'DELETE', config: controller.adminBinDesign}
      
 ];
-    
-    
-    
-    
-    
-    
