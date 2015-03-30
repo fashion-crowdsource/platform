@@ -110,7 +110,9 @@ lab.experiment("on the upload page: ", function(){
 			};
 
 		server.inject(options, function(response){
-			assert.equal
+			assert.equal(response.statusCode, 200, "should get an ok status when image is selected to be uploaded");
+			//find out another test that is more specific to file upload
+			done();
 		});
 
 	});
