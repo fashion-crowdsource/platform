@@ -43,6 +43,9 @@ module.exports = {
 		// 	}
 		// 	else reply('Not logged in, should be forwarded to bell login...').code(401);
 		// }
+		handler: function (request, reply ){
+			return reply.redirect('/');
+		}
 	},
 
 	logout: {
@@ -114,7 +117,7 @@ module.exports = {
 		}
 	},
 
-	binDesigns: {
+	binDesign: {
 		handler: function (request, reply ){
 			// REMOVE ALL TRACE OF DESIGN FROM DB
 			return reply.redirect('/{username}');
@@ -144,7 +147,7 @@ module.exports = {
 		}
 	},
 
-	ApproveDesign:  {
+	adminApproveDesign:  {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// approve new design for gallery display -toggle a bool in the db?
