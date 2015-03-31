@@ -5,15 +5,10 @@ module.exports = {
 				dbpwd  : process.env.DBPWD 		|| require('./creds.json').database.dbpwd,
 				dburl  : process.env.DBURL 		|| require('./creds.json').database.dburl,
 	},
-	github : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').github.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').github.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').github.cSecret,
-	},
-	twitter : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').twitter.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').twitter.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').twitter.cSecret,
+	google : {
+				secret 	: process.env.SECRET 	|| require('./creds.json').google.secret,
+				cKey	: process.env.CKEY 		|| require('./creds.json').google.cKey,
+				cSecret	: process.env.CSECRET 	|| require('./creds.json').google.cSecret,
 	},
 	cookie : {
 				password: process.env.COOKIESECRET || require('./creds.json').cookieSecret

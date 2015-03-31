@@ -21,30 +21,23 @@ server.connection(port);
 server.register([Bell, Cookie], function (err) {
 	if (err) {throw err;}
 
-	// server.auth.strategy('session', 'cookie', {
-	// 	password: config.cookie.password,
-	// 	cookie: 'sid',
-	// 	redirectTo: '/',
-	// 	redirectOnTry: false,
-	// 	isSecure: false
-	// });
+	server.auth.strategy('session', 'cookie', {
+		password: config.cookie.password,
+		cookie: 'sid',
+		redirectTo: '/',
+		redirectOnTry: false,
+		isSecure: false
+	});
 
-	// server.auth.strategy('github', 'bell', {
-	// 	provider: 'github',
-	// 	password: config.github.secret,
-	// 	isSecure: false,
-	// 	ttl: 20000, // 10s ttl for the cookies used by bell to manage the temp state - an attempt to fix the logout problem
-	// 	clientId: config.github.cKey,
-	// 	clientSecret: config.github.cSecret
-	// });
+	server.auth.strategy('google', 'bell', {
+		provider: 'google',
+		password: config.google.secret,
+		isSecure: false,
+		// ttl: 20000, // 10s ttl for the cookies used by bell to manage the temp state - an attempt to fix the logout problem
+		clientId: config.google.cKey,
+		clientSecret: config.google.cSecret
+	});
 
-	// server.auth.strategy('twitter', 'bell', {
- //        provider: 'twitter',
- //        password: config.twitter.secret,
- //        isSecure: false,
- //        clientId: config.twitter.cKey,
- //        clientSecret: config.twitter.cSecret
- //    });
 
 	server.views({
 		engines: {
