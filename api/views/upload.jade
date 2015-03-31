@@ -10,11 +10,18 @@ block content
 			label#upbutton
 				span#uptext attach
 				input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png", multiple)
-				img#preview(src="#")
-				button
-					span.glyphicon.glyphicon-trash
+
+
+	.row
+		.col-md-12
+			button#bin
+
+				span.glyphicon.glyphicon-trash
+
+	.row
+		.col-md-12
 			textarea
-			input#submit(type="submit", action="/{username}/upload", method="post")
+				input#submit(type="submit", action="/{username}/upload", method="POST")
 
 
 	script(src="/scripts/upload.js")
