@@ -3,7 +3,6 @@ var Path 	 = require("path");
 var Joi 	 = require("joi");
 var config 	 = require('../config.js');
 
-
 module.exports = {
 
 	serveFile: {
