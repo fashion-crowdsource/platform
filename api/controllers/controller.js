@@ -15,33 +15,36 @@ module.exports = {
 		}
 	},
 
-	login : {
+	login: {
 		 auth: {
-		 	strategy: "google"
+			strategy: "google"
 		 },
 		 handler: function (request, reply) {
-		 	if (request.auth.isAuthenticated) {
+			if (request.auth.isAuthenticated) {
 
-		 		var gPlus = request.auth.credentials;
-		 		var profile ={
-		 			username 	: gPlus.profile.displayName,
-		 			email 		: gPlus.profile.email,
-		 			picture 	: gPlus.profile.raw.picture,
-		 		};
+				var gPlus = request.auth.credentials;
+				var profile = {
+					username 	: gPlus.profile.displayName,
+					email 		: gPlus.profile.email,
+					picture 	: gPlus.profile.raw.picture,
+					hasAccount	: false
+				};
 
-		// 		 accounts.getAccount( profile.username, function( err, result ){
+				// DO NOT DELETE
+		// 		 CHECK DB FOR USER( profile.username, function( err, result ){
 		// 			if (err) console.log(err);
-		// 			if (result) profile.account = true;
+		// 			if (result) profile.hasAccount = true;
 
-		 			request.auth.session.clear();
-		 			request.auth.session.set(profile);
+					request.auth.session.clear();
+					request.auth.session.set(profile);
 
-		// 			return profile.account ? reply.redirect("/account") : reply.redirect("/signup");
+					return profile.hasAccount ? reply.redirect('/') : reply.redirect('/signup');
 		// 		 });
-		// 	}
-		// 	else reply('Not logged in, should be forwarded to bell login...').code(401);
-		// }
-			return reply.redirect('/');
+			}
+			else {
+				return reply.redirect('/');
+			}
+
 		}
 	},
 
@@ -173,5 +176,4 @@ module.exports = {
 			return reply.redirect('admin');
 		}
 	}
-}
 };
