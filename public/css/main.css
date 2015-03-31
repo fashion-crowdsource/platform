@@ -1,12 +1,16 @@
-body{
-	background-image: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8");
-}
+/*Potential Background Picture*/
+/*body{
+	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
+	background-size: 100%;
+}*/
 
+
+/*Adam's CSS*/
 .hidden {
 	display: none;
 }
 
-/*upload page*/
+/*Upload Page*/
 #background {
     display: inline;
     background-repeat: none;
