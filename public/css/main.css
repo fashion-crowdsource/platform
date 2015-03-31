@@ -1,3 +1,7 @@
+body{
+	background-image: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8");
+}
+
 .hidden {
 	display: none;
 }
