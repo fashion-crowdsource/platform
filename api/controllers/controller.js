@@ -68,6 +68,14 @@ module.exports = {
 		}
 	},
 
+	signupSubmit: {
+		// AUTH REQUIRED ?
+		handler: function (request, reply ){
+			// ADD NEW USER TO DB
+			return reply.redirect('/');
+		}
+	},
+
 	profileView: {
 		handler: function (request, reply ){
 			if (request.auth.isAuthenticated) {
