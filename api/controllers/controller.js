@@ -99,7 +99,7 @@ module.exports = {
 			maxBytes: 209715200,
 			output: 'stream',
 			parse: false
-			},
+		},
 		handler: function (request, reply ){
 
 			// ADD NEW SUBMISSION TO DB (NOT YET SUBMITTED)
@@ -172,6 +172,6 @@ module.exports = {
 			// reject a design. purge all db refs to it.
 			return reply.redirect('admin');
 		}
-	},
-
+	}
 }
+};
