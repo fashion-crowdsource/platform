@@ -142,7 +142,7 @@ module.exports = {
 	adminDesignView:  {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
-			// ADD UPVOTE/PREORDER T
+			// ADD UPVOTE/PREORDER TO DB
 			return reply.view('admin');
 		}
 	},
