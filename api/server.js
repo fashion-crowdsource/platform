@@ -1,7 +1,7 @@
 var Hapi 	= require('hapi');
 var Bell 	= require('bell');
 var Cookie 	= require('hapi-auth-cookie');
-var path 	= require('path');
+var Path 	= require('path');
 var routes 	= require('./routes/routes.js');
 var config 	= require('./config.js');
 var port 	= {port: (process.env.port || 3000 ) };
@@ -10,7 +10,7 @@ var server = new Hapi.Server({
 	connections: {
 		routes: {
 			files: {
-				relativeTo: path.join(__dirname, '../public')
+				relativeTo: Path.join(__dirname, '../public')
 			}
 		}
 	}
@@ -58,7 +58,7 @@ server.register([Bell, Cookie], function (err) {
 		isCached: false
 	});
 
-	server.auth.default('session');
+	// server.auth.default('session');
 	server.route( routes );
 });
 
