@@ -1,15 +1,20 @@
-//- check and insert 'block' and add the upload icon link in head after adam pushes
 extends ./layouts/default.jade
 
-	block content
+block content
 	.row
 		.col-md-12
-			h1 Upload a design
-			img#background(src="../../public/img/fikay-girl.png")
-			form(enctype="multipart/form-data" action="/{username}/upload" method="post")
-				button#upbutton
-					div(data-icon="ei-share-apple" data-size="m")
-						span#uptext UPLOAD
+			form Design Name:
+				input(type="text", placeholder="  Insert your design name")
+			//- img#background(src="/img/fikay-girl.png")
+			form(enctype="multipart/form-data", action="/{username}/upload", method="post")
+			label#upbutton
+				span#uptext attach
+				input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png", multiple)
+				img#preview(src="#")
+				button
+					span.glyphicon.glyphicon-trash
+			textarea
+			input#submit(type="submit", action="/{username}/upload", method="post")
 
 
-
+	script(src="/scripts/upload.js")

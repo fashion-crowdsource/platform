@@ -1,0 +1,60 @@
+{
+  "name": "evil-icons",
+  "version": "1.7.2",
+  "description": "Evil Icons is a set of SVG icons designed extensively for using in modern web projects",
+  "main": "evil-icons.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outpunk/evil-icons.git"
+  },
+  "keywords": [
+    "icons",
+    "svg",
+    "sprite"
+  ],
+  "author": {
+    "name": "Alexander Madyankin",
+    "email": "alexander@madyankin.name"
+  },
+  "contributors": [
+    {
+      "name": "Alexander Madyankin"
+    },
+    {
+      "name": "Roman Shamin"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/outpunk/evil-icons/issues"
+  },
+  "homepage": "http://evil-icons.io",
+  "devDependencies": {
+    "svgo": "^0.5.0"
+  },
+  "gitHead": "f99df25d5c395b924f0e35c4d294b39b00453970",
+  "_id": "evil-icons@1.7.2",
+  "_shasum": "16508ecb24f8a60715dfe030531f182ed0bc4486",
+  "_from": "evil-icons@*",
+  "_npmVersion": "1.4.28",
+  "_npmUser": {
+    "name": "outpunk",
+    "email": "alexander@madyankin.name"
+  },
+  "maintainers": [
+    {
+      "name": "outpunk",
+      "email": "alexander@madyankin.name"
+    }
+  ],
+  "dist": {
+    "shasum": "16508ecb24f8a60715dfe030531f182ed0bc4486",
+    "tarball": "http://registry.npmjs.org/evil-icons/-/evil-icons-1.7.2.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/evil-icons/-/evil-icons-1.7.2.tgz",
+  "readme": "ERROR: No README data found!"
+}

@@ -3,7 +3,6 @@ var Path 	 = require("path");
 var Joi 	 = require("joi");
 var config 	 = require('../config.js');
 
-
 module.exports = {
 
 	serveFile: {
@@ -117,7 +116,7 @@ module.exports = {
 			maxBytes: 209715200,
 			output: 'stream',
 			parse: false
-			},
+		},
 		handler: function (request, reply ){
 
 			// ADD NEW SUBMISSION TO DB (NOT YET SUBMITTED)

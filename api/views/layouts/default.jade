@@ -6,9 +6,13 @@ html
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
 		link(href='/css/bootstrap.min.css', rel='stylesheet')
 		link(href='/css/main.css', rel='stylesheet')
+		link(rel="stylesheet", href="//cdn.jsdelivr.net/evil-icons/1.7.2/evil-icons.min.css")
+
+		block css
 
 		block title
 				title Fikay
+
 		body
 			.container
 				block content
@@ -17,4 +21,5 @@ html
 					script(src='/lib/jquery-2.1.3.min.js')
 					script(src='/lib/bootstrap.min.js')
 					script(src='/scripts/main.js')
-					p Fikay 2015
+					//script(src='/scripts/upload.js')
+					//- p Fikay 2015

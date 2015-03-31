@@ -7,8 +7,8 @@
 	},
 	"google" : {
 		"secret"	: "<arbitrary string>",
-		"cKey"		: "<github auth client key>",
-		"cSecret"	: "<github auth client secret>"
+		"cKey"		: "<google auth client key>",
+		"cSecret"	: "<google auth client secret>"
 	},
 	"stripe" : {
 		"secret"	: "<stripe secret key>"
