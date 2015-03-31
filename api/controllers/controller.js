@@ -54,7 +54,7 @@ module.exports = {
 
 	homeView: {
 		handler: function (request, reply ){
-			return reply.view('index.jade');
+			return reply.view('index');
 		}
 	},
 
@@ -76,7 +76,7 @@ module.exports = {
 		handler: function (request, reply ){
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
-			return reply.view('profile.jade');
+			return reply.view('profile');
 		}
 	},
 
@@ -90,7 +90,7 @@ module.exports = {
 
 	uploadView: {
 		handler: function (request, reply ){
-			return reply.view('upload.jade');
+			return reply.view('upload');
 		}
 	},
 
@@ -109,7 +109,7 @@ module.exports = {
 
 	submitView: {
 		handler: function (request, reply ){
-			return reply.view('submit.jade');
+			return reply.view('submit');
 		}
 	},
 
@@ -137,7 +137,7 @@ module.exports = {
 
 	designView: {
 		handler: function (request, reply ){
-			return reply.view('design.jade');
+			return reply.view('design');
 		}
 	},
 
@@ -153,8 +153,8 @@ module.exports = {
 	adminDesignView:  {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
-			// ADD UPVOTE/PREORDER T
-			return reply.view('admin.jade');
+			// ADD UPVOTE/PREORDER TO DB
+			return reply.view('admin');
 		}
 	},
 
@@ -162,7 +162,7 @@ module.exports = {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// approve new design for gallery display -toggle a bool in the db?
-			return reply.redirect('admin.jade');
+			return reply.redirect('admin');
 		}
 	},
 
@@ -170,8 +170,8 @@ module.exports = {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// reject a design. purge all db refs to it.
-			return reply.redirect('admin.jade');
+			return reply.redirect('admin');
 		}
 	},
 
-};
+}
