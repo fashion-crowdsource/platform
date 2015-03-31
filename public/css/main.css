@@ -2,6 +2,11 @@
 	display: none;
 }
 
+body {
+  background-color: white;
+  color: #201612;
+/*  font-family: Lato;*/
+}
 /*--------upload page---------*/
 #background {
     display: inline;
@@ -25,29 +30,32 @@ input[type="text"] {
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+  	margin-top: 15px;
 }
 
-#upbutton, #submit {
+#attach, #submit {
     width: 150px;
-    height: 35px;
-    border-radius: 35px;
+    height: 30px;
+    border-radius: 30px;
     color: white;
     display: block;
-    margin: auto;
     position: relative;
+  	margin: 10px;
+  	margin-top: 50px;
 /*
   	top: 10%;
   	transform: translateY(330%);
     border: none;
 */
 }
-#upbutton {
+#attach {
     background-color: #2f6bee;
 }
 
 #submit {
   	background-color: #21c462;
-  	margin: 50px 10px 0;
+  	margin: 25px 10px 20px;
+/*  	float: right;*/
 }
 
 #uptext {
@@ -61,12 +69,21 @@ input[type="text"] {
 
 #preview {
   	margin: 20px 0 10px;
+  	display: inline;
+  	border: 2px black;
 }
 
 textarea {
   	display: block;
+  	width: 600px;
+  	height: 100px;
+  border-radius: 5px;
 }
 
+
+#description {
+
+}
 
 .icon {
     fill: white;
