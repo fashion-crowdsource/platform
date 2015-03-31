@@ -1,3 +1,92 @@
 .hidden {
 	display: none;
 }
+
+body {
+  background-color: white;
+  color: #201612;
+/*  font-family: Lato;*/
+}
+/*--------upload page---------*/
+#background {
+    display: inline;
+    background-repeat: none;
+    -webkit-filter: blur(10px);
+    position: fixed;
+  	top: 0;
+  	left: 0;
+  	min-width: 100%;
+  	min-height: 100%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+  	width: 200px;
+    height: 25px;
+    border-radius: 25px;
+  	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+  	margin-top: 15px;
+}
+
+#attach, #submit {
+    width: 150px;
+    height: 30px;
+    border-radius: 30px;
+    color: white;
+    display: block;
+    position: relative;
+  	margin: 10px;
+  	margin-top: 50px;
+/*
+  	top: 10%;
+  	transform: translateY(330%);
+    border: none;
+*/
+}
+#attach {
+    background-color: #2f6bee;
+}
+
+#submit {
+  	background-color: #21c462;
+  	margin: 25px 10px 20px;
+/*  	float: right;*/
+}
+
+#uptext {
+    display: block;
+    font-size: 20px;
+    position: relative;
+  	text-align: center;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
+
+#preview {
+  	margin: 20px 0 10px;
+  	display: inline;
+  	border: 2px black;
+}
+
+textarea {
+  	display: block;
+  	width: 600px;
+  	height: 100px;
+  border-radius: 5px;
+}
+
+
+#description {
+
+}
+
+.icon {
+    fill: white;
+    display: inline;
+}
+/*.........end of upload page.........*/

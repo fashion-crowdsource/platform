@@ -3,4 +3,26 @@ extends ./layouts/default.jade
 block content
 	.row
 		.col-md-12
-			h1 Upload a design
+			form Design Name:
+				input(type="text", placeholder="  Insert your design name")
+			//- img#background(src="/img/fikay-girl.png")
+			form(enctype="multipart/form-data", action="/{username}/upload", method="post")
+			label#attach
+				span#uptext attach
+				input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png", multiple)
+	.row
+		.col-md-12
+			img#preview(src="#")
+			button(data-action="cancel")#bin
+				span.glyphicon.glyphicon-trash
+
+	.row
+		.col-md-12
+			#description
+				h4 Description:
+				textarea
+	.row
+		.col-xs-12.col-sm-12
+			input#submit(type="submit", action="/{username}/upload", method="post")
+
+	script(src="/scripts/upload.js")
