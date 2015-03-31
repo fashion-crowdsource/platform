@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-
+// store images in S3, links here
 var imageSchema =  new Schema({
 	title: {type: String, required: true},
 	url: {type: String, required: true}
@@ -12,7 +12,6 @@ var designSchema = new Schema({
 	description: {type: String, required: true},
 	images: [imageSchema]
 });
-
 
 var userSchema = new Schema({
 	username: {type: String, required: true, unique: true},
@@ -26,3 +25,13 @@ var userSchema = new Schema({
 	isAdmin: {type: Boolean, required: true, default: false},
 	designs: [designSchema]
 });
+
+var User 	= mongoose.model('user', userSchema, 'Users');
+var Design 	= mongoose.model('design', designSchema);
+var Image 	= mongoose.model('image', imageSchema);
+
+module.exports= {
+	User: User,
+	Design: Design,
+	Image: Image
+};
