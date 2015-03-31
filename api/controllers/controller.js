@@ -16,34 +16,31 @@ module.exports = {
 	},
 
 	login : {
-		// auth: {
-		// 	strategy: "github"
-		// },
-		// handler: function (request, reply) {
-		// 	if (request.auth.isAuthenticated) {
+		 auth: {
+		 	strategy: "google"
+		 },
+		 handler: function (request, reply) {
+		 	if (request.auth.isAuthenticated) {
 
-		// 		var g = request.auth.credentials;
-		// 		var profile ={
-		// 			username 	: g.profile.username,
-		// 			email 		: g.profile.email,
-		// 			avatar 		: g.profile.raw.avatar_url,
-		// 			url 		: g.profile.raw.url,
-		// 			account 	: false
-		// 		};
+		 		var gPlus = request.auth.credentials;
+		 		var profile ={
+		 			username 	: gPlus.profile.displayName,
+		 			email 		: gPlus.profile.email,
+		 			picture 	: gPlus.profile.raw.picture,
+		 		};
 
 		// 		 accounts.getAccount( profile.username, function( err, result ){
 		// 			if (err) console.log(err);
 		// 			if (result) profile.account = true;
 
-		// 			request.auth.session.clear();
-		// 			request.auth.session.set(profile);
+		 			request.auth.session.clear();
+		 			request.auth.session.set(profile);
 
 		// 			return profile.account ? reply.redirect("/account") : reply.redirect("/signup");
 		// 		 });
 		// 	}
 		// 	else reply('Not logged in, should be forwarded to bell login...').code(401);
 		// }
-		handler: function (request, reply ){
 			return reply.redirect('/');
 		}
 	},
@@ -63,7 +60,15 @@ module.exports = {
 
 	profileView: {
 		handler: function (request, reply ){
-			return reply.view('profile');
+			if (request.auth.isAuthenticated) {
+				var username = request.auth.credentials.username;
+				//get username from db
+				//get profile description from db
+				//get designs from db
+				return reply.view('profile');
+			} else {
+				return reply.redirect("/login");
+			}
 		}
 	},
 
@@ -78,8 +83,8 @@ module.exports = {
 	deleteUser: {
 		handler: function (request, reply ){
 			// DELETE USER DB ENTRY
-			// REDIRECT TO LOGOUT?
-			return reply.redirect('/logout');
+			// REDIRECT TO LOGOUT? better/more common to be taken back to the homeview(gallery)
+			return reply.redirect('/');
 		}
 	},
 
@@ -90,7 +95,13 @@ module.exports = {
 	},
 
 	uploadNewDesign: {
+		payload : {
+			maxBytes: 209715200,
+			output: 'stream',
+			parse: false
+			},
 		handler: function (request, reply ){
+
 			// ADD NEW SUBMISSION TO DB (NOT YET SUBMITTED)
 			return reply.redirect('/{username}/submit');
 		}
@@ -163,4 +174,4 @@ module.exports = {
 		}
 	},
 
-};
+}

@@ -1,3 +1,44 @@
 .hidden {
 	display: none;
 }
+
+/*upload page*/
+#background {
+    display: inline;
+    background-repeat: none;
+    -webkit-filter: blur(10px);
+    position: fixed;
+  	top: 0;
+  	left: 0;
+  	min-width: 100%;
+  	min-height: 100%;
+}
+
+#upbutton {
+    width: 220px;
+    height: 80px;
+    border-radius: 80px;
+    background-color: #21c462;
+    color: white;
+    display: block;
+    margin: auto;
+    position: relative;
+  	top: 10%;
+  	transform: translateY(330%);
+    border: none;
+}
+
+#uptext {
+/*   vertical-align: middle;*/
+    display: block;
+    font-size: 20px;
+    position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
+
+
+.icon {
+    fill: white;
+    display: inline;
+}
