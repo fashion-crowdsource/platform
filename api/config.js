@@ -6,9 +6,9 @@ module.exports = {
 				dburl  : process.env.DBURL 		|| require('./creds.json').database.dburl,
 	},
 	google : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').github.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').github.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').github.cSecret,
+				secret 	: process.env.SECRET 	|| require('./creds.json').google.secret,
+				cKey	: process.env.CKEY 		|| require('./creds.json').google.cKey,
+				cSecret	: process.env.CSECRET 	|| require('./creds.json').google.cSecret,
 	},
 	cookie : {
 				password: process.env.COOKIESECRET || require('./creds.json').cookieSecret
