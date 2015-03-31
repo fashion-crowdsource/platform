@@ -61,6 +61,13 @@ module.exports = {
 		}
 	},
 
+	signupView: {
+		// AUTH REQUIRED - also, add redirect if user in db, to prevent direct access
+		handler: function (request, reply ){
+			return reply.view('signup');
+		}
+	},
+
 	profileView: {
 		handler: function (request, reply ){
 			if (request.auth.isAuthenticated) {
