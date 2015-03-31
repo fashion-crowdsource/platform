@@ -15,7 +15,7 @@ module.exports = {
 		}
 	},
 
-	login : {
+	login: {
 		// auth: {
 		// 	strategy: "github"
 		// },
@@ -161,6 +161,6 @@ module.exports = {
 			// reject a design. purge all db refs to it.
 			return reply.redirect('admin');
 		}
-	},
+	}
 
 };
