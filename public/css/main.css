@@ -2,7 +2,7 @@
 	display: none;
 }
 
-/*upload page*/
+/*--------upload page---------*/
 #background {
     display: inline;
     background-repeat: none;
@@ -14,27 +14,57 @@
   	min-height: 100%;
 }
 
-#upbutton {
-    width: 220px;
-    height: 80px;
-    border-radius: 80px;
-    background-color: #21c462;
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+  	width: 200px;
+    height: 25px;
+    border-radius: 25px;
+  	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+#upbutton, #submit {
+    width: 150px;
+    height: 35px;
+    border-radius: 35px;
     color: white;
     display: block;
     margin: auto;
     position: relative;
+/*
   	top: 10%;
   	transform: translateY(330%);
     border: none;
+*/
+}
+#upbutton {
+    background-color: #2f6bee;
+}
+
+#submit {
+  	background-color: #21c462;
+  	margin: 50px 10px 0;
 }
 
 #uptext {
-/*   vertical-align: middle;*/
     display: block;
     font-size: 20px;
     position: relative;
+  	text-align: center;
   	top: 50%;
   	transform: translateY(-50%);
+}
+
+#preview {
+  	margin: 20px 0 10px;
+}
+
+textarea {
+  	display: block;
 }
 
 
@@ -42,3 +72,4 @@
     fill: white;
     display: inline;
 }
+/*.........end of upload page.........*/
