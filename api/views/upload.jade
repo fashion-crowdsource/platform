@@ -1,24 +1,36 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 block content
 	.row
 		.col-md-12
 			form Design Name:
-				input(type="text", placeholder="  Insert your design name")
-			//- img#background(src="/img/fikay-girl.png")
-			form(enctype="multipart/form-data", action="/{username}/upload", method="post")
-			label#attach
-				span#uptext attach
-				input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png", multiple)
+				input(type="text", placeholder="Insert your design name")
 
-	.row
-		.col-md-12
-			img#preview(src="#")
+	#greyback
+		.row
+			.col-md-12
+				+attach
+				+attach
+				+attach
 
-	.row
-		.col-md-12
-			button(data-action="cancel")#bin
-				span.glyphicon.glyphicon-trash
+		.row
+			.col-md-12
+				+imgAndBin
+				+imgAndBin
+				+imgAndBin
+
+		.row
+			.col-md-12
+				+attach
+				+attach
+				+attach
+
+		.row
+			.col-md-12
+				+imgAndBin
+				+imgAndBin
+				+imgAndBin
 
 	.row
 		.col-md-12
@@ -27,6 +39,6 @@ block content
 				textarea
 	.row
 		.col-xs-12.col-sm-12
-			input#submit(type="submit", action="/{username}/upload", method="post")
+			input#submit(type="submit", enctype="multipart/form-data", action="/{username}/upload", method="post")
 
 	script(src="/scripts/upload.js")
