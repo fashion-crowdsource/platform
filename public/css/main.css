@@ -8,6 +8,7 @@ body {
 /*  font-family: Lato;*/
 }
 /*--------upload page---------*/
+/*
 #background {
     display: inline;
     background-repeat: none;
@@ -18,11 +19,24 @@ body {
   	min-width: 100%;
   	min-height: 100%;
 }
+*/
 
 #greyback {
   	background: rgba(0,0,0,0.05);
   	padding: 20px 0;
 }
+
+/*
+button:active,
+button:focus,
+input:active,
+input:focus{
+  	background-image: none;
+  	outline: 0;
+  	-webkit-box-shadow: none;
+    box-shadow: none;
+}
+*/
 
 input[type="file"] {
     display: none;
@@ -62,9 +76,13 @@ input[type="text"] {
     border-radius: 25px;
   	background-color: #e4333c;
   	margin-right: 20px;
+  	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+  	box-shadow: none !important;
+
 }
 
-.trash {
+.trashlogo {
   color: white;
 }
 
