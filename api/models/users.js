@@ -54,7 +54,7 @@ function getUser(userName, callback) {
 	});
 }
 
-function getAllUsers(userName, callback) {
+function getAllUsers(callback) {
 	User.find({}, function(err, users){
 		if (err) {
 			return callback(err);
