@@ -12,22 +12,16 @@ function loadImg(input) {
 	}
 }
 
-
- // $('a.delete').on('click',function(e){
- //        e.preventDefault();
- //        imageID = $(this).closest('input')[0].id;
- //        // alert('Now deleting "'+imageID+'"');
- //        $(this).closest('input')
- //            // .fadeTo(300,0,function(){
- //            //     $(this)
- //            //         .animate({width:0},200,function(){
- //            //             $(this)
- //                            .remove();
- //                    });
- //            // });
- //    // });
+function binIt(ele) {
+	ele.wrap("<form>").parent("form").trigger("reset");
+	ele.unwrap();
+}
 
 
-$("bin").click(function() {
-  $("#").remove();
+$(document).ready(function() {
+	$("#bin").on("click", function(e) {
+		binIt($("#myfile"));
+		$('#preview')
+			.attr('src', e.target.result);
+	});
 });

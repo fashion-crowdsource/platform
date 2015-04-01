@@ -2,8 +2,8 @@ mixin attach
 	label#attach
 		form
 			span#uptext attach
-			input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
-	button(data-action="cancel")#bin
+				input(id="myfile", type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
+	button#bin
 		span.glyphicon.glyphicon-trash.trashlogo
 
 mixin imgAndBin
