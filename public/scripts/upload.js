@@ -11,3 +11,18 @@ function loadImg(input) {
 		reader.readAsDataURL(input.files[0]);
 	}
 }
+
+
+ $('a.delete').on('click',function(e){
+        e.preventDefault();
+        imageID = $(this).closest('input')[0].id;
+        // alert('Now deleting "'+imageID+'"');
+        $(this).closest('input')
+            // .fadeTo(300,0,function(){
+            //     $(this)
+            //         .animate({width:0},200,function(){
+            //             $(this)
+                            .remove();
+                    });
+            // });
+    // });

@@ -7,21 +7,24 @@ block content
 				input(type="text", placeholder="  Insert your design name")
 			//- img#background(src="/img/fikay-girl.png")
 			form(enctype="multipart/form-data", action="/{username}/upload", method="post")
-			label#upbutton
+			label#attach
 				span#uptext attach
 				input(type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png", multiple)
 
+	.row
+		.col-md-12
+			img#preview(src="#")
+			button(data-action="cancel")#bin
+				a.delete(href='#') Delete
+					span.glyphicon.glyphicon-trash
 
 	.row
 		.col-md-12
-			button#bin
-
-				span.glyphicon.glyphicon-trash
-
+			#description
+				h4 Description:
+				textarea
 	.row
-		.col-md-12
-			textarea
-				input#submit(type="submit", action="/{username}/upload", method="POST")
-
+		.col-xs-12.col-sm-12
+			input#submit(type="submit", action="/{username}/upload", method="post")
 
 	script(src="/scripts/upload.js")
