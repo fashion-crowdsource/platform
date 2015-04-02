@@ -3,4 +3,42 @@ extends ./layouts/default.jade
 block content
 	.row
 		.col-md-12
-			h1 Signup Page
+			h1 Sign Up
+
+			form(action='/signup', method='POST')
+				label Username
+					input(type='text' required)
+				br
+				label Email
+					input(type='text' required)
+				br
+				label First Name
+					input(type='text' required)
+				br
+				label Last Name
+					input(type='text' required)
+				br
+				label Phone Number
+					input(type='text')
+				br
+				label Address
+					input(type='text')
+					br
+					input(type='text')
+					br
+					input(type='text')
+					br
+					input(type='text')
+				br
+				label Bio
+					textarea
+				br
+				label Links
+					input(type='text')
+				br
+				br
+				br
+				label Today's Date
+					input(type= 'date')
+
+
