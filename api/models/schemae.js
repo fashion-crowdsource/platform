@@ -12,6 +12,7 @@ var designSchema = new Schema({
 	designerId: 		{type: ObjectId, required: true, unique: true},
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
+	additionalInfo: 	{type: String},
 	dateAdded: 			{type: Date, required: true}
 });
 
