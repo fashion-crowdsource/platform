@@ -22,23 +22,35 @@ block content
 					input(type='text')
 				br
 				label Address
-					input(type='text')
-					br
-					input(type='text')
-					br
-					input(type='text')
-					br
-					input(type='text')
+					p First Line
+						input(type='text')
+						br
+					p Second Line
+						input(type='text')
+						br
+					p Town
+						input(type='text')
+						br
+					p City
+						input(type='text')
+						br
+					p Post Code
+						input(type='text')
 				br
 				label Bio
 					textarea
 				br
 				label Links
-					input(type='text')
+					textarea
 				br
 				br
 				br
 				label Today's Date
 					input(type= 'date')
-
-
+				br
+				br
+				label Are you an Administrator?
+					p No
+						input(type="radio", name="Admin" value="No" checked)
+					p Yes
+						input(type="radio", name="Admin" value="Yes")
