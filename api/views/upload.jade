@@ -1,6 +1,44 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 block content
 	.row
 		.col-md-12
-			h1 Upload a design
+			form Design Name:
+				input(type="text", placeholder="Insert your design name")
+
+	#greyback
+		.row
+			.col-md-12
+				+attach
+				+attach
+				+attach
+
+		.row
+			.col-md-12
+				+imgAndBin
+				+imgAndBin
+				+imgAndBin
+
+		.row
+			.col-md-12
+				+attach
+				+attach
+				+attach
+
+		.row
+			.col-md-12
+				+imgAndBin
+				+imgAndBin
+				+imgAndBin
+
+	.row
+		.col-md-12
+			#description
+				h4 Description:
+				textarea
+	.row
+		.col-xs-12.col-sm-12
+			input#submit(type="submit", enctype="multipart/form-data", action="/{username}/upload", method="post")
+
+	script(src="/scripts/upload.js")

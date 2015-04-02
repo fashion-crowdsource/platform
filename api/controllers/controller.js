@@ -1,8 +1,9 @@
-var Bell 	 = require("bell");
-var Path 	 = require("path");
-var Joi 	 = require("joi");
-var config 	 = require('../config.js');
-
+var Bell 	= require("bell");
+var Path 	= require("path");
+var Joi 	= require("joi");
+var config 	= require('../config');
+var users 	= require('../models/users');
+var designs = require('../models/designs');
 
 module.exports = {
 
@@ -15,36 +16,37 @@ module.exports = {
 		}
 	},
 
-	login : {
-		// auth: {
-		// 	strategy: "github"
-		// },
-		// handler: function (request, reply) {
-		// 	if (request.auth.isAuthenticated) {
+	login: {
+		 auth: {
+			strategy: "google"
+		 },
+		 handler: function (request, reply) {
+			if (request.auth.isAuthenticated) {
 
-		// 		var g = request.auth.credentials;
-		// 		var profile ={
-		// 			username 	: g.profile.username,
-		// 			email 		: g.profile.email,
-		// 			avatar 		: g.profile.raw.avatar_url,
-		// 			url 		: g.profile.raw.url,
-		// 			account 	: false
-		// 		};
+				var gPlus = request.auth.credentials;
+				var profile = {
+					username 	: gPlus.profile.displayName,
+					email 		: gPlus.profile.email,
+					picture 	: gPlus.profile.raw.picture,
+					hasAccount	: false
+				};
 
-		// 		 accounts.getAccount( profile.username, function( err, result ){
-		// 			if (err) console.log(err);
-		// 			if (result) profile.account = true;
+				// NB. We are assuming user.username will be set to profile.username
+				 users.getUser(profile.username, function( err, result ){
+					if (err) console.log(err);
 
-		// 			request.auth.session.clear();
-		// 			request.auth.session.set(profile);
+					if (result) profile.hasAccount = true;
 
-		// 			return profile.account ? reply.redirect("/account") : reply.redirect("/signup");
-		// 		 });
-		// 	}
-		// 	else reply('Not logged in, should be forwarded to bell login...').code(401);
-		// }
-		handler: function (request, reply ){
-			return reply.redirect('/');
+					request.auth.session.clear();
+					request.auth.session.set(profile);
+
+					return profile.hasAccount ? reply.redirect('/') : reply.redirect('/signup');
+				 });
+			}
+			else {
+				return reply.redirect('/');
+			}
+
 		}
 	},
 
@@ -61,9 +63,35 @@ module.exports = {
 		}
 	},
 
+	signupView: {
+		// AUTH REQUIRED - also, add redirect if user in db, to prevent direct access
+		handler: function (request, reply ){
+			return reply.view('signup');
+		}
+	},
+
+	signupSubmit: {
+		// AUTH REQUIRED ?
+		handler: function (request, reply ){
+			// ADD NEW USER TO DB
+			// 1. create new user doc
+			// 2. save
+			// 3. redirect to new profile on sucess
+			return reply.redirect('/');
+		}
+	},
+
 	profileView: {
 		handler: function (request, reply ){
-			return reply.view('profile');
+			if (request.auth.isAuthenticated) {
+				var username = request.auth.credentials.username;
+				//get username from db
+				//get profile description from db
+				//get designs from db
+				return reply.view('profile');
+			} else {
+				return reply.redirect("/login");
+			}
 		}
 	},
 
@@ -78,8 +106,8 @@ module.exports = {
 	deleteUser: {
 		handler: function (request, reply ){
 			// DELETE USER DB ENTRY
-			// REDIRECT TO LOGOUT?
-			return reply.redirect('/logout');
+			// REDIRECT TO LOGOUT? better/more common to be taken back to the homeview(gallery)
+			return reply.redirect('/');
 		}
 	},
 
@@ -90,39 +118,48 @@ module.exports = {
 	},
 
 	uploadNewDesign: {
+		payload : {
+			maxBytes: 209715200, //20MB? May need to be greater, and user feednack required
+			output: 'stream', //stream/file/data????
+			parse: true
+		},
 		handler: function (request, reply ){
-			// ADD NEW SUBMISSION TO DB (NOT YET SUBMITTED)
-			return reply.redirect('/{username}/submit');
+			// ADD NEW SUBMISSION TO DB
+			// 1. get user doc from db. by username from session cookie/request.auth.username?
+			// 2. save payload data to new design doc
+			// 3. save design doc ObjId to user designs[]
+			return reply.redirect('profile/{username}/');
 		}
 	},
 
-	submitView: {
-		handler: function (request, reply ){
-			return reply.view('submit');
-		}
-	},
+	// SUBMIT ROUTES - TO BE DELETED IF NOT NEEDED
+	// submitView: {
+	// 	handler: function (request, reply ){
+	// 		return reply.view('submit');
+	// 	}
+	// },
 
-	submitDesign: {
-		handler: function (request, reply ){
-			// COMPLETE ADDING DESIGN TO DB
-			return reply.redirect('/{username}');
-		}
-	},
+	// submitDesign: {
+	// 	handler: function (request, reply ){
+	// 		// COMPLETE ADDING DESIGN TO DB
+	// 		return reply.redirect('/{username}');
+	// 	}
+	// },
 
-	editDesign: {
-		handler: function (request, reply ){
-			// EDIT SUBMISSION IN PROGRESS
-			// redirect to submission, in new state
-			return reply.redirect('/{username}/submit');
-		}
-	},
+	// editDesign: {
+	// 	handler: function (request, reply ){
+	// 		// EDIT SUBMISSION IN PROGRESS
+	// 		// redirect to submission, in new state
+	// 		return reply.redirect('/{username}/submit');
+	// 	}
+	// },
 
-	binDesign: {
-		handler: function (request, reply ){
-			// REMOVE ALL TRACE OF DESIGN FROM DB
-			return reply.redirect('/{username}');
-		}
-	},
+	// binDesign: {
+	// 	handler: function (request, reply ){
+	// 		// REMOVE ALL TRACE OF DESIGN FROM DB
+	// 		return reply.redirect('/{username}');
+	// 	}
+	// },
 
 	designView: {
 		handler: function (request, reply ){
@@ -161,6 +198,5 @@ module.exports = {
 			// reject a design. purge all db refs to it.
 			return reply.redirect('admin');
 		}
-	},
-
+	}
 };

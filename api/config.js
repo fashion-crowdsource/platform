@@ -1,19 +1,21 @@
 /* $lab:coverage:off$ */
 module.exports = {
 	db : {
-				dbuser : process.env.DBUSER 	|| require('./creds.json').database.dbuser,
-				dbpwd  : process.env.DBPWD 		|| require('./creds.json').database.dbpwd,
-				dburl  : process.env.DBURL 		|| require('./creds.json').database.dburl,
+				dbuser 	: process.env.DBUSER 	|| require('./creds.json').database.dbuser,
+				dbpwd  	: process.env.DBPWD 	|| require('./creds.json').database.dbpwd,
+				dburl  	: process.env.DBURL 	|| require('./creds.json').database.dburl,
 	},
-	github : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').github.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').github.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').github.cSecret,
+	s3 : {
+				key 	: process.env.S3KEY 	|| require('./creds.json').s3.key,
+				secret 	: process.env.S3SECRET 	|| require('./creds.json').s3.secret,
+				bucket 	: process.env.S3BUCKET 	|| require('./creds.json').s3.bucket,
+				acl 	: process.env.S3ACL 	|| require('./creds.json').s3.acl,
+				region 	: process.env.S3REGION 	|| require('./creds.json').s3.region,
 	},
-	twitter : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').twitter.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').twitter.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').twitter.cSecret,
+	google : {
+				secret 	: process.env.SECRET 	|| require('./creds.json').google.secret,
+				cKey	: process.env.CKEY 		|| require('./creds.json').google.cKey,
+				cSecret	: process.env.CSECRET 	|| require('./creds.json').google.cSecret,
 	},
 	cookie : {
 				password: process.env.COOKIESECRET || require('./creds.json').cookieSecret

@@ -5,18 +5,16 @@
 		"dbpwd"		: "<mongo password>",
 		"dburl"		: "<mongo db url>"
 	},
-	"github" : {
+	"s3" : {
+		"key" 		: "<s3 user key>",
+		"secret"	: "<s3 user secret key>",
+		"bucket"	: "<s3 bucket name>",
+		"acl"		: "public-read-write",
+		"region"	: "<s3 region>"
+	"google" : {
 		"secret"	: "<arbitrary string>",
-		"cKey"		: "<github auth client key>",
-		"cSecret"	: "<github auth client secret>"
-	},
-	"twitter" : {
-		"secret"	: "<arbitrary string>",
-		"cKey"		: "<twitter auth client key>",
-		"cSecret"	: "<twitter auth client secret>"
-	},
-	"stripe" : {
-		"secret"	: "<stripe secret key>"
+		"cKey"		: "<google auth client key>",
+		"cSecret"	: "<google auth client secret>"
 	},
 	"cookieSecret"	: "<arbitrary string>"
 }
