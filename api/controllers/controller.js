@@ -28,14 +28,18 @@ module.exports = {
 					username 	: gPlus.profile.displayName,
 					email 		: gPlus.profile.email,
 					picture 	: gPlus.profile.raw.picture,
-					hasAccount	: false
+					hasAccount	: false,
+					isAdmin		: false
 				};
 
 				// NB. We are assuming user.username will be set to profile.username
-				 users.getUser(profile.username, function( err, result ){
+				 users.getUser(profile.username, function(err, user){
 					if (err) console.log(err);
 
-					if (result) profile.hasAccount = true;
+					if (user) profile.hasAccount = true;
+					if (user) {
+						if (user.isAdmin) profile.isAdmin = true;
+					}
 
 					request.auth.session.clear();
 					request.auth.session.set(profile);
@@ -65,13 +69,14 @@ module.exports = {
 	},
 
 	signupView: {
-		// AUTH REQUIRED - also, add redirect if user in db, to prevent direct access
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
 		}
 	},
 
 	signupSubmit: {
+		auth: {mode: 'required'},
 		// validate:{
 		// 	payload: <joiObjectName>,
 		// },
@@ -106,6 +111,7 @@ module.exports = {
 				}
 				else {
 					console.dir(user);
+					request.auth.session.set(hasAccount, true);
 					reply.redirect('/profile/'+user.username);
 				}
 			});
@@ -132,6 +138,7 @@ module.exports = {
 	},
 
 	editUser: {
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
@@ -140,6 +147,7 @@ module.exports = {
 	},
 
 	deleteUser: {
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			// DELETE USER DB ENTRY
 			// REDIRECT TO LOGOUT? better/more common to be taken back to the homeview(gallery)
@@ -149,12 +157,13 @@ module.exports = {
 
 	uploadView: {
 		handler: function (request, reply ){
-			return reply.view('upload');
+			return request.auth.credentials.hasAccount ? reply.view('upload') : reply.redirect('signup');
 		}
 	},
 
 	// function createDesign(designData, mainImgPath, imageArray, fileArray, callback)
 	uploadNewDesign: {
+		auth: {mode: 'required'},
 		// validate:{
 		// 	payload: <joiObjectName>,
 		// },
