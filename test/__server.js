@@ -7,21 +7,21 @@ var server  = require('../api/server.js');
 //homeview
 lab.experiment("When the user visits the homepage: ", function(){
 
-    lab.test("It should GET designs gallery", function(done){
+	lab.test("It should GET designs gallery", function(done){
 
-        var options = {
-            url: '/',
-            method: 'GET'
-        };
+		var options = {
+			url: '/',
+			method: 'GET'
+		};
 
-        server.inject(options, function(response){
+		server.inject(options, function(response){
 
-            assert.equal(response.statusCode, 200, "should return a status code of 200");
-            assert.include(response.headers["content-type"], "image/png" || "image/jpg", "the images should load");
+			assert.equal(response.statusCode, 200, "should return a status code of 200");
+			assert.include(response.headers["content-type"], "image/png" || "image/jpg", "the images should load");
 			done();
-        });
+		});
 
-    });
+	});
 
 });
 
@@ -48,8 +48,8 @@ lab.experiment("When the user tries to login: ", function(){
 			method: "GET",
 			credentials : {
 				username 	: "neats",
-		 		email 		: "xx@xx.co.uk",
-		 		picture 	: "to get url"
+				email 		: "xx@xx.co.uk",
+				picture 	: "to get url"
 			}
 		};
 		server.inject(options, function(response){

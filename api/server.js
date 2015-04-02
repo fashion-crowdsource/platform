@@ -19,7 +19,7 @@ var server = new Hapi.Server({
 server.connection(port);
 
 server.register([Bell, Cookie], function (err) {
-	if (err) {throw err;}
+	if (err) throw err;
 
 	server.auth.strategy('session', 'cookie', {
 		password: config.cookie.password,

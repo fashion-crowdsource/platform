@@ -16,10 +16,11 @@ module.exports = [
 	{path: '/{username}/upload', 		method: 'GET', 		config: controller.uploadView},
 	{path: '/{username}/upload', 		method: 'POST', 	config: controller.uploadNewDesign},
 
-	{path: '/{username}/submit',		method: 'GET', 		config: controller.submitView},
-	{path: '/{username}/submit', 		method: 'POST', 	config: controller.submitDesign},
-	{path: '/{username}/submit',		method: 'PUT', 		config: controller.editDesign},
-	{path: '/{username}/submit', 		method: 'DELETE', 	config: controller.binDesign},
+	// submit endpoints no longer needed?
+	// {path: '/{username}/submit',		method: 'GET', 		config: controller.submitView},
+	// {path: '/{username}/submit', 		method: 'POST', 	config: controller.submitDesign},
+	// {path: '/{username}/submit',		method: 'PUT', 		config: controller.editDesign},
+	// {path: '/{username}/submit', 		method: 'DELETE', 	config: controller.binDesign},
 
 	{path: '/designs/{username}/{design}', 	method: 'GET', 		config: controller.designView},
 	{path: '/designs/{username}/{design}', 	method: 'POST', 	config: controller.upVoteDesign},
