@@ -17,14 +17,14 @@ var designSchema = new Schema({
 
 designSchema.plugin(crate, {
 	storage: new S3({
-		key: config.key,
+		key: 	config.key,
 		secret: config.secret,
 		bucket: config.bucket,
-		acl: config.acl,
+		acl: 	config.acl,
 		region: config.region,
 	}),
 	fields: {
-		designMainImage: {
+		mainImage: {
 			processor: new ImageMagick({
 				// tmpDir: '/tmp', // Where transformed files are placed before storage, defaults to os.tmpdir()
 				// formats: ['JPEG', 'GIF', 'PNG'], // Supported formats, defaults to ['JPEG', 'GIF', 'PNG', 'TIFF']
@@ -51,7 +51,7 @@ designSchema.plugin(crate, {
 				}
 			})
 		},
-		designAdditionalImages: {
+		additionalImages: {
 			array: true,
 			processor: new ImageMagick({
 				// tmpDir: '/tmp', // Where transformed files are placed before storage, defaults to os.tmpdir()
@@ -77,7 +77,11 @@ designSchema.plugin(crate, {
 						format: '.jpg'
 					}
 				}
+
 			})
+		},
+		additionalFiles: {
+			array: true
 		}
 	}
 });
@@ -101,10 +105,10 @@ var userSchema = new Schema({
 
 userSchema.plugin(crate, {
 	storage: new S3({
-		key: config.key,
+		key: 	config.key,
 		secret: config.secret,
 		bucket: config.bucket,
-		acl: config.acl,
+		acl: 	config.acl,
 		region: config.region,
 	}),
 	fields: {
@@ -130,9 +134,6 @@ userSchema.plugin(crate, {
 					}
 				}
 			})
-		},
-		additionalFiles: {
-			array: true
 		}
 	}
 });
