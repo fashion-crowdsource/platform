@@ -12,7 +12,7 @@
 
 body {
   background-color: white;
-  color: #201612;
+  color: #444444;
 /*  font-family: Lato;*/
 }
 /*--------upload page---------*/
@@ -31,7 +31,8 @@ body {
 
 #greyback {
   	background: rgba(0,0,0,0.05);
-  	padding: 10px 20px 20px;
+  	padding: 10px 25px 20px;
+  	border-radius: 3px;
 }
 
 /*
@@ -62,10 +63,11 @@ input[type="text"] {
     border-radius: 25px;
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
-	box-shadow: none;
+	border: solid 1px lightgrey;
   	margin-top: 8px;
   	padding: 6px;
   	display: inline;
+  	font-weight: 200;
 }
 
 #designName {
@@ -89,7 +91,7 @@ input[type="text"] {
     color: white;
     display: inline;
     position: relative;
-  	margin: 20px 5px 0;
+  	margin: 10px 5px 10px;
   	font-size: 10px;
 /*
   	top: 10%;
@@ -121,7 +123,10 @@ input[type="text"] {
 	-moz-box-shadow: none;
   	box-shadow: none !important;
   	font-weight: 300;
+}
 
+button, input[type="submit"] {
+  	border: none;
 }
 
 .trashlogo {
@@ -131,16 +136,14 @@ input[type="text"] {
 
 #submit {
   	background-color: #21c462;
-  	margin: 25px 10px 20px;
-/*  	float: right;*/
+  	margin: 20px 50px 30px 10px;
+  	float: right;
   	width: 150px;
     height: 30px;
     border-radius: 30px;
     color: white;
     display: block;
     position: relative;
-  	margin: 10px;
-  	margin-top: 20px;
 }
 
 #uptext {
@@ -163,6 +166,7 @@ textarea {
   	width: 600px;
   	height: 100px;
   	border-radius: 5px;
+  	border-color: lightgrey;
 }
 
 
