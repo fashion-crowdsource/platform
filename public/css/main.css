@@ -31,7 +31,7 @@ body {
 
 #greyback {
   	background: rgba(0,0,0,0.05);
-  	padding: 20px 0;
+  	padding: 10px 0;
 }
 
 /*
@@ -46,6 +46,12 @@ input:focus{
 }
 */
 
+hr {
+  	box-sizing: content-box;
+  	height: 0;
+  	width: 300px;
+}
+
 input[type="file"] {
     display: none;
 }
@@ -57,8 +63,18 @@ input[type="text"] {
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-  	margin-top: 15px;
+  	margin-top: 8px;
   	padding: 6px;
+}
+
+#mainImgLabel {
+  	display: inline-block;
+  	margin: 0 auto;
+  	margin-bottom: 10px;
+  	width: 150px;
+  	height: 25px;
+    border-radius: 25px;
+    color: white;
 }
 
 #attach {
@@ -77,6 +93,11 @@ input[type="text"] {
 */
 }
 
+#attach, #mainImgLabel {
+    background-color: #2f6bee;
+  	display: inline-block;
+}
+
 #bin {
   	display: inline;
   	width: 35px;
@@ -87,6 +108,7 @@ input[type="text"] {
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
   	box-shadow: none !important;
+  	font-weight: 300;
 
 }
 
@@ -94,10 +116,6 @@ input[type="text"] {
   color: white;
 }
 
-#attach {
-    background-color: #2f6bee;
-  	display: inline-block;
-}
 
 #submit {
   	background-color: #21c462;
@@ -115,7 +133,7 @@ input[type="text"] {
 
 #uptext {
     display: block;
-    font-size: 20px;
+    font-weight: 300;
     position: relative;
   	text-align: center;
   	top: 50%;
