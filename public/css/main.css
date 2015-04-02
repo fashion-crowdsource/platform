@@ -91,7 +91,7 @@ input[type="text"] {
     color: white;
     display: inline;
     position: relative;
-  	margin: 10px 5px 10px;
+  	margin: 10px 5px 10px 10px;
   	font-size: 10px;
 /*
   	top: 10%;
@@ -119,10 +119,8 @@ input[type="text"] {
     border-radius: 25px;
   	background-color: #e4333c;
   	margin-right: 20px;
-  	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-  	box-shadow: none !important;
   	font-weight: 300;
+  	padding-bottom: 2px;
 }
 
 button, input[type="submit"] {
@@ -130,7 +128,8 @@ button, input[type="submit"] {
 }
 
 .trashlogo {
-  color: white;
+  	color: white;
+  	padding-top: 3.5px;
 }
 
 
@@ -178,4 +177,16 @@ textarea {
     fill: white;
     display: inline;
 }
+/*.........end of upload page.........*/
+
+
+/*--------profile page---------*/
+
+.profilePic {
+	border: solid 1px lightgrey;
+  	border-radius: 50%;
+}
+
+
+
 /*.........end of upload page.........*/
