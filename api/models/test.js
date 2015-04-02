@@ -28,7 +28,7 @@ mongoose.connect(mongodbUri, function() {
 
 	db.on("error", console.error.bind(console, "connection error"));
 	db.once("open", function() {
-		designs.testAddDesign(designData, imgPath,function(err, design){
+		designs.testAddDesign(designData, imgPath, function(err, design){
 			if (err) {
 				console.log(err);
 			}
