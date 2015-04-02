@@ -6,7 +6,7 @@ module.exports = [
 	{path: '/', 						method: 'GET', 		config: controller.homeView},
 	{path: '/signup', 					method: 'GET', 		config: controller.signupView},
 	{path: '/signup', 					method: 'POST', 	config: controller.signupSubmit},
-	{path: '/login', 					method: 'POST', 	config: controller.login},
+	{path: '/login', 					method: 'GET', 		config: controller.login},
 	{path: '/logout', 					method: 'GET', 		config: controller.logout},
 
 	{path: '/profile/{username}', 		method: 'GET', 		config: controller.profileView},

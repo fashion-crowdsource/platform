@@ -4,7 +4,7 @@ var Cookie 	= require('hapi-auth-cookie');
 var Path 	= require('path');
 var routes 	= require('./routes/routes.js');
 var config 	= require('./config.js');
-var port 	= {port: (process.env.port || 3000 ) };
+var port 	= {port: (process.env.port || 3000 ) }; //TODO set host as 0.0.0.0 for heroku
 
 var server = new Hapi.Server({
 	connections: {
@@ -21,6 +21,9 @@ server.connection(port);
 server.register([Bell, Cookie], function (err) {
 	if (err) throw err;
 
+	// NB session strategy set to 'optional' mode. Therefor, unless overriden in handler auth will be attempted for each page
+	// however, page will still be served, we need to discriminate between signed in /not signed in users and adjust response appropriately
+	// for some pages (e.g. upload), stratgey should be set to true
 	server.auth.strategy('session', 'cookie', {
 		password: config.cookie.password,
 		cookie: 'sid',
@@ -47,11 +50,11 @@ server.register([Bell, Cookie], function (err) {
 			pretty: true
 		},
 		relativeTo: __dirname,
-		path: 		  "./views",
+		path: 		'./views',
 		isCached: false
 	});
 
-	// server.auth.default('session');
+	server.auth.default('session');
 	server.route( routes );
 });
 
