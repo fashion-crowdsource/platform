@@ -51,7 +51,7 @@ server.register([Bell, Cookie], function (err) {
 		isCached: false
 	});
 
-	// server.auth.default('session');
+	server.auth.default('session');
 	server.route( routes );
 });
 

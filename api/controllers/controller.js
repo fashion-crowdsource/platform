@@ -238,6 +238,7 @@ module.exports = {
 	},
 
 	adminDesignView:  {
+		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// ADD UPVOTE/PREORDER TO DB
