@@ -31,7 +31,7 @@ body {
 
 #greyback {
   	background: rgba(0,0,0,0.05);
-  	padding: 10px 0;
+  	padding: 10px 20px 20px;
 }
 
 /*
@@ -65,6 +65,11 @@ input[type="text"] {
 	box-shadow: none;
   	margin-top: 8px;
   	padding: 6px;
+  	display: inline;
+}
+
+#designName {
+	margin-left: 20px;
 }
 
 #mainImgLabel {
@@ -91,6 +96,13 @@ input[type="text"] {
   	transform: translateY(330%);
     border: none;
 */
+}
+
+.preview1, .preview2, .preview3, .preview4, .preview5, #mainPreview {
+  	width: 150px;
+  	height: 150px;
+  	margin: 5px;
+/*  	-webkit-filter: blur(1.5px);*/
 }
 
 #attach, #mainImgLabel {
