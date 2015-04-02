@@ -6,9 +6,6 @@ block content
 			h1 Sign Up
 
 			form(action='/signup', method='POST')
-				label Username
-					input(type='text' required)
-				br
 				label Email
 					input(type='text' required)
 				br
@@ -42,15 +39,12 @@ block content
 				br
 				label Links
 					textarea
-				br
-				br
-				br
-				label Today's Date
-					input(type= 'date')
-				br
-				br
 				label Are you an Administrator?
 					p No
 						input(type="radio", name="Admin" value="No" checked)
 					p Yes
 						input(type="radio", name="Admin" value="Yes")
+
+	.row
+		.col-xs-12.col-sm-12
+			input#submit(type="submit", enctype="multipart/form-data", action="/signup", method="post")

@@ -46,6 +46,8 @@ input:focus{
 }
 */
 
+
+/*Sign up page*/
 label{
     display: inline-block;
     float: left;
@@ -129,18 +131,17 @@ input[type="text"] {
 
 
 #submit {
-  	background-color: #21c462;
-  	margin: 25px 10px 20px;
-/*  	float: right;*/
+ 	background-color: #21c462;
+  	margin: 20px 50px 30px 10px;
+  	float: right;
   	width: 150px;
-    height: 30px;
-    border-radius: 30px;
-    color: white;
-    display: block;
-    position: relative;
-  	margin: 10px;
-  	margin-top: 20px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	display: block;
+	position: relative;
 }
+
 
 #uptext {
     display: block;
