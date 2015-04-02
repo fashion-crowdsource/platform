@@ -58,6 +58,7 @@ module.exports = {
 	},
 
 	homeView: {
+		auth: false, //to prevent redirect loop from session cookie
 		handler: function (request, reply ){
 			return reply.view('index');
 		}
@@ -66,32 +67,67 @@ module.exports = {
 	signupView: {
 		// AUTH REQUIRED - also, add redirect if user in db, to prevent direct access
 		handler: function (request, reply ){
-			return reply.view('signup');
+			return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
 		}
 	},
 
 	signupSubmit: {
-		// AUTH REQUIRED ?
+		// validate:{
+		// 	payload: <joiObjectName>,
+		// },
+		payload : {
+			maxBytes: 5242880, //5MB User feedback on hitting the limit required. Prevent attachment of too large an image, submit attempt should never fail.
+			output: 'data',
+			parse: true
+		},
 		handler: function (request, reply ){
+			console.dir(request.payload);
+			var user = request.payload;
+			var newUserObj = {
+				username: request.auth.credentials.username,
+				email: user.email,
+				firstName: user.firstName,
+				surname: user.surname,
+				dateJoined: new Date()
+			};
+			if (user.phoneNumber) newUserObj.phoneNumber = user.phoneNumber;
+			if (user.address) newUserObj.address =  user.address;
+			if (user.bio) newUserObj.bio = user.bio;
+			// TODO links. ??? -> array
+			var newUserImg;
+			if (request.payload.files.profileImage) { // <- ???
+				newUserImg = request.payload.files.profileImage.path;
+			}
 			// ADD NEW USER TO DB
-			// 1. create new user doc
-			// 2. save
-			// 3. redirect to new profile on sucess
-			return reply.redirect('/');
+			users.createUser(newUserObj, newUserImg, function(err, user){
+				if (err) {
+					console.error(err);
+					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
+				}
+				else {
+					console.dir(user);
+					reply.redirect('/profile/'+user.username);
+				}
+			});
 		}
 	},
 
 	profileView: {
 		handler: function (request, reply ){
-			if (request.auth.isAuthenticated) {
-				var username = request.auth.credentials.username;
-				//get username from db
-				//get profile description from db
-				//get designs from db
-				return reply.view('profile');
-			} else {
-				return reply.redirect("/login");
-			}
+			var userName = request.params.username;
+			users.getUser(userName, function(err, user){
+				if (err) {
+					console.error(err);
+					return reply.redirect('/'); //TODO pass failure info to user e.g.'server error'. How? if can't pass context data to redirect, try adding query string to url, and parse
+				}
+				else if (user) {
+					return reply.view('profile', {user: user});
+				}
+				else {
+					return reply.redirect('/'); //TODO pass failure info to user e.g.'user not found'. How? if can't pass context data to redirect, try adding query string to url, and parse !!OR!! put in cookie
+					// Could simply reply with home view, butshould be redirect as not requested resource.
+				}
+			});
 		}
 	},
 
@@ -117,49 +153,74 @@ module.exports = {
 		}
 	},
 
+	// function createDesign(designData, mainImgPath, imageArray, fileArray, callback)
 	uploadNewDesign: {
+		// validate:{
+		// 	payload: <joiObjectName>,
+		// },
 		payload : {
-			maxBytes: 209715200, //20MB? May need to be greater, and user feednack required
-			output: 'stream', //stream/file/data????
+			maxBytes: 209715200, //20MB? May need to be greater, and user feedback on hitting the limit required. Prevent attachment of too large a collection of images, submit attempt should never fail.
+			output: 'data',
 			parse: true
 		},
 		handler: function (request, reply ){
+			console.dir(request.payload);
 			// ADD NEW SUBMISSION TO DB
-			// 1. get user doc from db. by username from session cookie/request.auth.username?
-			// 2. save payload data to new design doc
-			// 3. save design doc ObjId to user designs[]
-			return reply.redirect('profile/{username}/');
+			// 1. get user doc from db
+			var userName = request.auth.credentials.username;
+			users.getUser(userName, function(err, user){
+				if (err) {
+					console.error(err);
+					return reply.redirect('/'); //TODO: error handling. redirect? or same view with error?
+				}
+				// 2. save payload data to new design doc
+				else if (user) {
+					var design = request.payload;
+					var newDesignObj = {
+						designerUserName: userName,
+						designerId: user._id,
+						name: design.name,
+						description: design.description,
+						dateAdded: new Date()
+					};
+					if (design.additionalInfo) newDesignObj.additionalInfo = design.additionalInfo;
+					var mainImgPath = request.payload.files.mainImage.path;
+					var imageArray = [];
+					var fileArray = [];
+					// TODO collect addImages and files from payload and put paths in array
+					designs.createDesign(newDesignObj, mainImgPath, imageArray, fileArray, function(err1, design){
+						if (err1) {
+							console.error(err1);
+							return reply.redirect('/'); //TODO <--
+						}
+						// 3. save design doc ObjId to user designs[]
+						else {
+							console.log('design saved');
+							console.dir(design);
+							var designId = design._id;
+							user.designIds.push(designId);
+							user.save(function(err2, savedUser){
+								if (err2) {
+									console.error(err2);
+									// TODO delete design if saving designId fails??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
+									return reply.redirect('/'); // <--- TODO
+								}
+								else {
+									console.dir(savedUser);
+									return reply.view('profile', {user: savedUser.username});
+								}
+							});
+						}
+					});
+				}
+				else {
+					return reply.redirect('/'); //TODO <- user not found response. should never happen...
+				}
+			});
+
+			return reply.redirect('profile/'+request.auth.credentials.username);
 		}
 	},
-
-	// SUBMIT ROUTES - TO BE DELETED IF NOT NEEDED
-	// submitView: {
-	// 	handler: function (request, reply ){
-	// 		return reply.view('submit');
-	// 	}
-	// },
-
-	// submitDesign: {
-	// 	handler: function (request, reply ){
-	// 		// COMPLETE ADDING DESIGN TO DB
-	// 		return reply.redirect('/{username}');
-	// 	}
-	// },
-
-	// editDesign: {
-	// 	handler: function (request, reply ){
-	// 		// EDIT SUBMISSION IN PROGRESS
-	// 		// redirect to submission, in new state
-	// 		return reply.redirect('/{username}/submit');
-	// 	}
-	// },
-
-	// binDesign: {
-	// 	handler: function (request, reply ){
-	// 		// REMOVE ALL TRACE OF DESIGN FROM DB
-	// 		return reply.redirect('/{username}');
-	// 	}
-	// },
 
 	designView: {
 		handler: function (request, reply ){
@@ -167,12 +228,12 @@ module.exports = {
 		}
 	},
 
-	upVoteDesign: {
+	preorderDesign: {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// ADD UPVOTE/PREORDER TO DB
 			// redirect to design view with upvote/preorder registered
-			return reply.redirect('/{username}/{design}');
+			return reply.redirect('designs/{username}/{design}');
 		}
 	},
 

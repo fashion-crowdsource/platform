@@ -31,14 +31,78 @@ function search(query, callback) {
 	}
 }
 
-function createDesign(designData, callback) {
+// mainImgPath required, imageArray and fileArray optional - pass as empty arrays
+function createDesign(designData, mainImgPath, imageArray, fileArray, callback) {
 	var newDesign = new Design(designData);
-	newDesign.save(function(err, design){
+
+	newDesign.attach('mainImage', {path: mainImgPath}, function(err){
 		if (err) {
+			console.error(err);
 			return callback(err);
 		}
 		else {
-			return callback(null, design);
+			if (imageArray.length > 0) {
+				if (fileArray.length === 0) {
+					imageArray.forEach(function(ele, ind){
+						newDesign.attach('additionalImages', {path: ele}, function(err1){
+							if (err1) {
+								console.error(err1);
+								return callback(err1);
+							}
+							else if (ind === imageArray.length - 1) {
+								newDesign.save(function(err2, design){
+									if (err) {
+										return callback(err2);
+									}
+									else {
+										return callback(null, design);
+									}
+								});
+							}
+						});
+					});
+				}
+				else {
+					imageArray.forEach(function(ele, ind){
+						newDesign.attach('additionalImages', {path: ele}, function(err1){
+							if (err1) {
+								console.error(err1);
+								return callback(err1);
+							}
+							else if (ind === imageArray.length - 1) {
+								fileArray.forEach(function(ele, ind){
+									newDesign.attach('additionalFiles', {path: ele}, function(err2){
+										if (err2) {
+											console.error(err2);
+											return callback(err2);
+										}
+										else if (ind === fileArray.length - 1) {
+											newDesign.save(function(err3, design){
+												if (err) {
+													return callback(err3);
+												}
+												else {
+													return callback(null, design);
+												}
+											});
+										}
+									});
+								});
+							}
+						});
+					});
+				}
+			}
+			else {
+				newDesign.save(function(err1, design){
+					if (err) {
+						return callback(err1);
+					}
+					else {
+						return callback(null, design);
+					}
+				});
+			}
 		}
 	});
 }

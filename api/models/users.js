@@ -31,16 +31,36 @@ function search(query, callback) {
 	}
 }
 
-function createUser(userData, callback) {
+function createUser(userData, imagePath, callback) {
 	var newUser = new User(userData);
-	newUser.save(function(err, user){
-		if (err) {
-			return callback(err);
-		}
-		else {
-			return callback(null, user);
-		}
-	});
+	if (imagePath) {
+		newUser.attach('profileImage', {path: imagePath}, function(err){
+			if (err) {
+				console.error(err);
+				return callback(err);
+			}
+			else{
+				newUser.save(function(err1, user){
+					if (err1) {
+						return callback(err1);
+					}
+					else {
+						return callback(null, user);
+					}
+				});
+			}
+		});
+	}
+	else {
+		newUser.save(function(err1, user){
+			if (err1) {
+				return callback(err1);
+			}
+			else {
+				return callback(null, user);
+			}
+		});
+	}
 }
 
 function getUser(userName, callback) {
