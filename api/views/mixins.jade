@@ -8,10 +8,9 @@ mixin attach
 
 mixin imgPreview
 	each val in [1,2,3,4,5]
-		img(src="#", id='preview' + val + '')
+		img(src="/img/fikay-square.jpg", class='preview' + val + '')
 
 mixin attach-doc
 	label#attach
-			span#uptext Attach file
-				input(name="", type="file", onchange="loadImg(this)")
-				input()
+		span#uptext Attach file
+			input(name="additionalFiles", type="file")

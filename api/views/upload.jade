@@ -9,19 +9,21 @@ block content
 
 	#greyback
 		.row
-			.col-md-4
-				form Design Name:
-					input(type="text", placeholder="Insert your design name")
 				form
-					label#mainImgLabel
-						span#uptext Attach Main Image
+					label#designName Design Name:
+						input(type="text", placeholder="Insert your design name")
+				br
+				.col-md-12
+					form
+						label#mainImgLabel
+							span#uptext Attach Main Image
 							input(name="designMainImage", id="mainImgInput", type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
-					button#bin
-						span.glyphicon.glyphicon-trash.trashlogo
+						button#bin
+							span.glyphicon.glyphicon-trash.trashlogo
 
 		.row
 			.col-md-12
-				img#mainPreview(src="#")
+				img#mainPreview(src="/img/fikay-square.jpg")
 
 		.row
 			.col-md-12

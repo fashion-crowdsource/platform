@@ -5,41 +5,43 @@ block content
 		.col-md-12
 			h1 Sign Up
 
+			p (Fields marked with * are required)
+
 			form(action='/signup', method='POST')
-				label Email
-					input(type='text' required)
+				label#signup Email *
+					input(type='text', name='email', required)
 				br
-				label First Name
-					input(type='text' required)
+				label#signup  First Name *
+					input(type='text', name='firstName' required)
 				br
-				label Last Name
-					input(type='text' required)
+				label#signup  Last Name *
+					input(type='text', name='surname' required)
 				br
-				label Phone Number
-					input(type='text')
+				label#signup  Phone Number
+					input(type='text', name='phoneNumber')
 				br
-				label Address
+				label#signup  Address
 					p First Line
-						input(type='text')
+						input(type='text', name='address')
 						br
 					p Second Line
-						input(type='text')
+						input(type='text', name='address')
 						br
 					p Town
-						input(type='text')
+						input(type='text', name='address')
 						br
 					p City
-						input(type='text')
+						input(type='text', name='address')
 						br
-					p Post Code
-						input(type='text')
+					p Postcode
+						input(type='text', name='address')
 				br
-				label Bio
+				label#signup  Bio
 					textarea
 				br
-				label Links
+				label#signup  Links (Please separate any links you wish to post with commas)
 					textarea
-				label Are you an Administrator?
+				label#signup  Are you an Administrator?
 					p No
 						input(type="radio", name="Admin" value="No" checked)
 					p Yes
