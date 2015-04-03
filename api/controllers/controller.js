@@ -246,11 +246,18 @@ module.exports = {
 		}
 	},
 
+	adminView: {
+				// check auth for isAdmin - add it on login
+		handler: function (request, reply ){
+			// REQUIRE AUTH!
+			return reply.view('admin');
+		}
+	},
+
 	adminDesignView:  {
 		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
-			// ADD UPVOTE/PREORDER TO DB
 			return reply.view('admin');
 		}
 	},
