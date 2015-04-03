@@ -3,5 +3,22 @@ extends ./layouts/default.jade
 block content
 	.row
 		.col-md-12
-			img.profilePic(src=users.gPlus.profile.raw.picture)
+			img.profilePic(src=user.picture)
 
+	.row
+		.col-md-12
+			h3 #{user.firstName} #{user.surname}
+			h4 Username: #{user.username}
+			h4 Email: #{user.email}
+			h4 Memeber since: #{user.dateJoined}
+
+	.row
+		.col-md-12
+			H4 Bio:
+			//- for bio, do we want to give them an option to edit their bio, or not enough time at this stage?
+			p #{user.bio}
+
+	.row
+		.col-md-12
+			h4 My Designs:
+			img.designs(src=user.design.name, href=user.mainImgPath)
