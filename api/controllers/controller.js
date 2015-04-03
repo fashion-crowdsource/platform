@@ -120,6 +120,8 @@ module.exports = {
 
 	profileView: {
 		handler: function (request, reply ){
+
+			return reply.view('profile');
 			var userName = request.params.username;
 			users.getUser(userName, function(err, user){
 				if (err) {
