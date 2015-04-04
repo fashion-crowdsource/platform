@@ -92,7 +92,7 @@ var userSchema = new Schema({
 	username: 		{type: String, required: true, unique: true},
 	email: 			{type: String, required: true, unique: true},
 	firstName: 		{type: String, required: true},
-	surname: 		{type: String, required: true},
+	lastName: 		{type: String, required: true},
 	phoneNumber: 	{type: String}, //optional --NB. must make sure phone/address kept private, admin use only
 	address: 		{type: String}, //optional
 	bio: 			{type: String}, //optional
