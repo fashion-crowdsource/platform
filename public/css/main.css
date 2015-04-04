@@ -187,10 +187,15 @@ textarea {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
   	display: inline;
-  	float: right;
   	margin-bottom: 10px;
 
 }
+
+/*
+.profileInfo {
+  	float: right;
+}
+*/
 
 .designs {
   	width: 400px;
@@ -198,28 +203,51 @@ textarea {
 }
 
 .box {
-/*  	border: solid 10px;*/
+  	border: solid 10px;
 
-	  border: 13px solid #e5e5e5;
+/*	  border: 13px solid #e5e5e5;*/
 
-/*
 	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
 
 	  border-image-slice: 1;
-*/
   	max-width: 75%;
   	height: auto;
   	padding: 20px;
   	display: block;
   	margin: auto;
   	margin-bottom: 30px;
-  	box-shadow: 0 15px 10px #b7b7b7;
+/*  	box-shadow: 0 15px 10px #b7b7b7;*/
 }
 
-.profileInfo {
-/*  	float: right;*/
+#email, #website {
+  	display: inline-block;
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    color: white;
+    position: relative;
+  	margin: 10px 5px 10px 10px;
+  	padding-top: 11px;
+  	text-decoration: none;
+  	text-align: center;
+}
+
+#email {
+  /*#5334ee*/
+  	background-color: #5446d2;
+}
+
+#website {
+ 	 background-color: #f67673;
+}
+
+#twitter {
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  	margin: 6.5px 5px 10px 10px;
 }
 
 /*.........end of profile page.........*/

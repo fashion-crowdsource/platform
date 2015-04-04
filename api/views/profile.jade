@@ -11,8 +11,13 @@ block content
 						img.profilePic(src=user.profileImage.small.url)
 						h3.profileInfo #{user.firstName} #{user.lastName}
 						//- p Username: #{user.username}
-						p.profileInfo Email: #{user.email}
-						p.profileInfo Memeber since: #{user.dateJoined}
+						a#email.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+						a#website.glyphicon.glyphicon-globe(href=user.links)
+						a(href=user.links)
+							img#twitter(src="/img/1428206576_twitter.svg")
+
+
+						p.profileInfo Member since: #{user.dateJoined}
 
 					.row
 						.col-md-12
@@ -22,8 +27,7 @@ block content
 							//- Yes, but maybe not enough time. I suggest an edit link that reuses the sign up view and populates the fields with user data to edit
 							//- p #{user.bio}
 							input.form-control.editField(type='text', value=user.bio, readonly)
-								//- .input-group-addon
-      							//-span.glyphicon.glyphicon-pencil.editMode
+
 				else
 					h3 Error - user not found
 
