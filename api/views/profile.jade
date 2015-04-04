@@ -22,7 +22,8 @@ block content
 							//- Yes, but maybe not enough time. I suggest an edit link that reuses the sign up view and populates the fields with user data to edit
 							//- p #{user.bio}
 							input.form-control.editField(type='text', value=user.bio, readonly)
-
+								//- .input-group-addon
+      							//-span.glyphicon.glyphicon-pencil.editMode
 				else
 					h3 Error - user not found
 
