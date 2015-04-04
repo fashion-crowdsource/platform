@@ -47,22 +47,33 @@ input:focus{
 }
 */
 
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: left;
+}
+
+
 hr {
   	box-sizing: content-box;
   	height: 0;
   	width: 300px;
 }
 
-input[type="file"] {
-    display: none;
+
+.hidden-input {
+    display: none !important;
 }
 
-input[type="text"] {
+.text-input {
   	width: 200px;
     height: 25px;
     border-radius: 25px;
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
+	box-shadow: none;
 	border: solid 1px lightgrey;
   	margin-top: 8px;
   	padding: 6px;
@@ -72,6 +83,7 @@ input[type="text"] {
 
 #designName {
 	margin-left: 20px;
+  	display: inline-block;
 }
 
 #mainImgLabel {
