@@ -35,17 +35,6 @@ body {
   	border-radius: 3px;
 }
 
-/*
-button:active,
-button:focus,
-input:active,
-input:focus{
-  	background-image: none;
-  	outline: 0;
-  	-webkit-box-shadow: none;
-    box-shadow: none;
-}
-*/
 
 label{
     float: left;
@@ -55,11 +44,13 @@ label{
 }
 
 
+/*
 hr {
   	box-sizing: content-box;
   	height: 0;
   	width: 300px;
 }
+*/
 
 
 .hidden-input {
@@ -82,11 +73,11 @@ hr {
 
 #designName {
 	margin-left: 20px;
-  	display: inline-block;
+  	display: inline;
 }
 
 #mainImgLabel {
-  	display: inline-block;
+  	display: inline;
   	margin: 0 auto;
   	margin-bottom: 10px;
   	width: 150px;
@@ -190,11 +181,15 @@ textarea {
 /*.........end of upload page.........*/
 
 
-/*--------profile page---------*/
+/*-----------profile page-------------*/
 
 .profilePic {
 	border: solid 1px lightgrey;
-  	border-radius: 50%;
+  	border-radius: 4px;
+  	display: inline;
+  	float: right;
+  	margin-bottom: 10px;
+
 }
 
 .designs {
@@ -202,5 +197,29 @@ textarea {
   	height: 250;
 }
 
+.box {
+/*  	border: solid 10px;*/
 
-/*.........end of upload page.........*/
+	  border: 13px solid #e5e5e5;
+
+/*
+	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
+
+	  border-image-slice: 1;
+*/
+  	max-width: 75%;
+  	height: auto;
+  	padding: 20px;
+  	display: block;
+  	margin: auto;
+  	margin-bottom: 30px;
+  	box-shadow: 0 15px 10px #b7b7b7;
+}
+
+.profileInfo {
+/*  	float: right;*/
+}
+
+/*.........end of profile page.........*/

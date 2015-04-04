@@ -11,8 +11,8 @@ block content
 		.row
 			.col-md-12
 				form(action="/upload", method="POST", enctype="multipart/form-data")
-					label#designName Design Name:
-						input.text-input(type="text", name="designName", placeholder="Insert your design name")
+					label#designName Design Name* :
+						input.text-input(type="text", name="designName", class='form-control', placeholder="Insert your design name" required)
 						label#mainImgLabel
 							span#uptext Attach Main Image
 							input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
@@ -34,7 +34,7 @@ block content
 						.col-md-12
 							#description
 								h4 Short Description:
-								textarea(name="description")
+								textarea(name="description", class='form-control')
 								hr
 
 					.row
@@ -52,11 +52,11 @@ block content
 						.col-md-12
 							#description
 								h4 Any other information:
-								textarea(name="info")
+								textarea(name="info", class='form-control')
 
 					.row
 						.col-xs-12.col-sm-12
-							input#submit(type="submit", value="Submit")
+							input#submit(type="submit", value="Submit", name="submitUpload")
 
 append footer
 	script(src="/scripts/upload.js")
