@@ -63,11 +63,11 @@ hr {
 }
 
 
-input[type="file"] {
-    display: none;
+.hidden-input {
+    display: none !important;
 }
 
-input[type="text"] {
+.text-input {
   	width: 200px;
     height: 25px;
     border-radius: 25px;

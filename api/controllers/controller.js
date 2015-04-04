@@ -24,6 +24,7 @@ module.exports = {
 			if (request.auth.isAuthenticated) {
 
 				var gPlus = request.auth.credentials;
+				console.dir(gPlus,{depth:null});
 				var profile = {
 					username 	: gPlus.profile.displayName,
 					email 		: gPlus.profile.email,
@@ -71,7 +72,8 @@ module.exports = {
 	signupView: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
-			return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
+			// return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
+			return reply.view('signup');
 		}
 	},
 
@@ -82,36 +84,49 @@ module.exports = {
 		// },
 		payload : {
 			maxBytes: 5242880, //5MB User feedback on hitting the limit required. Prevent attachment of too large an image, submit attempt should never fail.
-			output: 'data',
+			output: 'file',
 			parse: true
 		},
 		handler: function (request, reply ){
+			console.dir(request.auth.credentials);
+			console.log('Payload:');
 			console.dir(request.payload);
 			var user = request.payload;
 			var newUserObj = {
 				username: request.auth.credentials.username,
 				email: user.email,
-				firstName: user.firstName,
-				surname: user.surname,
+				firstName: user.firstname,
+				lastName: user.lastname,
 				dateJoined: new Date()
 			};
-			if (user.phoneNumber) newUserObj.phoneNumber = user.phoneNumber;
-			if (user.address) newUserObj.address =  user.address;
+			// Construct address as string
+			newUserObj.address = '';
+			newUserObj.address += user.addressFirstLine + '\n';
+			if(user.addressSecondLine) newUserObj.address += user.addressSecondLine + '\n';
+			newUserObj.address += user.addressTown + '\n';
+			if(user.addressCounty) newUserObj.address += user.addressCounty + '\n';
+			newUserObj.address += user.addressPostcode;
+
+			if (user.phonenumber) newUserObj.phoneNumber = user.phoneNumber;
 			if (user.bio) newUserObj.bio = user.bio;
 			// TODO links. ??? -> array
-			var newUserImg;
-			if (request.payload.files.profileImage) { // <- ???
-				newUserImg = request.payload.files.profileImage.path;
-			}
+			var profileImgPath = null;
+			if (user.profileImage) profileImgPath = user.profileImage.path;
+			if (user.admin === 'Yes') newUserObj.isAdmin = true; //!!!! REMOVE IN PRODUCTION
+
 			// ADD NEW USER TO DB
-			users.createUser(newUserObj, newUserImg, function(err, user){
+			users.createUser(newUserObj, profileImgPath, function(err, user){
 				if (err) {
 					console.error(err);
 					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
 				}
 				else {
-					console.dir(user);
-					request.auth.session.set(hasAccount, true);
+					// !!! CANT EDIT request.auth.creds - doesnt save
+					// request.auth.credentials.hasAccount = true;
+					// if (user.isAdmin) request.auth.credentials.isAdmin = true; //!!!! REMOVE IN PRODUCTION
+					request.auth.session.set('hasAccount', true);
+					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
+					console.dir(request.auth.credentials);
 					reply.redirect('/profile/'+user.username);
 				}
 			});
@@ -157,6 +172,7 @@ module.exports = {
 
 	uploadView: {
 		handler: function (request, reply ){
+			console.log(request.auth.credentials);
 			return request.auth.credentials.hasAccount ? reply.view('upload') : reply.redirect('signup');
 		}
 	},
