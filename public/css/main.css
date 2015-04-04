@@ -48,7 +48,6 @@ input:focus{
 */
 
 label{
-    display: inline-block;
     float: left;
     clear: left;
     width: 200px;
@@ -101,7 +100,6 @@ hr {
     height: 25px;
     border-radius: 25px;
     color: white;
-    display: inline;
     position: relative;
   	margin: 10px 5px 10px 10px;
   	font-size: 10px;
@@ -112,7 +110,7 @@ hr {
 */
 }
 
-.preview1, .preview2, .preview3, .preview4, .preview5, #mainPreview {
+#preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
   	width: 150px;
   	height: 150px;
   	margin: 5px;
@@ -121,7 +119,7 @@ hr {
 
 #attach, #mainImgLabel {
     background-color: #2f6bee;
-  	display: inline-block;
+  	display: inline;
 }
 
 #bin {

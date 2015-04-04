@@ -12,7 +12,7 @@ block content
 			.col-md-12
 				form(action="/upload", method="POST", enctype="multipart/form-data")
 					label#designName Design Name:
-						input.text-input(type="text", placeholder="Insert your design name")
+						input.text-input(type="text", name="designName", placeholder="Insert your design name")
 						label#mainImgLabel
 							span#uptext Attach Main Image
 							input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
@@ -34,7 +34,7 @@ block content
 						.col-md-12
 							#description
 								h4 Short Description:
-								textarea
+								textarea(name="description")
 								hr
 
 					.row
@@ -52,7 +52,7 @@ block content
 						.col-md-12
 							#description
 								h4 Any other information:
-								textarea
+								textarea(name="info")
 
 					.row
 						.col-xs-12.col-sm-12
