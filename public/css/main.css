@@ -221,6 +221,8 @@ textarea {
   	margin: auto;
   	margin-bottom: 30px;
 /*  	box-shadow: 0 15px 10px #b7b7b7;*/
+  	background-color: white;
+  	border-radius: 5px;
 }
 
 #email, #website {
@@ -270,10 +272,6 @@ textarea {
 body {
   	background: url("/img/pencils.png") no-repeat center center fixed;
 	background-size: 100%;
-}
-
-.box {
-  background-color: white;
 }
 
 .myDesigns {
