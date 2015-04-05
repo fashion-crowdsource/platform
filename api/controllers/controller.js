@@ -155,9 +155,22 @@ module.exports = {
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
+
+			var editor = request.params.username;
+			var updatedField = request.payload;
+
+			users.updateUser(editor, updatedField, function(err, result){
+				if (err) {
+					return reply(err);
+				}
+				if (updatedField.bio) {
+					//think this is almost there but not quite sure how to make the result bit work
+					return reply.redirect("profile");
+				}
+			});
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
-			return reply.view('profile');
+			//return reply.view('profile');
 		}
 	},
 

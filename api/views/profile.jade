@@ -11,19 +11,32 @@ block content
 						img.profilePic(src=user.profileImage.small.url)
 						h3.profileInfo #{user.firstName} #{user.lastName}
 						//- p Username: #{user.username}
-						p.profileInfo Email: #{user.email}
-						p.profileInfo Memeber since: #{user.dateJoined}
+						a#email.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+						a#website.glyphicon.glyphicon-globe(href=user.links)
+						//-just placeholders for now
+						a(href=user.links)
+							img#twitter(src="/img/1428206576_twitter.svg")
+						p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
 
 					.row
 						.col-md-12
 							legend
-							h4 About Me
-							//- for bio, do we want to give them an option to edit their bio, or not enough time at this stage?
-							//- Yes, but maybe not enough time. I suggest an edit link that reuses the sign up view and populates the fields with user data to edit
-							//- p #{user.bio}
-							input.form-control.editField(type='text', value=user.bio, readonly)
-								//- .input-group-addon
-      							//-span.glyphicon.glyphicon-pencil.editMode
+							form(action='/profile/{username}', method='PUT', enctype='multipart/form-data')
+							.form-group
+								h4 About Me
+								.input-group
+									input.form-control.editField#edit(type='text', value=user.bio, readonly)
+									//- look into adjusting the height according to length of paragraph
+									.input-group-addon
+										span.glyphicon.glyphicon-ok.hide
+										span.glyphicon.glyphicon-pencil.hide
+
+					.row
+						.col-md-12
+							legend
+							h4 My Designs
+							img.myDesigns(src="/img/fikay-girl.png")
+
 				else
 					h3 Error - user not found
 
