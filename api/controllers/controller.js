@@ -152,6 +152,9 @@ module.exports = {
 		}
 	},
 
+	// I suggest we take the username for this from request.auth.credentials, rather than url param as a security measure.
+	// i.e. You can only edit/delete the profile you are logged in as.
+	// Further, we could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
