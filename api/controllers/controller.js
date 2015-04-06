@@ -149,12 +149,28 @@ module.exports = {
 		}
 	},
 
+	// I suggest we take the username for this from request.auth.credentials, rather than url param as a security measure.
+	// i.e. You can only edit/delete the profile you are logged in as.
+	// Further, we could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
+
+			var editor = request.params.username;
+			var updatedField = request.payload;
+
+			users.updateUser(editor, updatedField, function(err, result){
+				if (err) {
+					return reply(err);
+				}
+				if (updatedField.bio) {
+					//think this is almost there but not quite sure how to make the result bit work
+					return reply.redirect("profile");
+				}
+			});
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
-			return reply.view('profile');
+			//return reply.view('profile');
 		}
 	},
 

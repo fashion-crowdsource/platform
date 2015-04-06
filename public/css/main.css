@@ -35,20 +35,8 @@ body {
   	border-radius: 3px;
 }
 
-/*
-button:active,
-button:focus,
-input:active,
-input:focus{
-  	background-image: none;
-  	outline: 0;
-  	-webkit-box-shadow: none;
-    box-shadow: none;
-}
-*/
 
 label{
-    display: inline-block;
     float: left;
     clear: left;
     width: 200px;
@@ -56,11 +44,13 @@ label{
 }
 
 
+/*
 hr {
   	box-sizing: content-box;
   	height: 0;
   	width: 300px;
 }
+*/
 
 
 .hidden-input {
@@ -83,11 +73,11 @@ hr {
 
 #designName {
 	margin-left: 20px;
-  	display: inline-block;
+  	display: inline;
 }
 
 #mainImgLabel {
-  	display: inline-block;
+  	display: inline;
   	margin: 0 auto;
   	margin-bottom: 10px;
   	width: 150px;
@@ -101,7 +91,6 @@ hr {
     height: 25px;
     border-radius: 25px;
     color: white;
-    display: inline;
     position: relative;
   	margin: 10px 5px 10px 10px;
   	font-size: 10px;
@@ -112,7 +101,7 @@ hr {
 */
 }
 
-.preview1, .preview2, .preview3, .preview4, .preview5, #mainPreview {
+#preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
   	width: 150px;
   	height: 150px;
   	margin: 5px;
@@ -121,7 +110,7 @@ hr {
 
 #attach, #mainImgLabel {
     background-color: #2f6bee;
-  	display: inline-block;
+  	display: inline;
 }
 
 #bin {
@@ -192,17 +181,104 @@ textarea {
 /*.........end of upload page.........*/
 
 
-/*--------profile page---------*/
+/*-----------profile page-------------*/
 
 .profilePic {
 	border: solid 1px lightgrey;
-  	border-radius: 50%;
+  	border-radius: 4px;
+  	display: inline;
+  	margin-bottom: 10px;
+
 }
+
+/*
+.profileInfo {
+  	float: right;
+}
+*/
 
 .designs {
   	width: 400px;
   	height: 250;
 }
 
+.box {
+/*
+  	border: solid 10px;
 
-/*.........end of upload page.........*/
+	  border: 13px solid #e5e5e5;
+
+	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
+
+	  border-image-slice: 1;
+*/
+  	max-width: 40%;
+  	height: auto;
+  	padding: 20px;
+  	display: block;
+  	margin: auto;
+  	margin-bottom: 30px;
+/*  	box-shadow: 0 15px 10px #b7b7b7;*/
+}
+
+#email, #website {
+  	display: inline-block;
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    color: white;
+    position: relative;
+  	margin: 10px 5px 10px 10px;
+  	padding-top: 11px;
+  	text-decoration: none;
+  	text-align: center;
+}
+
+#email {
+  /*#5334ee*/
+  	background-color: #5446d2;
+}
+
+#website {
+ 	 background-color: #f67673;
+}
+
+#twitter {
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  	margin: 6.5px 5px 10px 10px;
+}
+
+#edit {
+  	background-color: white;
+  	width: 100%;
+    height: 25px;
+    border-bottom-left-radius: 25px;
+  	border-top-left-radius: 25px;
+  	padding: 20px;
+}
+
+.input-group-addon {
+  	height: 25px;
+    border-bottom-right-radius: 25px;
+  	border-top-right-radius: 25px;
+}
+
+body {
+  	background: url("/img/pencils.png") no-repeat center center fixed;
+	background-size: 100%;
+}
+
+.box {
+  background-color: white;
+}
+
+.myDesigns {
+  	width: 70%;
+  	height: 80%;
+
+}
+/*.........end of profile page.........*/

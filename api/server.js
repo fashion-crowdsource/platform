@@ -4,7 +4,8 @@ var Cookie 	= require('hapi-auth-cookie');
 var Path 	= require('path');
 var routes 	= require('./routes/routes.js');
 var config 	= require('./config.js');
-var port 	= {port: (process.env.port || 3000 ), host: 'localhost' }; //TODO set host as 0.0.0.0 for heroku - put in config, make conditional on process.env.PORT
+
+var serverOptions 	= {port: (process.env.port || 3000 ), host: 'localhost' }; //TODO set host as 0.0.0.0 for heroku - put in config, make conditional on process.env.PORT
 
 var goodOptions = {
 	opsInterval: 1000,
@@ -24,7 +25,7 @@ var server = new Hapi.Server({
 	}
 });
 
-server.connection(port);
+server.connection(serverOptions);
 
 server.register([Bell, Cookie], function (err) {
 	if (err) console.error(err);
