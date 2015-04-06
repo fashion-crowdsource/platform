@@ -92,6 +92,7 @@ function getAllUsers(callback) {
 	});
 }
 
+// TODO Refactor edit/delete to allow middleware to excecute for s3 edut/delete. Use find, then save or remove doc.
 function updateUser(userName, callback) {
 	User.findOneAndUpdate({username: userName}, function(err, user){
 		if (err) {
