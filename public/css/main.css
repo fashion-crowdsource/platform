@@ -186,16 +186,12 @@ textarea {
 .profilePic {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
-  	display: inline;
   	margin-bottom: 10px;
-
 }
 
-/*
 .profileInfo {
-  	float: right;
+/*  	margin-left: 10px;*/
 }
-*/
 
 .designs {
   	width: 400px;
@@ -203,11 +199,8 @@ textarea {
 }
 
 .box {
-/*
-  	border: solid 10px;
-
-	  border: 13px solid #e5e5e5;
-
+	  border: 3.5px solid #e5e5e5;
+/*	border: solid 15px;
 	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
@@ -280,3 +273,32 @@ textarea {
 
 }
 /*.........end of profile page.........*/
+
+
+/*-----------admin page-------------*/
+
+.designBox {
+  	width: 375px;
+	height: 250px;
+  	border: 2px solid lightgrey;
+  	margin: 20px;
+}
+
+.designThumbnail {
+  	max-height: 100%;
+  	max-width: 100%;
+  	margin: auto;
+  	display: inline-block;
+}
+
+.designThumbnail.active {
+  	background-color: rbga(0,0,0, 0.3);
+  	color: white;
+}
+
+.hoverName {
+  	display: inline;
+}
+
+
+/*.........end of admin page.........*/
