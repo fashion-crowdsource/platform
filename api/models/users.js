@@ -45,12 +45,12 @@ function createUser(userData, imagePath, callback) {
 			else{
 				newUser.save(function(err1, user){
 					if (err1) {
-						fs.unlink(imagePath, function(err1){
+						fs.unlink(imagePath, function(err2){
 							return callback(err1);
 						});
 					}
 					else {
-						fs.unlink(imagePath, function(err1){
+						fs.unlink(imagePath, function(err2){
 							return callback(null, user);
 						});
 					}

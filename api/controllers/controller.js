@@ -121,9 +121,6 @@ module.exports = {
 					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
 				}
 				else {
-					// !!! CANT EDIT request.auth.creds - doesnt save
-					// request.auth.credentials.hasAccount = true;
-					// if (user.isAdmin) request.auth.credentials.isAdmin = true; //!!!! REMOVE IN PRODUCTION
 					request.auth.session.set('hasAccount', true);
 					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
 					console.dir(request.auth.credentials);
@@ -209,7 +206,7 @@ module.exports = {
 						dateAdded: new Date()
 					};
 					if (design.additionalInfo) newDesignObj.additionalInfo = design.additionalInfo;
-					var mainImgPath = request.payload.files.mainImage.path;
+					var mainImgPath = design.mainImage.path;
 					var imageArray = [];
 					var fileArray = [];
 					// TODO collect addImages and files from payload and put paths in array
