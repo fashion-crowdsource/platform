@@ -171,22 +171,21 @@ module.exports = {
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
-
 			var editor = request.auth.credentials.username;
-			var updatedField = request.payload;
 
-			users.updateUser(editor, updatedField, function(err, result){
+			var updatedUser = request.payload;
+
+			users.updateUser(editor, updatedUser, function(err, result){
 				if (err) {
 					return reply(err);
 				}
 				if (updatedField.bio) {
 					//think this is almost there but not quite sure how to make the result bit work
-					return reply.r("profile"); // <- updateUser returns the user object, so try reply.view('profile',{user: result}). NB -redirect would need a route, not a view
+					return reply.view('profile', {user: result});
 				}
 			});
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
-			//return reply.view('profile');
 		}
 	},
 

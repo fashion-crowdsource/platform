@@ -202,7 +202,7 @@ function getDesignsByDesignerUserName(designerUserName, callback) {
 }
 
 // TODO Empty designers design array
-function deleteDesignsByDesignerUserName(designId, callback) {
+function deleteDesignsByDesignerUserName(designerUserName, callback) {
 	Design.find({designerUserName: designerUserName}, function(err, designs){
 		if (err) {
 			return callback(err);
