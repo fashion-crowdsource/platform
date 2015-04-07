@@ -67,7 +67,7 @@ module.exports = {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
 			if (request.auth.isAuthenticated) {
-				return reply.view('index', {auth: {username: request.auth.credentials.username}});
+				return reply.view('index', {user: {username: request.auth.credentials.username}});
 			}
 			else {
 				return reply.view('index');
@@ -144,6 +144,30 @@ module.exports = {
 					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
 					if (profileImagePath) trash.cleanUp(tempFiles);
 					reply.redirect('/profile/'+user.username);
+				}
+			});
+		}
+	},
+
+	designersView: {
+		auth: {mode: 'optional'},
+		handler: function (request, reply ){
+			users.getAllUsers(function(err, users){
+				if (err) {
+					if (request.auth.isAuthenticated) {
+						return reply.view('designers', {error: err, user: {username: request.auth.credentials.username}});
+					}
+					else {
+						return reply.view('designers', {error: err});
+					}
+				}
+				else {
+					if (request.auth.isAuthenticated) {
+						return reply.view('designers', {designers: users, user: {username: request.auth.credentials.username}});
+					}
+					else {
+						return reply.view('designers', {designers: users});
+					}
 				}
 			});
 		}
