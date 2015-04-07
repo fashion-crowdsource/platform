@@ -15,9 +15,14 @@
 						a(href="/designers") Designers
 					li
 						a(href="/profile/" + auth.username ) My Profile
+					li
+						a(href="/upload") Upload
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href="/logout") Log Out
+				if auth.admin
+					li
+						a(href="/admin") Admin
 
 	else
 		nav.navbar.navbar-default

@@ -213,8 +213,6 @@ module.exports = {
 		}
 	},
 
-
-
 	// We could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
 		auth: {mode: 'required'},
@@ -307,7 +305,6 @@ module.exports = {
 							}
 						}
 					}
-					console.log('File Paths: ',imagePathArray, filePathArray);
 
 					designs.createDesign(newDesignObj, mainImagePath, imagePathArray, filePathArray, function(err1, design){
 						if (err1) {
@@ -317,8 +314,7 @@ module.exports = {
 						}
 						// 3. save design doc ObjId to user designs[]
 						else {
-							console.log('design saved');
-							console.dir(design);
+							// console.dir(design);
 							trash.cleanUp(tempFiles);
 							var designId = design._id;
 							user.designIds.push(designId);
