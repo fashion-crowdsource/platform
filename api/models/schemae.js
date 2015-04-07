@@ -8,8 +8,8 @@ var ObjectId 	= mongoose.Schema.Types.ObjectId;
 
 
 var designSchema = new Schema({
-	designerUserName: 	{type: String, required: true, unique: true},
-	designerId: 		{type: ObjectId, required: true, unique: true},
+	designerUserName: 	{type: String, required: true},
+	designerId: 		{type: ObjectId, required: true},
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
 	additionalInfo: 	{type: String},
@@ -106,7 +106,7 @@ var userSchema = new Schema({
 						town: {type: String},
 						county: {type: String},
 						postcode: {type: String},
-						full: {type: String},
+						full: {type: String}
 	} //optional?? currently required on form and in controller code
 });
 
