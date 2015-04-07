@@ -196,7 +196,7 @@ function getDesignsByDesignerUserName(designerUserName, callback) {
 			return callback(err);
 		}
 		else {
-			return callback(null, design);
+			return callback(null, designs);
 		}
 	});
 }
