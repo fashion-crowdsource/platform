@@ -22,6 +22,8 @@
   "homepage": "https://github.com/fikay/fikay-designs",
   "dependencies": {
     "bell": "^2.2.0",
+    "good": "^5.1.2",
+    "good-console": "^4.1.0",
     "hapi": "^8.4.0",
     "hapi-auth-cookie": "^2.0.0",
     "jade": "^1.9.2",

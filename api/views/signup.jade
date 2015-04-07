@@ -4,49 +4,61 @@ block content
 	.row
 		.col-md-12
 			h1 Sign Up
-
-			p (Fields marked with * are required)
-
-			form(action='/signup', method='POST')
-				label#signup Email *
-					input(type='text', name='email', required)
-				br
-				label#signup  First Name *
-					input(type='text', name='firstName' required)
-				br
-				label#signup  Last Name *
-					input(type='text', name='surname' required)
-				br
-				label#signup  Phone Number
-					input(type='text', name='phoneNumber')
-				br
-				label#signup  Address
-					p First Line
-						input(type='text', name='address')
-						br
-					p Second Line
-						input(type='text', name='address')
-						br
-					p Town
-						input(type='text', name='address')
-						br
-					p City
-						input(type='text', name='address')
-						br
-					p Postcode
-						input(type='text', name='address')
-				br
-				label#signup  Bio
-					textarea
-				br
-				label#signup  Links (Please separate any links you wish to post with commas)
-					textarea
-				label#signup  Are you an Administrator?
-					p No
-						input(type="radio", name="Admin" value="No" checked)
-					p Yes
-						input(type="radio", name="Admin" value="Yes")
-
-	.row
-		.col-xs-12.col-sm-12
-			input#submit(type="submit", enctype="multipart/form-data", action="/signup", method="post")
+			p Fields marked with an asterix are required
+			br
+			br
+	form(action='/signup', method='POST', enctype='multipart/form-data')
+		.row
+			.col-md-6
+				.form-group
+					label(for='email') Email *
+					input(type='text', id='email', name='email', class='form-control', required)
+				.form-group
+					label(for='firstname') First Name *
+					input(type='text', id='firstname', name='firstname', class='form-control', required)
+				.form-group
+					label(for='lastname') Last Name *
+					input(type='text', id='lastname', name='lastname', class='form-control', required)
+				.form-group
+					label(for='phonenumber') Phone Number
+					input(type='text', id='phonenumber', name='phonenumber' class='form-control')
+			.col-md-6
+				fieldset
+					legend Address
+					.form-group
+						label(for='address-firstline') First Line *
+						input(type='text', id='address-firstline', name='addressFirstLine', class='form-control', required)
+						label(for='address-secondline') Second Line
+						input(type='text', id='address-secondline', name='addressSecondLine', class='form-control')
+						label(for='address-town') Town *
+						input(type='text', id='address-town', name='addressTown', class='form-control', required)
+						label(for='address-county') County
+						input(type='text', id='address-county', name='addressCounty', class='form-control')
+						label(for='address-postcode') Post Code *
+						input(type='text', id='address-postcode', name='addressPostcode', class='form-control', required)
+		.row
+			.col-md-12
+				.form-group
+					label(for='bio') Bio *
+					textarea(name='bio', id='bio', class='form-control', placeholder='All about you! This will be displayed on your public profile', required)
+				.form-group
+					label(for='links') Links
+					textarea(name='links', id='links', class='form-control', placeholder='Links to your website, videos, social-media... One link per line')
+		.row
+			.col-md-6
+				.form-group
+					label(for='profileImage') Profile Picture - upload a file up to 5mb
+					input(type='file', id='profileImage', name='profileImage', class='form-control')
+			.col-md-6
+					p Are you an Administrator? NB - DEVELOPMENT ONLY!!
+					.radio
+						label(for='admin-no')
+							input(type='radio', name='admin', id='admin-no', value='No', checked)
+							| No
+					.radio
+						label(for='admin-yes')
+							input(type='radio', name='admin', id='admin-yes', value='Yes')
+							| Yes
+		.row
+			.col-md-12
+				input.btn(type='submit', value='Submit')

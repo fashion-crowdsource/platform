@@ -24,18 +24,23 @@ module.exports = {
 			if (request.auth.isAuthenticated) {
 
 				var gPlus = request.auth.credentials;
+				console.dir(gPlus,{depth:null});
 				var profile = {
 					username 	: gPlus.profile.displayName,
 					email 		: gPlus.profile.email,
 					picture 	: gPlus.profile.raw.picture,
-					hasAccount	: false
+					hasAccount	: false,
+					isAdmin		: false
 				};
 
 				// NB. We are assuming user.username will be set to profile.username
-				 users.getUser(profile.username, function( err, result ){
+				 users.getUser(profile.username, function(err, user){
 					if (err) console.log(err);
 
-					if (result) profile.hasAccount = true;
+					if (user) profile.hasAccount = true;
+					if (user) {
+						if (user.isAdmin) profile.isAdmin = true;
+					}
 
 					request.auth.session.clear();
 					request.auth.session.set(profile);
@@ -65,7 +70,7 @@ module.exports = {
 	},
 
 	signupView: {
-		// AUTH REQUIRED - also, add redirect if user in db, to prevent direct access
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			// return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
 			return reply.view('signup');
@@ -73,40 +78,55 @@ module.exports = {
 	},
 
 	signupSubmit: {
+		auth: {mode: 'required'},
 		// validate:{
 		// 	payload: <joiObjectName>,
 		// },
 		payload : {
 			maxBytes: 5242880, //5MB User feedback on hitting the limit required. Prevent attachment of too large an image, submit attempt should never fail.
-			output: 'data',
+			output: 'file',
 			parse: true
 		},
 		handler: function (request, reply ){
+			console.dir(request.auth.credentials);
+			console.log('Payload:');
 			console.dir(request.payload);
 			var user = request.payload;
 			var newUserObj = {
 				username: request.auth.credentials.username,
 				email: user.email,
-				firstName: user.firstName,
-				surname: user.surname,
+				firstName: user.firstname,
+				lastName: user.lastname,
 				dateJoined: new Date()
 			};
-			if (user.phoneNumber) newUserObj.phoneNumber = user.phoneNumber;
-			if (user.address) newUserObj.address =  user.address;
+			// Construct address as string
+			newUserObj.address = '';
+			newUserObj.address += user.addressFirstLine + '\n';
+			if(user.addressSecondLine) newUserObj.address += user.addressSecondLine + '\n';
+			newUserObj.address += user.addressTown + '\n';
+			if(user.addressCounty) newUserObj.address += user.addressCounty + '\n';
+			newUserObj.address += user.addressPostcode;
+
+			if (user.phonenumber) newUserObj.phoneNumber = user.phoneNumber;
 			if (user.bio) newUserObj.bio = user.bio;
 			// TODO links. ??? -> array
-			var newUserImg;
-			if (request.payload.files.profileImage) { // <- ???
-				newUserImg = request.payload.files.profileImage.path;
-			}
+			var profileImgPath = null;
+			if (user.profileImage) profileImgPath = user.profileImage.path;
+			if (user.admin === 'Yes') newUserObj.isAdmin = true; //!!!! REMOVE IN PRODUCTION
+
 			// ADD NEW USER TO DB
-			users.createUser(newUserObj, newUserImg, function(err, user){
+			users.createUser(newUserObj, profileImgPath, function(err, user){
 				if (err) {
 					console.error(err);
 					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
 				}
 				else {
-					console.dir(user);
+					// !!! CANT EDIT request.auth.creds - doesnt save
+					// request.auth.credentials.hasAccount = true;
+					// if (user.isAdmin) request.auth.credentials.isAdmin = true; //!!!! REMOVE IN PRODUCTION
+					request.auth.session.set('hasAccount', true);
+					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
+					console.dir(request.auth.credentials);
 					reply.redirect('/profile/'+user.username);
 				}
 			});
@@ -132,15 +152,33 @@ module.exports = {
 		}
 	},
 
+	// I suggest we take the username for this from request.auth.credentials, rather than url param as a security measure.
+	// i.e. You can only edit/delete the profile you are logged in as.
+	// Further, we could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
+
+			var editor = request.params.username;
+			var updatedField = request.payload;
+
+			users.updateUser(editor, updatedField, function(err, result){
+				if (err) {
+					return reply(err);
+				}
+				if (updatedField.bio) {
+					//think this is almost there but not quite sure how to make the result bit work
+					return reply.redirect("profile");
+				}
+			});
 			// UPDATE USER DB ENTRY
 			// RETURN VIEW OF UPDATED PROFILE
-			return reply.view('profile');
+			//return reply.view('profile');
 		}
 	},
 
 	deleteUser: {
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			// DELETE USER DB ENTRY
 			// REDIRECT TO LOGOUT? better/more common to be taken back to the homeview(gallery)
@@ -150,12 +188,14 @@ module.exports = {
 
 	uploadView: {
 		handler: function (request, reply ){
-			return reply.view('upload');
+			console.log(request.auth.credentials);
+			return request.auth.credentials.hasAccount ? reply.view('upload') : reply.redirect('signup');
 		}
 	},
 
 	// function createDesign(designData, mainImgPath, imageArray, fileArray, callback)
 	uploadNewDesign: {
+		auth: {mode: 'required'},
 		// validate:{
 		// 	payload: <joiObjectName>,
 		// },
@@ -238,10 +278,18 @@ module.exports = {
 		}
 	},
 
-	adminDesignView:  {
+	adminView: {
+				// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
-			// ADD UPVOTE/PREORDER TO DB
+			return reply.view('admin');
+		}
+	},
+
+	adminDesignView:  {
+		// check auth for isAdmin - add it on login
+		handler: function (request, reply ){
+			// REQUIRE AUTH!
 			return reply.view('admin');
 		}
 	},

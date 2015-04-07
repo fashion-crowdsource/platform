@@ -35,18 +35,6 @@ body {
   	border-radius: 3px;
 }
 
-/*
-button:active,
-button:focus,
-input:active,
-input:focus{
-  	background-image: none;
-  	outline: 0;
-  	-webkit-box-shadow: none;
-    box-shadow: none;
-}
-*/
-
 
 /*Sign up page*/
 #signup{
@@ -58,23 +46,26 @@ input:focus{
 }
 
 
+/*
 hr {
   	box-sizing: content-box;
   	height: 0;
   	width: 300px;
 }
+*/
 
 
-input[type="file"] {
-    display: none;
+.hidden-input {
+    display: none !important;
 }
 
-input[type="text"] {
+.text-input {
   	width: 200px;
     height: 25px;
     border-radius: 25px;
   	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
+	box-shadow: none;
 	border: solid 1px lightgrey;
   	margin-top: 8px;
   	padding: 6px;
@@ -84,10 +75,11 @@ input[type="text"] {
 
 #designName {
 	margin-left: 20px;
+  	display: inline;
 }
 
 #mainImgLabel {
-  	display: inline-block;
+  	display: inline;
   	margin: 0 auto;
   	margin-bottom: 10px;
   	width: 150px;
@@ -101,9 +93,8 @@ input[type="text"] {
     height: 25px;
     border-radius: 25px;
     color: white;
-    display: inline;
     position: relative;
-  	margin: 10px 5px 10px;
+  	margin: 10px 5px 10px 10px;
   	font-size: 10px;
 /*
   	top: 10%;
@@ -112,7 +103,7 @@ input[type="text"] {
 */
 }
 
-.preview1, .preview2, .preview3, .preview4, .preview5, #mainPreview {
+#preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
   	width: 150px;
   	height: 150px;
   	margin: 5px;
@@ -121,7 +112,7 @@ input[type="text"] {
 
 #attach, #mainImgLabel {
     background-color: #2f6bee;
-  	display: inline-block;
+  	display: inline;
 }
 
 #bin {
@@ -131,10 +122,8 @@ input[type="text"] {
     border-radius: 25px;
   	background-color: #e4333c;
   	margin-right: 20px;
-  	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-  	box-shadow: none !important;
   	font-weight: 300;
+  	padding-bottom: 2px;
 }
 
 button, input[type="submit"] {
@@ -142,7 +131,8 @@ button, input[type="submit"] {
 }
 
 .trashlogo {
-  color: white;
+  	color: white;
+  	padding-top: 3.5px;
 }
 
 
@@ -192,3 +182,106 @@ textarea {
     display: inline;
 }
 /*.........end of upload page.........*/
+
+
+/*-----------profile page-------------*/
+
+.profilePic {
+	border: solid 1px lightgrey;
+  	border-radius: 4px;
+  	display: inline;
+  	margin-bottom: 10px;
+
+}
+
+/*
+.profileInfo {
+  	float: right;
+}
+*/
+
+.designs {
+  	width: 400px;
+  	height: 250;
+}
+
+.box {
+/*
+  	border: solid 10px;
+
+	  border: 13px solid #e5e5e5;
+
+	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
+	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
+
+	  border-image-slice: 1;
+*/
+  	max-width: 40%;
+  	height: auto;
+  	padding: 20px;
+  	display: block;
+  	margin: auto;
+  	margin-bottom: 30px;
+/*  	box-shadow: 0 15px 10px #b7b7b7;*/
+}
+
+#email, #website {
+  	display: inline-block;
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    color: white;
+    position: relative;
+  	margin: 10px 5px 10px 10px;
+  	padding-top: 11px;
+  	text-decoration: none;
+  	text-align: center;
+}
+
+#email {
+  /*#5334ee*/
+  	background-color: #5446d2;
+}
+
+#website {
+ 	 background-color: #f67673;
+}
+
+#twitter {
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  	margin: 6.5px 5px 10px 10px;
+}
+
+#edit {
+  	background-color: white;
+  	width: 100%;
+    height: 25px;
+    border-bottom-left-radius: 25px;
+  	border-top-left-radius: 25px;
+  	padding: 20px;
+}
+
+.input-group-addon {
+  	height: 25px;
+    border-bottom-right-radius: 25px;
+  	border-top-right-radius: 25px;
+}
+
+body {
+  	background: url("/img/pencils.png") no-repeat center center fixed;
+	background-size: 100%;
+}
+
+.box {
+  background-color: white;
+}
+
+.myDesigns {
+  	width: 70%;
+  	height: 80%;
+
+}
+/*.........end of profile page.........*/

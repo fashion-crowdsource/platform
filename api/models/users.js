@@ -1,6 +1,7 @@
+var fs 			= require('fs');
 var mongoose 	= require("mongoose");
-var schemae	= require("./schemae.js");
-var User = schemae.User;
+var schemae		= require("./schemae.js");
+var User 		= schemae.User;
 
 // GENERAL SEARCH FUNCTION - returns an ARRAY
 // takes a query object, q:{} is required, f:{} is optional (a filter)
@@ -37,15 +38,21 @@ function createUser(userData, imagePath, callback) {
 		newUser.attach('profileImage', {path: imagePath}, function(err){
 			if (err) {
 				console.error(err);
-				return callback(err);
+				fs.unlink(imagePath, function(err1){
+					return callback(err);
+				});
 			}
 			else{
 				newUser.save(function(err1, user){
 					if (err1) {
-						return callback(err1);
+						fs.unlink(imagePath, function(err1){
+							return callback(err1);
+						});
 					}
 					else {
-						return callback(null, user);
+						fs.unlink(imagePath, function(err1){
+							return callback(null, user);
+						});
 					}
 				});
 			}
