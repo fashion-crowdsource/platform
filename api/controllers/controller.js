@@ -1,6 +1,7 @@
-var Bell 	= require("bell");
-var Path 	= require("path");
-var Joi 	= require("joi");
+var Bell 	= require('bell');
+var Path 	= require('path');
+var Joi 	= require('joi');
+var mongoose = require('mongoose');
 var config 	= require('../config');
 var users 	= require('../models/users');
 var designs = require('../models/designs');
@@ -19,7 +20,7 @@ module.exports = {
 
 	login: {
 		 auth: {
-			strategy: "google"
+			strategy: 'google'
 		 },
 		 handler: function (request, reply) {
 			if (request.auth.isAuthenticated) {
@@ -66,20 +67,23 @@ module.exports = {
 	homeView: {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
-			if (request.auth.isAuthenticated) {
-				return reply.view('index', {user: {username: request.auth.credentials.username}});
-			}
-			else {
-				return reply.view('index');
-			}
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			return reply.view('index', {auth: auth});
 		}
 	},
 
 	signupView: {
-		auth: {mode: 'required'},
+		auth: {mode: 'optional'},
 		handler: function (request, reply ){
-			return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
-			// return reply.view('signup');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (auth) {
+				return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup', {auth: auth});
+			}
+			else {
+				return reply.redirect('/');
+			}
 		}
 	},
 
@@ -94,6 +98,8 @@ module.exports = {
 			parse: true
 		},
 		handler: function (request, reply ){
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 
 			console.log('Payload:');
 			console.dir(request.payload);
@@ -137,7 +143,7 @@ module.exports = {
 				if (err) {
 					console.error(err);
 					if (profileImagePath) trash.cleanUp(tempFiles);
-					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
+					reply.view('signup', {error: err, auth: auth});
 				}
 				else {
 					request.auth.session.set('hasAccount', true);
@@ -152,37 +158,43 @@ module.exports = {
 	designersView: {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			users.getAllUsers(function(err, users){
 				if (err) {
-					if (request.auth.isAuthenticated) {
-						return reply.view('designers', {error: err, user: {username: request.auth.credentials.username}});
-					}
-					else {
-						return reply.view('designers', {error: err});
-					}
+					return reply.view('designers', {error: err, auth: auth});
 				}
 				else {
-					if (request.auth.isAuthenticated) {
-						return reply.view('designers', {designers: users, user: {username: request.auth.credentials.username}});
-					}
-					else {
-						return reply.view('designers', {designers: users});
-					}
+					return reply.view('designers', {designers: users, auth: auth});
 				}
 			});
 		}
 	},
-
+// TODO pass {auth: {username: request.auth.credentials.username}} to all views if auth
 	profileView: {
 		handler: function (request, reply ){
 			var userName = request.params.username;
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
 					return reply.view('profile', {error: err});
 				}
-				else if (request.auth.isAuthenticated) {
-					return reply.view('profile', {auth: {username: request.auth.credentials.username}});
+				else if (user) {
+					if (user.designIds.length > 0) {
+						designs.getDesignsByDesignerUserName(userName, function(err1, designs){
+							if (err1) {
+								return reply.view('profile', {user: user, auth: auth, error: err1});
+							}
+							else {
+								return reply.view('profile', {designs: designs, user: user, auth: auth});
+							}
+						});
+					}
+					else {
+						return reply.view('profile', {user: user, auth: auth});
+					}
 				}
 				else {
 					return reply.view('profile', {error: 'User not found'});
@@ -197,21 +209,20 @@ module.exports = {
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
-			var editor = request.auth.credentials.username;
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 
+			var editor = request.auth.credentials.username;
 			var updatedUser = request.payload;
 
 			users.updateUser(editor, updatedUser, function(err, result){
 				if (err) {
-					return reply(err);
+					return reply.view('profile', {error: err, auth: auth});
 				}
 				if (result) {
-					//think this is almost there but not quite sure how to make the result bit work
-					return reply.view('profile', {user: result});
+					return reply.view('profile', {user: result, auth: auth});
 				}
 			});
-			// UPDATE USER DB ENTRY
-			// RETURN VIEW OF UPDATED PROFILE
 		}
 	},
 
@@ -225,9 +236,11 @@ module.exports = {
 	},
 
 	uploadView: {
+		auth: {mode: 'required'},
 		handler: function (request, reply ){
-			console.log(request.auth.credentials);
-			return request.auth.credentials.hasAccount ? reply.view('upload') : reply.redirect('signup');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			return request.auth.credentials.hasAccount ? reply.view('upload', {auth:auth}) : reply.redirect('signup');
 		}
 	},
 
@@ -242,6 +255,8 @@ module.exports = {
 			parse: true
 		},
 		handler: function (request, reply ){
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			console.dir(request.payload);
 			// ADD NEW SUBMISSION TO DB
 			// 1. get user doc from db
@@ -249,7 +264,7 @@ module.exports = {
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
-					return reply.view('upload', {error: err});
+					return reply.view('upload', {error: err, auth: auth});
 				}
 				// 2. save payload data to new design doc
 				else if (user) {
@@ -288,7 +303,7 @@ module.exports = {
 						if (err1) {
 							console.error(err1);
 							trash.cleanUp(tempFiles);
-							return reply.view('upload', {error: err1});
+							return reply.view('upload', {error: err1, auth: auth});
 						}
 						// 3. save design doc ObjId to user designs[]
 						else {
@@ -301,7 +316,7 @@ module.exports = {
 								if (err2) {
 									console.error(err2);
 									// TODO delete design if saving designId fails??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
-									return reply.view('upload', {error: err2});
+									return reply.view('upload', {error: err2, auth: auth});
 								}
 								else {
 									// TODO - on save , redirect to view of design
@@ -320,7 +335,20 @@ module.exports = {
 
 	designView: {
 		handler: function (request, reply ){
-			return reply.view('design');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			var designId = mongoose.Types.ObjectId(request.params.design);
+			designs.getDesignById(designId, function(err, design){
+				if (err) {
+					return reply.view('design', {error: err, auth: auth});
+				}
+				else if (design) {
+					return reply.view('design', {design: design, auth: auth});
+				}
+				else {
+					return reply.view('design', {error: 'Design not found', auth: auth});
+				}
+			});
 		}
 	},
 

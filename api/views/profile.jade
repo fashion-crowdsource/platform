@@ -7,17 +7,17 @@ block content
 					.col-md-12
 
 						if user
-							//- p #{user}
 							if user.profileImage
 								img.profilePic(src=user.profileImage.small.url)
 								h3.profileInfo #{user.firstName} #{user.lastName}
 								//- p Username: #{user.username}
-								a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
-								a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
-								//-just placeholders for now
-								a(href=user.links)
-									img#profileTwitter(src="/img/1428206576_twitter.svg")
-								p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
+
+							a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+							a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
+							//-just placeholders for now
+							a(href=user.links)
+								img#profileTwitter(src="/img/1428206576_twitter.svg")
+							p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
 
 							.row
 								.col-md-12

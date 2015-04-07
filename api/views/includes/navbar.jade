@@ -1,5 +1,5 @@
 .container-fluid
-	if user
+	if auth
 		nav.navbar.navbar-default
 			.navbar-header
 				button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="collapselist")
@@ -14,7 +14,7 @@
 					li
 						a(href="/designers") Designers
 					li
-						a(href="/profile/" + user.username ) Profile
+						a(href="/profile/" + auth.username ) My Profile
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href="/logout") Log Out
