@@ -1,5 +1,4 @@
 var designs = require('./designs');
-var mongoose = require('mongoose');
 var Path = require('path');
 var id = mongoose.Types.ObjectId();
 

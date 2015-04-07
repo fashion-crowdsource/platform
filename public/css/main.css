@@ -124,7 +124,7 @@ hr {
   	padding-bottom: 2px;
 }
 
-button, input[type="submit"] {
+.no-border {
   	border: none;
 }
 
@@ -223,7 +223,7 @@ textarea {
 /*  	box-shadow: 0 15px 10px #b7b7b7;*/
 }
 
-#email, #website {
+#profile-email, #profile-website {
   	display: inline-block;
   	width: 35px;
     height: 35px;
@@ -236,12 +236,12 @@ textarea {
   	text-align: center;
 }
 
-#email {
+#profile-email {
   /*#5334ee*/
   	background-color: #5446d2;
 }
 
-#website {
+#profile-website {
  	 background-color: #f67673;
 }
 
@@ -268,7 +268,7 @@ textarea {
 }
 
 body {
-  	background: url("/img/pencils.png") no-repeat center center fixed;
+  	/*background: url("/img/pencils.png") no-repeat center center fixed;*/
 	background-size: 100%;
 }
 
