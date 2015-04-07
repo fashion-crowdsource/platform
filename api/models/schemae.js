@@ -8,8 +8,8 @@ var ObjectId 	= mongoose.Schema.Types.ObjectId;
 
 
 var designSchema = new Schema({
-	designerUserName: 	{type: String, required: true, unique: true},
-	designerId: 		{type: ObjectId, required: true, unique: true},
+	designerUserName: 	{type: String, required: true},
+	designerId: 		{type: ObjectId, required: true},
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
 	additionalInfo: 	{type: String},

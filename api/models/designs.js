@@ -1,6 +1,7 @@
-var mongoose 	= require("mongoose");
-var schemae	= require("./schemae.js");
+var mongoose 	= require('mongoose');
+var schemae	= require('./schemae.js');
 var Design = schemae.Design;
+var users = require('./users.js');
 
 // GENERAL SEARCH FUNCTION - returns an ARRAY
 // takes a query object, q:{} is required, f:{} is optional (a filter)
@@ -168,7 +169,7 @@ function updateDesignById(designId, newDesignObject , callback) {
 	});
 }
 
-// TODO - also delete onbId from designers designs array
+// TODO - also delete obId from designers designs array
 // TODO? Call remove directly, still exectues middleware?
 function deleteDesignById(designId, callback) {
 	Design.findOne({_id: designId}, function(err, design){
