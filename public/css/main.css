@@ -124,7 +124,7 @@ hr {
   	padding-bottom: 2px;
 }
 
-button, input[type="submit"] {
+.no-border {
   	border: none;
 }
 
@@ -261,6 +261,7 @@ textarea {
     border-bottom-right-radius: 25px;
   	border-top-right-radius: 25px;
 }
+
 
 .profilePage {
   	background: url("/img/pencils.png") no-repeat center center fixed;
