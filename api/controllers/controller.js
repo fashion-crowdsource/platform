@@ -337,7 +337,8 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			var designId = mongoose.Types.ObjectId(request.params.design);
+			// var designId = mongoose.Types.ObjectId(request.params.design);
+			var designId = request.params.design;
 			designs.getDesignById(designId, function(err, design){
 				if (err) {
 					return reply.view('design', {error: err, auth: auth});
