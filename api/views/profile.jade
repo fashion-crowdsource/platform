@@ -11,8 +11,8 @@ block content
 						img.profilePic(src=user.profileImage.small.url)
 						h3.profileInfo #{user.firstName} #{user.lastName}
 						//- p Username: #{user.username}
-						a#email.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
-						a#website.glyphicon.glyphicon-globe(href=user.links)
+						a#profile-email.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+						a#profile-website.glyphicon.glyphicon-globe(href=user.links)
 						//-just placeholders for now
 						a(href=user.links)
 							img#twitter(src="/img/1428206576_twitter.svg")

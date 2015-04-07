@@ -2,7 +2,7 @@ mixin attach
 	each val in [1,2,3,4,5]
 		label#attach
 			span#uptext Attach
-				input(name='img' + val, class='hidden-input', type='file', onchange='loadImg(this)', accept='image/gif, image/jpeg, image/png')
+				input(name='additionalImage' + val, class='hidden-input', type='file', onchange='loadImg(this)', accept='image/gif, image/jpeg, image/png')
 		button#bin
 			span.glyphicon.glyphicon-trash.trashlogo
 
@@ -12,9 +12,9 @@ mixin imgPreview
 
 mixin attach-doc
 	each val in [1,2,]
-	label#attach
-		span#uptext Attach file
-			input(name='additionalFile' + val, class='hidden-input' type='file')
+		label#attach
+			span#uptext Attach file
+				input(name='additionalFile' + val, class='hidden-input' type='file')
 
 //- Repeat a block without writing inline JS
 mixin times(limit)

@@ -94,13 +94,20 @@ var userSchema = new Schema({
 	firstName: 		{type: String, required: true},
 	lastName: 		{type: String, required: true},
 	phoneNumber: 	{type: String}, //optional --NB. must make sure phone/address kept private, admin use only
-	address: 		{type: String}, //optional
 	bio: 			{type: String}, //optional
 	links: 			[String], 		//optional
 	dateJoined: 	{type: Date, required: true},
 	isAdmin: 		{type: Boolean, required: true, default: false},
 	// isDesigner	{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
-	designIds: 		[ObjectId]
+	designIds: 		[ObjectId],
+	address: 		{
+						firstLine: {type: String},
+						secondLine: {type: String},
+						town: {type: String},
+						county: {type: String},
+						postcode: {type: String},
+						full: {type: String},
+	} //optional?? currently required on form and in controller code
 });
 
 

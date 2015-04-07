@@ -32,43 +32,76 @@ function search(query, callback) {
 	}
 }
 
+// function createUser(userData, imagePath, callback) {
+// 	var newUser = new User(userData);
+// 	if (imagePath) {
+// 		newUser.attach('profileImage', {path: imagePath}, function(err){
+// 			if (err) {
+// 				console.error(err);
+// 				return callback(err);
+// 			}
+// 			else{
+// 				newUser.save(function(err1, user){
+// 					if (err1) {
+// 						return callback(err1);
+// 					}
+// 					else {
+// 						return callback(null, user);
+// 					}
+// 				});
+// 			}
+// 		});
+// 	}
+// 	else {
+// 		newUser.save(function(err1, user){
+// 			if (err1) {
+// 				return callback(err1);
+// 			}
+// 			else {
+// 				return callback(null, user);
+// 			}
+// 		});
+// 	}
+// }
+
 function createUser(userData, imagePath, callback) {
-	var newUser = new User(userData);
-	if (imagePath) {
-		newUser.attach('profileImage', {path: imagePath}, function(err){
-			if (err) {
-				console.error(err);
-				fs.unlink(imagePath, function(err1){
+	var newUserObj = new User(userData);
+
+	User.create(newUserObj, function(err0, newUser){
+		if (imagePath) {
+			newUser.attach('profileImage', {path: imagePath}, function(err){
+				if (err) {
+					console.error(err);
 					return callback(err);
-				});
-			}
-			else{
-				newUser.save(function(err1, user){
-					if (err1) {
-						fs.unlink(imagePath, function(err2){
+				}
+				else{
+					newUser.save(function(err1){
+						if (err1) {
 							return callback(err1);
-						});
-					}
-					else {
-						fs.unlink(imagePath, function(err2){
-							return callback(null, user);
-						});
-					}
-				});
-			}
-		});
-	}
-	else {
-		newUser.save(function(err1, user){
-			if (err1) {
-				return callback(err1);
-			}
-			else {
-				return callback(null, user);
-			}
-		});
-	}
+						}
+						else {
+							return callback(null, newUser);
+						}
+					});
+				}
+			});
+		}
+		else {
+			newUser.save(function(err1){
+				if (err1) {
+					return callback(err1);
+				}
+				else {
+					return callback(null, newUser);
+				}
+			});
+		}
+	});
 }
+
+
+
+
 
 function getUser(userName, callback) {
 	User.findOne({username: userName}, function(err, user){
@@ -92,7 +125,7 @@ function getAllUsers(callback) {
 	});
 }
 
-// TODO Refactor edit/delete to allow middleware to excecute for s3 edut/delete. Use find, then save or remove doc.
+// TODO Refactor update to allow middleware to excecute for s3 edit. Use findOne, then save doc.
 function updateUser(userName, callback) {
 	User.findOneAndUpdate({username: userName}, function(err, user){
 		if (err) {
@@ -105,12 +138,19 @@ function updateUser(userName, callback) {
 }
 
 function deleteUser(userName, callback) {
-	User.findOneAndRemove({username: userName}, function(err, user){
+	User.findOne({username: userName}, function(err, user){
 		if (err) {
 			return callback(err);
 		}
-		else {
-			return callback(null, user);
+		else if (user) {
+			user.remove(function(err1){
+				if (err1) {
+					return callback(err1);
+				}
+				else {
+					return callback(null, user);
+				}
+			});
 		}
 	});
 }

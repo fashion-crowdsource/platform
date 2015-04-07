@@ -51,11 +51,12 @@ block content
 						.col-md-12
 							#description
 								h4 Any other information:
-								textarea(name="info", class='form-control')
+								textarea(name="additionalInfo", class='form-control')
 
 					.row
 						.col-xs-12.col-sm-12
-							input#submit(type="submit", value="Submit", name="submitUpload")
+							input(type='reset', value='RESET -DEV TOOL')
+							input#submit(type="submit", value="Submit", name="submitUpload", class='no-border')
 
 append footer
 	script(src="/scripts/upload.js")
