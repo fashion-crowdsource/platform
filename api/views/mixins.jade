@@ -21,3 +21,8 @@ mixin times(limit)
 	- for (var i = 1; i <= limit; i++) {
 		block
 	- }
+
+mixin homepageGallery
+	container
+		each url in ['/img/01.jpg', '/img/05.jpg' , '/img/22.jpg', '/img/24.jpg','/img/31.jpg', '/img/34.jpg', '/img/40.jpg', '/img/44.jpg']
+			img.lazy.homepageImages(data-original=url)
