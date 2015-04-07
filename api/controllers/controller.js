@@ -4,6 +4,7 @@ var Joi 	= require("joi");
 var config 	= require('../config');
 var users 	= require('../models/users');
 var designs = require('../models/designs');
+var trash 	= require('../models/trash');
 
 module.exports = {
 
@@ -88,45 +89,56 @@ module.exports = {
 			parse: true
 		},
 		handler: function (request, reply ){
-			console.dir(request.auth.credentials);
-			console.log('Payload:');
-			console.dir(request.payload);
+			// console.dir(request.auth.credentials);
+			// console.log('Payload:');
+			// console.dir(request.payload);
 			var user = request.payload;
 			var newUserObj = {
 				username: request.auth.credentials.username,
 				email: user.email,
 				firstName: user.firstname,
 				lastName: user.lastname,
-				dateJoined: new Date()
+				dateJoined: new Date(),
+				address: {
+					firstLine: user.addressFirstLine,
+					town: user.addressTown,
+					postcode: user.addressPostcode,
+					full: '',
+				}
 			};
-			// Construct address as string
-			newUserObj.address = '';
-			newUserObj.address += user.addressFirstLine + '\n';
-			if(user.addressSecondLine) newUserObj.address += user.addressSecondLine + '\n';
-			newUserObj.address += user.addressTown + '\n';
-			if(user.addressCounty) newUserObj.address += user.addressCounty + '\n';
-			newUserObj.address += user.addressPostcode;
+			// construct full address, and check for optional fields
+			var fullAddress = newUserObj.address.full;
+			fullAddress += user.addressFirstLine + '\n';
+			if(user.addressSecondLine) {
+				fullAddress += user.addressSecondLine + '\n';
+				newUserObj.address.secondLine = user.addressSecondLine;
+			}
+			fullAddress += user.addressTown + '\n';
+			if(user.addressCounty) {
+				newUserObj.address += user.addressCounty + '\n';
+				newUserObj.address.county = user.addressCounty;
+			}
+			fullAddress += user.addressPostcode;
 
 			if (user.phonenumber) newUserObj.phoneNumber = user.phoneNumber;
 			if (user.bio) newUserObj.bio = user.bio;
 			// TODO links. ??? -> array
-			var profileImgPath = null;
-			if (user.profileImage) profileImgPath = user.profileImage.path;
+			var profileImagePath = null;
+			if (user.profileImage) profileImagePath = user.profileImage.path;
 			if (user.admin === 'Yes') newUserObj.isAdmin = true; //!!!! REMOVE IN PRODUCTION
 
+			var tempFiles = [profileImagePath];
 			// ADD NEW USER TO DB
-			users.createUser(newUserObj, profileImgPath, function(err, user){
+			users.createUser(newUserObj, profileImagePath, function(err, user){
 				if (err) {
 					console.error(err);
+					if (profileImagePath) trash.cleanUp(tempFiles);
 					reply.view('signup', {error: err}); //TODO use error in template. User needs to know signup failed
 				}
 				else {
-					// !!! CANT EDIT request.auth.creds - doesnt save
-					// request.auth.credentials.hasAccount = true;
-					// if (user.isAdmin) request.auth.credentials.isAdmin = true; //!!!! REMOVE IN PRODUCTION
 					request.auth.session.set('hasAccount', true);
 					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
-					console.dir(request.auth.credentials);
+					if (profileImagePath) trash.cleanUp(tempFiles);
 					reply.redirect('/profile/'+user.username);
 				}
 			});
@@ -146,7 +158,8 @@ module.exports = {
 				}
 				else {
 					return reply.redirect('/'); //TODO pass failure info to user e.g.'user not found'. How? if can't pass context data to redirect, try adding query string to url, and parse !!OR!! put in cookie
-					// Could simply reply with home view, butshould be redirect as not requested resource.
+					// Could simply reply with home view, but should be redirect as not requested resource.
+					// SOLUTION: If err/usernotfound still view profile, but make template safe (only conidtionals) and dsplay error message
 				}
 			});
 		}
@@ -168,7 +181,7 @@ module.exports = {
 				}
 				if (updatedField.bio) {
 					//think this is almost there but not quite sure how to make the result bit work
-					return reply.redirect("profile");
+					return reply.redirect("profile"); // <- updateUser returns the user object, so try reply.view('profile',{user: result}). NB -redirect would need a route, not a view
 				}
 			});
 			// UPDATE USER DB ENTRY
@@ -193,7 +206,6 @@ module.exports = {
 		}
 	},
 
-	// function createDesign(designData, mainImgPath, imageArray, fileArray, callback)
 	uploadNewDesign: {
 		auth: {mode: 'required'},
 		// validate:{
@@ -201,7 +213,7 @@ module.exports = {
 		// },
 		payload : {
 			maxBytes: 209715200, //20MB? May need to be greater, and user feedback on hitting the limit required. Prevent attachment of too large a collection of images, submit attempt should never fail.
-			output: 'data',
+			output: 'file',
 			parse: true
 		},
 		handler: function (request, reply ){
@@ -212,43 +224,63 @@ module.exports = {
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
-					return reply.redirect('/'); //TODO: error handling. redirect? or same view with error?
+					return reply.view('upload', {error: err});
 				}
 				// 2. save payload data to new design doc
 				else if (user) {
 					var design = request.payload;
 					var newDesignObj = {
-						designerUserName: userName,
+						designerUserName: request.auth.credentials.username,
 						designerId: user._id,
-						name: design.name,
+						name: design.designName,
 						description: design.description,
 						dateAdded: new Date()
 					};
 					if (design.additionalInfo) newDesignObj.additionalInfo = design.additionalInfo;
-					var mainImgPath = request.payload.files.mainImage.path;
-					var imageArray = [];
-					var fileArray = [];
-					// TODO collect addImages and files from payload and put paths in array
-					designs.createDesign(newDesignObj, mainImgPath, imageArray, fileArray, function(err1, design){
+					var mainImagePath = design.designMainImage.path;
+
+					var imagePathArray = [];
+					var filePathArray = [];
+					var tempFiles = [mainImagePath];
+
+					for (var prop in design) {
+						if (/additionalImage/.test(prop) ) {
+							tempFiles.push(design[prop].path);
+							if (/additionalImage/.test(prop) && design[prop].filename.length > 0 ) {
+								imagePathArray.push(design[prop].path);
+							}
+						}
+						else if (/additionalFile/.test(prop) ) {
+							tempFiles.push(design[prop].path);
+							if (/additionalFile/.test(prop) && design[prop].filename.length > 0 ) {
+								filePathArray.push(design[prop].path);
+							}
+						}
+					}
+					console.log('File Paths: ',imagePathArray, filePathArray);
+
+					designs.createDesign(newDesignObj, mainImagePath, imagePathArray, filePathArray, function(err1, design){
 						if (err1) {
 							console.error(err1);
-							return reply.redirect('/'); //TODO <--
+							trash.cleanUp(tempFiles);
+							return reply.view('upload', {error: err1});
 						}
 						// 3. save design doc ObjId to user designs[]
 						else {
 							console.log('design saved');
 							console.dir(design);
+							trash.cleanUp(tempFiles);
 							var designId = design._id;
 							user.designIds.push(designId);
-							user.save(function(err2, savedUser){
+							user.save(function(err2){
 								if (err2) {
 									console.error(err2);
 									// TODO delete design if saving designId fails??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
-									return reply.redirect('/'); // <--- TODO
+									return reply.view('upload', {error: err2});
 								}
 								else {
-									console.dir(savedUser);
-									return reply.view('profile', {user: savedUser.username});
+									// TODO - on save , redirect to view of design
+									return reply.redirect('/profile/' + user.username);
 								}
 							});
 						}
@@ -258,8 +290,6 @@ module.exports = {
 					return reply.redirect('/'); //TODO <- user not found response. should never happen...
 				}
 			});
-
-			return reply.redirect('profile/'+request.auth.credentials.username);
 		}
 	},
 
@@ -274,12 +304,12 @@ module.exports = {
 			// REQUIRE AUTH!
 			// ADD UPVOTE/PREORDER TO DB
 			// redirect to design view with upvote/preorder registered
-			return reply.redirect('designs/{username}/{design}');
+			return reply.redirect('/{design}');
 		}
 	},
 
 	adminView: {
-				// check auth for isAdmin - add it on login
+		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			return reply.view('admin');
