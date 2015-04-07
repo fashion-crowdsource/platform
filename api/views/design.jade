@@ -18,17 +18,20 @@ block content
 						if design.additionalImages
 							each val in design.additionalImages
 								img(src=design.additionalImages[val].medium.url)
-				.row
-					.col-md-12
-
 
 			else
 				h4 Error - Design not found
 
 			if auth
-					//- if an admin is viewing this page, shouldnt it be 'request.auth.credentials.isAdmin' ??
+					//- if an admin is viewing this page. shouldnt it be 'request.auth.credentials.isAdmin' ??
+				if design.additionalFiles
+					h3 Additional Files:
+						each file in design.additionalFiles
+							a(src=design.additionalFiles[file].url)  #{design.additionalFiles[file].name}
+
 				if design.additionalInfo
 					h3 Additional Info:
 					p #{design.additionalInfo}
+
 
 
