@@ -11,21 +11,13 @@
 					img(alt='Fikay Fresh', height="20px", width="20px", src="/img/fikay.png")
 			#collapselist.collapse.navbar-collapse
 				ul.nav.navbar-nav
-					li.dropdown
-						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Designs
-							span.caret
-						ul.dropdown-menu(role="menu")
-							li
-								a(href="/mydesigns") My Designs
-							li
-								a(href="/categories") Categories
 					li
 						a(href="/designers") Designers
 					li
 						a(href="/profile/" + user.username ) Profile
-					ul.nav.navbar-nav.navbar-right
-						li
-							a(href="/logout") Log Out
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="/logout") Log Out
 
 	else
 		nav.navbar.navbar-default
@@ -39,7 +31,16 @@
 					img(alt='Fikay Fresh', height="20px", width="20px", src="/img/fikay.png")
 			#collapselist.collapse.navbar-collapse
 				ul.nav.navbar-nav
-					li.dropdown
+					li
+						a(href="/designers") Designers
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="/login") Log In
+
+
+
+//- excised dropdown code
+//- li.dropdown
 						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Designs
 							span.caret
 						ul.dropdown-menu(role="menu")
@@ -47,12 +48,3 @@
 								a(href="/mydesigns") My Designs
 							li
 								a(href="/categories") Categories
-					li.dropdown
-						a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false") Designers
-							span.caret
-						ul.dropdown-menu(role="menu")
-							li
-								a(href="/designers") Designers' Profiles
-					ul.nav.navbar-nav.navbar-right
-						li
-							a(href="/login") Log In
