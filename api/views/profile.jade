@@ -36,16 +36,10 @@ block content
 								.col-md-12
 									legend
 									h4 My Designs
-									img.myDesigns(src="/img/fikay-girl.png")
+									img.myDesigns(src=design.mainImage.medium.url)
 
 						else
 							h3 Error - user not found
-
-			//- No designs currently being passed to profile, will require an addiotnal db query
-			//- .row
-				.col-md-12
-					h4 My Designs
-					img.designs(src=, href=)
 
 append footer
 	script(src="/scripts/profile.js")
