@@ -36,7 +36,8 @@ block content
 								.col-md-12
 									legend
 									h4 My Designs
-									img.myDesigns(src="/img/fikay-girl.png")
+									//- img.myDesigns(src="/img/fikay-girl.png")
+									img(src= "/img" + row.Image)
 
 						else
 							h3 Error - user not found
