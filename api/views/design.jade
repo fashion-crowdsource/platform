@@ -1,14 +1,20 @@
 extends ./layouts/default.jade
 
+//- NOTES -
+//- Have removed 'if auth'. We want everyone to see this page, not just signed in users.
+//- re: 'if an admin is viewing this page, shouldnt it be 'request.auth.credentials.isAdmin' ??'
+//- No, request.auth.isAdmin is only available in node, not in jade templates.
+//- If we want to know if someone is an admin, we need to pass it to the template.
+//- I intend to add an admin property to the auth variable we're passing in. So auth: {username: '', admin: true}
+
 block content
 	.row
 		.col-md-12
 			h1 Designs
 		if auth
-				//-if auth.admin when it works
+				//-should be if auth.admin when it works
 			button.form-control#acceptDesign Accept Design
 			button.form-control#rejectDesign Reject Design
-		if auth
 			if design
 				.row
 					.col-md-12
@@ -17,11 +23,20 @@ block content
 				.row
 					.col-md-12
 						img.designMainImg(src=design.mainImage.large.url)
+						p #{design.description}
 				.row
 					.col-md-12
 						if design.additionalImages
-							each val in design.additionalImages
-								img(src=design.additionalImages[val].medium.url)
+							each image in design.additionalImages
+								img(src=image.medium.url)
+
+				if auth.admin
+					.row
+						.col-md-12
+							if design.additionalInfo
+								h3 Additional Info:
+								p #{design.additionalInfo}
+
 
 			else
 				h4 Error - Design not found
@@ -30,11 +45,10 @@ block content
 				if design.additionalFiles
 					h3 Additional Files:
 						each file in design.additionalFiles
-							a(src=design.additionalFiles[file].url)  #{design.additionalFiles[file].name}
+							a(src=file.url)  #{file.name}
 
 				if design.additionalInfo
 					h3 Additional Info:
 					p #{design.additionalInfo}
-
 
 
