@@ -189,16 +189,12 @@ textarea {
 .profilePic {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
-  	display: inline;
   	margin-bottom: 10px;
-
 }
 
-/*
 .profileInfo {
-  	float: right;
+/*  	margin-left: 10px;*/
 }
-*/
 
 .designs {
   	width: 400px;
@@ -206,11 +202,8 @@ textarea {
 }
 
 .box {
-/*
-  	border: solid 10px;
-
-	  border: 13px solid #e5e5e5;
-
+	  border: 3.5px solid #e5e5e5;
+/*	border: solid 15px;
 	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
@@ -224,9 +217,11 @@ textarea {
   	margin: auto;
   	margin-bottom: 30px;
 /*  	box-shadow: 0 15px 10px #b7b7b7;*/
+  	background-color: white;
+  	border-radius: 5px;
 }
 
-#profile-email, #profile-website {
+#email, #website {
   	display: inline-block;
   	width: 35px;
     height: 35px;
@@ -239,12 +234,12 @@ textarea {
   	text-align: center;
 }
 
-#profile-email {
+#email {
   /*#5334ee*/
   	background-color: #5446d2;
 }
 
-#profile-website {
+#website {
  	 background-color: #f67673;
 }
 
@@ -270,13 +265,10 @@ textarea {
   	border-top-right-radius: 25px;
 }
 
-body {
-  	/*background: url("/img/pencils.png") no-repeat center center fixed;*/
-	background-size: 100%;
-}
 
-.box {
-  background-color: white;
+.profilePage {
+  	background: url("/img/pencils.png") no-repeat center center fixed;
+	background-size: 100%;
 }
 
 .myDesigns {
@@ -285,3 +277,32 @@ body {
 
 }
 /*.........end of profile page.........*/
+
+
+/*-----------admin page-------------*/
+
+.designBox {
+  	width: 375px;
+	height: 250px;
+  	border: 2px solid lightgrey;
+  	margin: 20px;
+}
+
+.designThumbnail {
+  	max-height: 100%;
+  	max-width: 100%;
+  	margin: auto;
+  	display: inline-block;
+}
+
+.designThumbnail.active {
+  	background-color: rbga(0,0,0, 0.3);
+  	color: white;
+}
+
+.hoverName {
+  	display: inline;
+}
+
+
+/*.........end of admin page.........*/
