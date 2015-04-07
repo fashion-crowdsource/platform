@@ -5,5 +5,19 @@ block content
 		.col-md-12
 			h1 Design View
 
-	.row
-		.col-md-12
+	if auth
+		.row
+			.col-md-12
+				h3 #{design.name} by
+					a(href="/profile/" + design.designerUserName) #{design.designerUserName}
+		.row
+			.col-md-12
+				img(src=design.mainImage.medium.url)
+		.row
+			.col-md-12
+				if design.additionalImages
+					each val in design.additionalImages
+						img(src=design.additionalImages[val].small.url)
+
+	else
+

@@ -157,8 +157,8 @@ module.exports = {
 					console.error(err);
 					return reply.view('profile', {error: err});
 				}
-				else if (user) {
-					return reply.view('profile', {user: user});
+				else if (request.auth.isAuthenticated) {
+					return reply.view('profile', {auth: {username: request.auth.credentials.username}});
 				}
 				else {
 					return reply.view('profile', {error: 'User not found'});
