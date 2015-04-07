@@ -4,41 +4,59 @@ include ./mixins.jade
 block content
 	.row
 		.col-md-12
-			form Design Name:
-				input(type="text", placeholder="Insert your design name")
+			h4 Step 1.
+			p Please attach up to 6 images to be viewed in the gallery should your design be approved. Please also write a <b>short</b> paragraph about the design.
 
 	#greyback
 		.row
 			.col-md-12
-				+attach
-				+attach
-				+attach
+				form(action="/upload", method="POST", enctype="multipart/form-data")
+					label#designName Design Name* :
+						input.text-input(type="text", name="designName", class='form-control', placeholder="Insert your design name" required)
+						label#mainImgLabel
+							span#uptext Attach Main Image
+							input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
+						button#bin
+							span.glyphicon.glyphicon-trash.trashlogo
+					.row
+						.col-md-12
+							img#mainPreview(src="/img/fikay-square.jpg")
 
-		.row
-			.col-md-12
-				+imgAndBin
-				+imgAndBin
-				+imgAndBin
+					.row
+						.col-md-12
+								+attach
 
-		.row
-			.col-md-12
-				+attach
-				+attach
-				+attach
+					.row
+						.col-md-12
+							+imgPreview
 
-		.row
-			.col-md-12
-				+imgAndBin
-				+imgAndBin
-				+imgAndBin
+					.row
+						.col-md-12
+							#description
+								h4 Short Description:
+								textarea(name="description", class='form-control')
+								hr
 
-	.row
-		.col-md-12
-			#description
-				h4 Description:
-				textarea
-	.row
-		.col-xs-12.col-sm-12
-			input#submit(type="submit", enctype="multipart/form-data", action="/{username}/upload", method="post")
+					.row
+						.col-md-12
+							h4 Part 2.
+							p Please attach up to 2 additional documents, outlining any information Fikay should know for the production stage. This could be measurements, colour pallettes, instructions etc. (Information given in part 2 will only be viewed by the Fikay staff).
 
+					#greyback
+						.row
+							.col-md-12
+								+attach-doc
+
+					.row
+						.col-md-12
+							#description
+								h4 Any other information:
+								textarea(name="additionalInfo", class='form-control')
+
+					.row
+						.col-xs-12.col-sm-12
+							input(type='reset', value='RESET -DEV TOOL')
+							input#submit(type="submit", value="Submit", name="submitUpload", class='no-border')
+
+append footer
 	script(src="/scripts/upload.js")

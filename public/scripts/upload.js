@@ -3,10 +3,10 @@ function loadImg(input) {
 	  var reader = new FileReader();
 
 	  reader.onload = function(e){
-		$('#preview')
+		$('#mainPreview')
 		  .attr('src', e.target.result)
-		  .width(200)
-		  .height(200);
+		  .width(150)
+		  .height(150);
 	  };
 		reader.readAsDataURL(input.files[0]);
 	}
@@ -21,7 +21,7 @@ function binIt(ele) {
 $(document).ready(function() {
 	$("#bin").on("click", function(e) {
 		binIt($("#myfile"));
-		$('#preview')
+		$('#minPreview')
 			.attr('src', e.target.result);
 	});
 });

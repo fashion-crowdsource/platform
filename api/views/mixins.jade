@@ -1,10 +1,23 @@
 mixin attach
-	label#attach
-		form
-			span#uptext attach
-				input(id="myfile", type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
-	button#bin
-		span.glyphicon.glyphicon-trash.trashlogo
+	each val in [1,2,3,4,5]
+		label#attach
+			span#uptext Attach
+				input(name='additionalImage' + val, class='hidden-input', type='file', onchange='loadImg(this)', accept='image/gif, image/jpeg, image/png')
+		button#bin
+			span.glyphicon.glyphicon-trash.trashlogo
 
-mixin imgAndBin
-	img#preview(src="#")
+mixin imgPreview
+	each val in [1,2,3,4,5]
+		img(src='/img/fikay-square.jpg', id='preview' + val)
+
+mixin attach-doc
+	each val in [1,2,]
+		label#attach
+			span#uptext Attach file
+				input(name='additionalFile' + val, class='hidden-input' type='file')
+
+//- Repeat a block without writing inline JS
+mixin times(limit)
+	- for (var i = 1; i <= limit; i++) {
+		block
+	- }

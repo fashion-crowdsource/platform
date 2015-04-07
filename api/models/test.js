@@ -1,5 +1,4 @@
 var designs = require('./designs');
-var mongoose = require('mongoose');
 var Path = require('path');
 var id = mongoose.Types.ObjectId();
 
@@ -28,7 +27,7 @@ mongoose.connect(mongodbUri, function() {
 
 	db.on("error", console.error.bind(console, "connection error"));
 	db.once("open", function() {
-		designs.testAddDesign(designData, imgPath,function(err, design){
+		designs.testAddDesign(designData, imgPath, function(err, design){
 			if (err) {
 				console.log(err);
 			}
