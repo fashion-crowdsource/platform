@@ -172,7 +172,7 @@ module.exports = {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
 
-			var editor = request.params.username;
+			var editor = request.auth.credentials; //<--is that what you mean?
 			var updatedField = request.payload;
 
 			users.updateUser(editor, updatedField, function(err, result){
