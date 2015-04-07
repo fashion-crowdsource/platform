@@ -6,7 +6,7 @@ var config 		= require("../config").db;
 var mongodbUri 	= "mongodb://" + config.dbuser + ":" + config.dbpwd + "@" + config.dburl;
 
 
-
+// Testing the mongoose-crate-s3 middleware hooks for s3 image deletion. Seems to work!
 
 
 

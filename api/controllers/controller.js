@@ -224,13 +224,13 @@ module.exports = {
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
-					return reply.redirect('/'); //TODO: error handling. redirect? or same view with error?
+					return reply.view('upload', {error: err});
 				}
 				// 2. save payload data to new design doc
 				else if (user) {
 					var design = request.payload;
 					var newDesignObj = {
-						designerUserName: request.auth.credentials.usersame,
+						designerUserName: request.auth.credentials.username,
 						designerId: user._id,
 						name: design.designName,
 						description: design.description,
@@ -241,24 +241,23 @@ module.exports = {
 
 					var imagePathArray = [];
 					var filePathArray = [];
+					var tempFiles = [mainImagePath];
 
 					for (var prop in design) {
-						if (/additionalImage/.test(prop) && design[prop].filename.length > 0 ) {
-							imagePathArray.push(design[prop].path);
+						if (/additionalImage/.test(prop) ) {
+							tempFiles.push(design[prop].path);
+							if (/additionalImage/.test(prop) && design[prop].filename.length > 0 ) {
+								imagePathArray.push(design[prop].path);
+							}
 						}
-						else if (/additionalFile/.test(prop) && design[prop].filename.length > 0 ) {
-							filePathArray.push(design[prop].path);
+						else if (/additionalFile/.test(prop) ) {
+							tempFiles.push(design[prop].path);
+							if (/additionalFile/.test(prop) && design[prop].filename.length > 0 ) {
+								filePathArray.push(design[prop].path);
+							}
 						}
 					}
 					console.log('File Paths: ',imagePathArray, filePathArray);
-					// Assemble list of files to cleanup
-					var tempFiles = [mainImagePath];
-					if (imagePathArray.length > 0)  {
-						tempFiles = tempFiles.concat(imagePathArray);
-					}
-					if (filePathArray.length > 0)  {
-						tempFiles = tempFiles.concat(filePathArray);
-					}
 
 					designs.createDesign(newDesignObj, mainImagePath, imagePathArray, filePathArray, function(err1, design){
 						if (err1) {
