@@ -73,8 +73,8 @@ module.exports = {
 	signupView: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
-			// return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
-			return reply.view('signup');
+			return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup');
+			// return reply.view('signup');
 		}
 	},
 
@@ -151,23 +151,21 @@ module.exports = {
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
-					return reply.redirect('/'); //TODO pass failure info to user e.g.'server error'. How? if can't pass context data to redirect, try adding query string to url, and parse
+					return reply.view('profile', {error: err});
 				}
 				else if (user) {
 					return reply.view('profile', {user: user});
 				}
 				else {
-					return reply.redirect('/'); //TODO pass failure info to user e.g.'user not found'. How? if can't pass context data to redirect, try adding query string to url, and parse !!OR!! put in cookie
-					// Could simply reply with home view, but should be redirect as not requested resource.
-					// SOLUTION: If err/usernotfound still view profile, but make template safe (only conidtionals) and dsplay error message
+					return reply.view('profile', {error: 'User not found'});
 				}
 			});
 		}
 	},
 
-	// I suggest we take the username for this from request.auth.credentials, rather than url param as a security measure.
-	// i.e. You can only edit/delete the profile you are logged in as.
-	// Further, we could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
+
+
+	// We could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
@@ -179,7 +177,7 @@ module.exports = {
 				if (err) {
 					return reply(err);
 				}
-				if (updatedField.bio) {
+				if (result) {
 					//think this is almost there but not quite sure how to make the result bit work
 					return reply.view('profile', {user: result});
 				}
