@@ -106,7 +106,7 @@ var userSchema = new Schema({
 						town: {type: String},
 						county: {type: String},
 						postcode: {type: String},
-						full: {type: String},
+						full: {type: String}
 	} //optional?? currently required on form and in controller code
 });
 

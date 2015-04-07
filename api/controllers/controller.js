@@ -89,9 +89,9 @@ module.exports = {
 			parse: true
 		},
 		handler: function (request, reply ){
-			// console.dir(request.auth.credentials);
-			// console.log('Payload:');
-			// console.dir(request.payload);
+
+			console.log('Payload:');
+			console.dir(request.payload);
 			var user = request.payload;
 			var newUserObj = {
 				username: request.auth.credentials.username,
@@ -103,24 +103,23 @@ module.exports = {
 					firstLine: user.addressFirstLine,
 					town: user.addressTown,
 					postcode: user.addressPostcode,
-					full: '',
+					full: ''
 				}
 			};
 			// construct full address, and check for optional fields
-			var fullAddress = newUserObj.address.full;
-			fullAddress += user.addressFirstLine + '\n';
+			newUserObj.address.full += user.addressFirstLine + '\n';
 			if(user.addressSecondLine) {
-				fullAddress += user.addressSecondLine + '\n';
+				newUserObj.address.full += user.addressSecondLine + '\n';
 				newUserObj.address.secondLine = user.addressSecondLine;
 			}
-			fullAddress += user.addressTown + '\n';
+			newUserObj.address.full += user.addressTown + '\n';
 			if(user.addressCounty) {
-				newUserObj.address += user.addressCounty + '\n';
+				newUserObj.address.full += user.addressCounty + '\n';
 				newUserObj.address.county = user.addressCounty;
 			}
-			fullAddress += user.addressPostcode;
+			newUserObj.address.full += user.addressPostcode;
 
-			if (user.phonenumber) newUserObj.phoneNumber = user.phoneNumber;
+			if (user.phonenumber) newUserObj.phoneNumber = user.phonenumber;
 			if (user.bio) newUserObj.bio = user.bio;
 			// TODO links. ??? -> array
 			var profileImagePath = null;
