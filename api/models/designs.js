@@ -63,6 +63,8 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 												// return callback(err2);
 											}
 											else if (ind === fileArray.length - 1) {
+												newDesign.markModified('additionalImages');
+												newDesign.markModified('additionalFiles');
 												newDesign.save(function(err3){
 													if (err) {
 														return callback(err3);
@@ -86,6 +88,7 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 									// return callback(err1);
 								}
 								else if (ind === imageArray.length - 1) {
+									newDesign.markModified('additionalImages');
 									newDesign.save(function(err2){
 										if (err) {
 											return callback(err2);
@@ -106,6 +109,7 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 									return callback(err1);
 								}
 								else if (ind === fileArray.length - 1) {
+									newDesign.markModified('additionalFiles');
 									newDesign.save(function(err2){
 										if (err) {
 											return callback(err2);
