@@ -13,7 +13,9 @@ var designSchema = new Schema({
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
 	additionalInfo: 	{type: String},
-	dateAdded: 			{type: Date, required: true}
+	dateAdded: 			{type: Date, required: true},
+	additionalImages: 	[],
+	additionalFiles: 	[]
 });
 
 designSchema.plugin(crate, {

@@ -15,8 +15,8 @@ block content
 		.row
 			.col-md-12
 				if design.additionalImages
-					each val in design.additionalImages
-						img(src=design.additionalImages[val].small.url)
+					each image in design.additionalImages
+						img(src=image.small.url)
 
 	else
 		h3 Error - Design not found

@@ -213,8 +213,6 @@ module.exports = {
 		}
 	},
 
-
-
 	// We could change the route to simply 'profile', or 'profile/edit' <- GET is the edit profile view, PUT and DEL are the edit/del operations
 	editUser: {
 		auth: {mode: 'required'},
