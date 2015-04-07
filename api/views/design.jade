@@ -5,6 +5,10 @@ block content
 		.col-md-12
 			h1 Designs
 		if auth
+				//-if auth.admin when it works
+			button.form-control#acceptDesign Accept Design
+			button.form-control#rejectDesign Reject Design
+		if auth
 			if design
 				.row
 					.col-md-12
@@ -22,8 +26,7 @@ block content
 			else
 				h4 Error - Design not found
 
-			if auth
-					//- if an admin is viewing this page. shouldnt it be 'request.auth.credentials.isAdmin' ??
+			//-if auth.admin //-wont work yet
 				if design.additionalFiles
 					h3 Additional Files:
 						each file in design.additionalFiles

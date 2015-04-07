@@ -258,11 +258,34 @@ textarea {
 
 /*.........end of admin page.........*/
 
-/*-----------admin page-------------*/
+/*-----------design page-------------*/
 
 .designMainImg {
   	margin: 10px 10px 20px;
 }
 
+#acceptDesign {
+  	background-color: #21c462;
+}
 
-/*.........end of admin page.........*/
+#rejectDesign {
+  	background-color: #e4333c;
+}
+
+#acceptDesign, #rejectDesign {
+  	margin: 10px 10px;
+  	width: 150px;
+    height: 30px;
+    border-radius: 30px;
+    color: white;
+  	border: none;
+
+}
+
+.form-control {
+  	display: inline;
+}
+
+/*.........end of design page.........*/
+
+
