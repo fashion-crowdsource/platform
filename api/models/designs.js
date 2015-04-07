@@ -201,7 +201,7 @@ function getDesignsByDesignerUserName(designerUserName, callback) {
 	});
 }
 
-// TODO Empty designers design array
+// TODO Empty designer's design array
 function deleteDesignsByDesignerUserName(designerUserName, callback) {
 	Design.find({designerUserName: designerUserName}, function(err, designs){
 		if (err) {

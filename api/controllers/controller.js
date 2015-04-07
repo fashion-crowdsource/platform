@@ -64,9 +64,14 @@ module.exports = {
 	},
 
 	homeView: {
-		auth: false, //to prevent redirect loop from session cookie
+		auth: {mode: 'optional'},
 		handler: function (request, reply ){
-			return reply.view('index');
+			if (request.auth.isAuthenticated) {
+				return reply.view('index', {auth: {username: request.auth.credentials.username}});
+			}
+			else {
+				return reply.view('index');
+			}
 		}
 	},
 
