@@ -69,7 +69,17 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			return reply.view('index', {auth: auth});
+			designs.getAllDesigns(function(err, designs){
+				if (err) {
+					return reply.view('index', {error: err, auth: auth});
+				}
+				else if (designs) {
+					return reply.view('index', {designs: designs, auth: auth});
+				}
+				else {
+					return reply.view('index', {error: 'No designs found', auth: auth});
+				}
+			});
 		}
 	},
 
