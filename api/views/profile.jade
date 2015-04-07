@@ -3,7 +3,7 @@ extends ./layouts/default.jade
 block content
 		body.profilePage
 			div
-				.row.box
+				.row.profileBox
 					.col-md-12
 
 						if user
@@ -12,11 +12,11 @@ block content
 								img.profilePic(src=user.profileImage.small.url)
 								h3.profileInfo #{user.firstName} #{user.lastName}
 								//- p Username: #{user.username}
-								a#email.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
-								a#website.glyphicon.glyphicon-globe(href=user.links)
+								a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+								a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
 								//-just placeholders for now
 								a(href=user.links)
-									img#twitter(src="/img/1428206576_twitter.svg")
+									img#profileTwitter(src="/img/1428206576_twitter.svg")
 								p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
 
 							.row

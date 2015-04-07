@@ -307,8 +307,8 @@ module.exports = {
 	adminView: {
 		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
-			// REQUIRE AUTH!
-			return reply.view('admin');
+		  console.log(request.auth.credentials);
+			return request.auth.credentials.isAdmin ? reply.view('admin') : reply.redirect('signup');
 		}
 	},
 
