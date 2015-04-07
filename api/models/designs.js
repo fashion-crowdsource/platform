@@ -51,7 +51,6 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 					if (imageArray.length > 0 && fileArray.length > 0) {
 						imageArray.forEach(function(ele, ind){
 							newDesign.attach('additionalImages', {path: ele}, function(err1){
-								console.log(newDesign.additionalImages);
 								if (err1) {
 									console.error(err1);
 									// return callback(err1); // <-Can invoke multiple replies!
@@ -59,7 +58,6 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 								else if (ind === imageArray.length - 1) {
 									fileArray.forEach(function(ele, ind){
 										newDesign.attach('additionalFiles', {path: ele}, function(err2){
-											console.log(newDesign.additionalFiles);
 											if (err2) {
 												console.error(err2);
 												// return callback(err2);
