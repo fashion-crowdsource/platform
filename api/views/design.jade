@@ -3,21 +3,29 @@ extends ./layouts/default.jade
 block content
 	.row
 		.col-md-12
-			h1 Design View
-	if design
-		.row
-			.col-md-12
-				h3 #{design.name} by
-					a(href="/profile/" + design.designerUserName) #{design.designerUserName}
-		.row
-			.col-md-12
-				img(src=design.mainImage.medium.url)
-		.row
-			.col-md-12
-				if design.additionalImages
-					each val in design.additionalImages
-						img(src=design.additionalImages[val].small.url)
+			h1 Designs
+		if auth
+			if design
+				.row
+					.col-md-12
+						h3 #{design.name} by
+							a(href="/profile/" + design.designerUserName)  #{design.designerUserName}
+				.row
+					.col-md-12
+						img.designMainImg(src=design.mainImage.large.url)
+				.row
+					.col-md-12
+						if design.additionalImages
+							each val in design.additionalImages
+								img(src=design.additionalImages[val].medium.url)
 
-	else
-		h3 Error - Design not found
+			else
+				h4 Error - Design not found
+
+			if auth
+					//- if an admin is viewing this page, shouldnt it be 'request.auth.credentials.isAdmin' ??
+				if design.additionalInfo
+					h3 Additional Info:
+					p #{design.additionalInfo}
+
 
