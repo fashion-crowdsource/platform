@@ -8,8 +8,14 @@ block content
 		.col-md-6
 			.designBox
 				img.designThumbnail(src="https://download.unsplash.com/photo-1416838375725-e834a83f62b7")
-				h3.hoverName Username
-				//-img(src=user.designMainImage, href=user.design)
+				//-the above img is a placeholder, the actual link is this>>img(src=design.mainImage)
+				//-a.hoverName(src=design.designerUserName) if they click on the designer's username, take them to the designers profile page
+				//-h3 #{design.name}
+				//placeholders:
+				a(href="") Designer's Name
+				br
+				a(href="") Design's title
+
 		.col-md-6
 			.designBox
 				img.designThumbnail(src="https://download.unsplash.com/photo-1414924347000-9823c338079b")

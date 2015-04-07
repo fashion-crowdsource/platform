@@ -9,6 +9,7 @@ module.exports = [
 	{path: '/login', 					method: 'GET', 		config: controller.login},
 	{path: '/logout', 					method: 'GET', 		config: controller.logout},
 
+	{path: '/designers',				method: 'GET',		config: controller.designersView},
 	{path: '/profile/{username}', 		method: 'GET', 		config: controller.profileView},
 	{path: '/profile/{username}', 		method: 'PUT', 		config: controller.editUser},
 	{path: '/profile/{username}', 		method: 'DELETE', 	config: controller.deleteUser},

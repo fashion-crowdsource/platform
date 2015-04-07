@@ -68,33 +68,39 @@ function createUser(userData, imagePath, callback) {
 	var newUserObj = new User(userData);
 
 	User.create(newUserObj, function(err0, newUser){
-		if (imagePath) {
-			newUser.attach('profileImage', {path: imagePath}, function(err){
-				if (err) {
-					console.error(err);
-					return callback(err);
-				}
-				else{
-					newUser.save(function(err1){
-						if (err1) {
-							return callback(err1);
-						}
-						else {
-							return callback(null, newUser);
-						}
-					});
-				}
-			});
+		if (err0) {
+			console.error(err0);
+			return callback(err0);
 		}
 		else {
-			newUser.save(function(err1){
-				if (err1) {
-					return callback(err1);
-				}
-				else {
-					return callback(null, newUser);
-				}
-			});
+			if (imagePath) {
+				newUser.attach('profileImage', {path: imagePath}, function(err){
+					if (err) {
+						console.error(err);
+						return callback(err);
+					}
+					else{
+						newUser.save(function(err1){
+							if (err1) {
+								return callback(err1);
+							}
+							else {
+								return callback(null, newUser);
+							}
+						});
+					}
+				});
+			}
+			else {
+				newUser.save(function(err1){
+					if (err1) {
+						return callback(err1);
+					}
+					else {
+						return callback(null, newUser);
+					}
+				});
+			}
 		}
 	});
 }

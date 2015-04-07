@@ -201,7 +201,7 @@ textarea {
   	height: 250;
 }
 
-.box {
+.profileBox {
 	  border: 3.5px solid #e5e5e5;
 /*	border: solid 15px;
 	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
@@ -221,7 +221,7 @@ textarea {
   	border-radius: 5px;
 }
 
-#email, #website {
+#profileEmail, #profileWebsite {
   	display: inline-block;
   	width: 35px;
     height: 35px;
@@ -234,16 +234,16 @@ textarea {
   	text-align: center;
 }
 
-#email {
+#profileEmail {
   /*#5334ee*/
   	background-color: #5446d2;
 }
 
-#website {
+#profileWebsite {
  	 background-color: #f67673;
 }
 
-#twitter {
+#profileTwitter {
   	width: 35px;
     height: 35px;
     border-radius: 50px;
@@ -295,13 +295,11 @@ textarea {
   	display: inline-block;
 }
 
-.designThumbnail.active {
-  	background-color: rbga(0,0,0, 0.3);
-  	color: white;
-}
-
 .hoverName {
-  	display: inline;
+  	display: none;
+ 	background-color: rbga(0,0,0, 0.3);
+  	color: #fd8686;
+  	padding: 20px;
 }
 
 
