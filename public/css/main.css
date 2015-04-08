@@ -277,6 +277,11 @@ textarea {
   	padding: 20px;
 }
 
+#imagesOnAdmin {
+	display: block;
+	position: relative;
+}
+
 
 /*.........end of admin page.........*/
 

@@ -4,20 +4,23 @@ block content
 	.row
 		.col-md-12
 			h3 Admin Dashboard
+
 	.row
 		.col-md-6
-			.designBox
-				if designs
-					each design in designs
-						img(src=design.mainImage.medium.url)
+			if designs
+				if auth
+					if auth.admin
+						each design in designs
+							a(href='/'+design._id)
+								img#imagesOnAdmin(src=design.mainImage.medium.url)
 
 
-		.col-md-6
-			.designBox
-				img.designThumbnail(src="https://download.unsplash.com/photo-1414924347000-9823c338079b")
-		.col-md-6
-			.designBox
-		.col-md-6
-			.designBox
+		//- .col-md-6
+		//- 	.designBox
+		//- 		img.designThumbnail(src="https://download.unsplash.com/photo-1414924347000-9823c338079b")
+		//- .col-md-6
+		//- 	.designBox
+		//- .col-md-6
+		//- 	.designBox
 
 append footer
