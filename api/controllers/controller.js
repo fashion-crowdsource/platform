@@ -89,6 +89,7 @@ module.exports = {
 	signupView: {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
+			// return reply.view('signup');
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
