@@ -5,3 +5,8 @@ block content
 		.col-md-12
 			h1 Home Page
 
+			if designs
+				each design in designs
+					a(href='/'+design._id)
+						img(src=design.mainImage.medium.url)
+

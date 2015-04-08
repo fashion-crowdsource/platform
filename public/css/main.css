@@ -16,25 +16,12 @@ body {
 /*  font-family: Lato;*/
 }
 /*--------upload page---------*/
-/*
-#background {
-    display: inline;
-    background-repeat: none;
-    -webkit-filter: blur(10px);
-    position: fixed;
-  	top: 0;
-  	left: 0;
-  	min-width: 100%;
-  	min-height: 100%;
-}
-*/
 
 #greyback {
   	background: rgba(0,0,0,0.05);
   	padding: 10px 25px 20px;
   	border-radius: 3px;
 }
-
 
 /*Sign up page*/
 #signup{
@@ -75,32 +62,28 @@ hr {
 
 #designName {
 	margin-left: 20px;
-  	display: inline;
+  	display: inline-grid;
 }
 
 #mainImgLabel {
   	display: inline;
-  	margin: 0 auto;
-  	margin-bottom: 10px;
+  	margin: 10px;
+    color: white;
+
+}
+
+#uptext {
+    display: inline-block;
+    font-weight: 300;
+    position: relative;
+  	text-align: center;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	background-color: #2f6bee;
   	width: 150px;
   	height: 25px;
     border-radius: 25px;
-    color: white;
-}
-
-#attach {
-    width: 80px;
-    height: 25px;
-    border-radius: 25px;
-    color: white;
-    position: relative;
-  	margin: 10px 5px 10px 10px;
-  	font-size: 10px;
-/*
-  	top: 10%;
-  	transform: translateY(330%);
-    border: none;
-*/
+  	margin-top: 25px;
 }
 
 #preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
@@ -110,10 +93,6 @@ hr {
 /*  	-webkit-filter: blur(1.5px);*/
 }
 
-#attach, #mainImgLabel {
-    background-color: #2f6bee;
-  	display: inline;
-}
 
 #bin {
   	display: inline;
@@ -124,6 +103,7 @@ hr {
   	margin-right: 20px;
   	font-weight: 300;
   	padding-bottom: 2px;
+  	border: none;
 }
 
 .no-border {
@@ -304,3 +284,35 @@ textarea {
 
 
 /*.........end of admin page.........*/
+
+/*-----------design page-------------*/
+
+.designMainImg {
+  	margin: 10px 10px 20px;
+}
+
+#acceptDesign {
+  	background-color: #21c462;
+}
+
+#rejectDesign {
+  	background-color: #e4333c;
+}
+
+#acceptDesign, #rejectDesign {
+  	margin: 10px 10px;
+  	width: 150px;
+    height: 30px;
+    border-radius: 30px;
+    color: white;
+  	border: none;
+
+}
+
+.form-control {
+  	display: inline;
+}
+
+/*.........end of design page.........*/
+
+

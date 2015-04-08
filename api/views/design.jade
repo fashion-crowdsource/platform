@@ -1,23 +1,53 @@
 extends ./layouts/default.jade
 
+//- NOTES -
+//- Have removed 'if auth'. We want everyone to see this page, not just signed in users.
+//- re: 'if an admin is viewing this page, shouldnt it be 'request.auth.credentials.isAdmin' ??'
+//- No, request.auth.isAdmin is only available in node, not in jade templates.
+//- If we want to know if someone is an admin, we need to pass it to the template.
+//- I intend to add an admin property to the auth variable we're passing in. So auth: {username: '', admin: true}
+
 block content
 	.row
 		.col-md-12
-			h1 Design View
+			h1 Designs
+		if auth
+				//-should be if auth.admin when it works
 
-	if auth
-		.row
-			.col-md-12
-				h3 #{design.name} by
-					a(href="/profile/" + design.designerUserName) #{design.designerUserName}
-		.row
-			.col-md-12
-				img(src=design.mainImage.medium.url)
-		.row
-			.col-md-12
-				if design.additionalImages
-					each val in design.additionalImages
-						img(src=design.additionalImages[val].small.url)
+			if design
+				.row
+					.col-md-12
+						h3 #{design.name} by
+							a(href="/profile/" + design.designerUserName)  #{design.designerUserName}
+				.row
+					.col-md-12
+						img.designMainImg(src=design.mainImage.large.url)
+						p #{design.description}
+				.row
+					.col-md-12
+						if design.additionalImages
+							each image in design.additionalImages
+								img(src=image.medium.url)
 
-	else
+				.row
+					.col-md-12
+						if auth
+							if auth.admin
+								button.form-control#acceptDesign Accept Design
+								button.form-control#rejectDesign Reject Design
+
+								if design.additionalFiles
+									h3 Additional Files:
+										each file in design.additionalFiles
+											a(src=file.url)  #{file.name}
+
+								if design.additionalInfo
+									h3 Additional Info:
+									p #{design.additionalInfo}
+
+			else
+				h4 Error - Design not found
+
+
+
 
