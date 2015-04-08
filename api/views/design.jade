@@ -28,15 +28,20 @@ block content
 									h3 Description:
 									p #{design.description}
 
-							if auth.admin
+
+							if auth && auth.admin
 								if design.additionalFiles
 									h3 Additional Files:
 										each file in design.additionalFiles
 											a(href=file.url download=file.name) #{file.name}
-							.row
-								.col-md-12
-									button.form-control#acceptDesign Accept Design
-									button.form-control#rejectDesign Reject Design
+								if design.additionalInfo
+										h3 Additional Information:
+										p #{design.additionalInfo}
+								unless design.approved
+									.row
+										.col-md-12
+											button.form-control#acceptDesign Accept Design
+											button.form-control#rejectDesign Reject Design
 
 						else
 							h4 Error - Design not found
