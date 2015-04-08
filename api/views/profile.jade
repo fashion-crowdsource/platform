@@ -43,14 +43,12 @@ block content
 												a(href='/'+design._id)
 													img#imagesOnProfile(src=design.mainImage.medium.url)
 
-									if designs
-										if auth
-											if auth.admin
-												h4 Pending Design(s)
-													each design in designs
-														unless design.approved
-															a(href='/'+design._id)
-																img#imagesOnProfile(src=design.mainImage.medium.url)
+									if designs && auth && auth.admin
+										h4 Pending Design(s)
+											each design in designs
+												unless design.approved
+													a(href='/'+design._id)
+														img#imagesOnProfile(src=design.mainImage.medium.url)
 
 						else
 							h3 Error - user not found
