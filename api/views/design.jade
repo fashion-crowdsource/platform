@@ -11,19 +11,16 @@ block content
 	.row
 		.col-md-12
 			h1 Designs
-			if auth.admin
-				button.form-control#acceptDesign Accept Design
-				button.form-control#rejectDesign Reject Design
 				if design
 					.row
 						.col-md-12
 							h3 #{design.name} by
 								a(href="/profile/" + design.designerUserName)  #{design.designerUserName}
+
 					.row
 						.col-md-12
 							img.designMainImg(src=design.mainImage.large.url)
-							h3 Description:
-							p #{design.description}
+
 					.row
 						.col-md-12
 							if design.additionalImages
@@ -31,19 +28,20 @@ block content
 								each image in design.additionalImages
 									img(src=image.medium.url)
 
-				else
-					h4 Error - Design not found
-
-				if auth.admin
-					if design.additionalFiles
-						h3 Additional Files:
-							each file in design.additionalFiles
-								a(href=file.url download=file.name)  #{file.name}
-
-				if auth.admin
 					.row
 						.col-md-12
-							if design.additionalInfo
-								h3 Additional Info:
-								p #{design.additionalInfo}
+							h3 Description:
+							p #{design.description}
 
+					if auth.admin
+						if design.additionalFiles
+							h3 Additional Files:
+								each file in design.additionalFiles
+									a(href=file.url download=file.name)  #{file.name}
+					.row
+						.col-md-12
+							button.form-control#acceptDesign Accept Design
+							button.form-control#rejectDesign Reject Design
+
+				else
+					h4 Error - Design not found
