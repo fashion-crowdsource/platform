@@ -13,8 +13,7 @@ block content
 			h1 Designs
 		if auth
 				//-should be if auth.admin when it works
-			button.form-control#acceptDesign Accept Design
-			button.form-control#rejectDesign Reject Design
+
 			if design
 				.row
 					.col-md-12
@@ -30,25 +29,25 @@ block content
 							each image in design.additionalImages
 								img(src=image.medium.url)
 
-				if auth.admin
-					.row
-						.col-md-12
-							if design.additionalInfo
-								h3 Additional Info:
-								p #{design.additionalInfo}
+				.row
+					.col-md-12
+						if auth
+							if auth.admin
+								button.form-control#acceptDesign Accept Design
+								button.form-control#rejectDesign Reject Design
 
+								if design.additionalFiles
+									h3 Additional Files:
+										each file in design.additionalFiles
+											a(src=file.url)  #{file.name}
+
+								if design.additionalInfo
+									h3 Additional Info:
+									p #{design.additionalInfo}
 
 			else
 				h4 Error - Design not found
 
-			//-if auth.admin //-wont work yet
-				if design.additionalFiles
-					h3 Additional Files:
-						each file in design.additionalFiles
-							a(src=file.url)  #{file.name}
 
-				if design.additionalInfo
-					h3 Additional Info:
-					p #{design.additionalInfo}
 
 
