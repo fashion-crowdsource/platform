@@ -11,41 +11,37 @@ block content
 	.row
 		.col-md-12
 			h1 Designs
+				if design
+					.row
+						.col-md-12
+							h3 #{design.name} by
+								a(href="/profile/" + design.designerUserName)  #{design.designerUserName}
 
-			if design
-				.row
-					.col-md-12
-						h3 #{design.name} by
-							a(href="/profile/" + design.designerUserName)  #{design.designerUserName}
-				.row
-					.col-md-12
-						img.designMainImg(src=design.mainImage.large.url)
-						p #{design.description}
-				.row
-					.col-md-12
-						if design.additionalImages
-							each image in design.additionalImages
-								img(src=image.medium.url)
+					.row
+						.col-md-12
+							img.designMainImg(src=design.mainImage.large.url)
 
-				.row
-					.col-md-12
-						if auth
-							if auth.admin
-								button.form-control#acceptDesign Accept Design
-								button.form-control#rejectDesign Reject Design
+					.row
+						.col-md-12
+							if design.additionalImages
+								h3 Additional Images:
+								each image in design.additionalImages
+									img(src=image.medium.url)
 
-								if design.additionalFiles
-									h3 Additional Files:
-										each file in design.additionalFiles
-											a(src=file.url)  #{file.name}
+					.row
+						.col-md-12
+							h3 Description:
+							p #{design.description}
 
-								if design.additionalInfo
-									h3 Additional Info:
-									p #{design.additionalInfo}
+					if auth.admin
+						if design.additionalFiles
+							h3 Additional Files:
+								each file in design.additionalFiles
+									a(href=file.url download=file.name)  #{file.name}
+					.row
+						.col-md-12
+							button.form-control#acceptDesign Accept Design
+							button.form-control#rejectDesign Reject Design
 
-			else
-				h4 Error - Design not found
-
-
-
-
+				else
+					h4 Error - Design not found
