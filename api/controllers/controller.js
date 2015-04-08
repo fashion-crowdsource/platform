@@ -408,7 +408,7 @@ module.exports = {
 			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			var designId = request.params.design;
-
+			console.log('Approving Design' + designId );
 			designs.getDesignById(designId, function(err, design){
 				if (err) {
 					return reply.view('admin', {error:err, auth: auth});
@@ -426,12 +426,14 @@ module.exports = {
 									return reply.view('admin', {error:err2, auth: auth});
 								}
 								else {
+									// TODO prevent multiples of the same ObjectId in approvd array
 									user.approvedDesignIds.push(design._id);
 									user.save(function(err3){
 										if (err3) {
 											return reply.view('admin', {error:err2, auth: auth});
 										}
 										else {
+											console.log('Succesfully Approved');
 											return reply.view('admin', {sucess: 'Design Succesfully Approved', auth: auth});
 										}
 									});
