@@ -6,7 +6,11 @@ block content
 		.col-md-12
 			h3 Admin Dashboard
 
-	if designs
+		if designs
+			+homepageGallery(designs)
+
+
+	//- if designs
 		if auth
 			if auth.admin
 				each design in designs
