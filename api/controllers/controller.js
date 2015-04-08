@@ -7,6 +7,10 @@ var users 	= require('../models/users');
 var designs = require('../models/designs');
 var trash 	= require('../models/trash');
 
+
+// TODO! add success meesages to submit etc. action responses
+
+
 module.exports = {
 
 	serveFile: {
@@ -26,7 +30,6 @@ module.exports = {
 			if (request.auth.isAuthenticated) {
 
 				var gPlus = request.auth.credentials;
-				console.dir(gPlus,{depth:null});
 				var profile = {
 					username 	: gPlus.profile.displayName,
 					email 		: gPlus.profile.email,
@@ -401,9 +404,47 @@ module.exports = {
 
 	adminApproveDesign:  {
 		handler: function (request, reply ){
-			// REQUIRE AUTH!
-			// approve new design for gallery display -toggle a bool in the db?
-			return reply.redirect('admin');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+
+			var designId = request.params.design;
+
+			designs.getDesignById(designId, function(err, design){
+				if (err) {
+					return reply.view('admin', {error:err, auth: auth});
+				}
+				else if (design) {
+					var designerUserName = design.designerUserName;
+					users.getUser(designerUserName, function(err1, user){
+						if (err1) {
+							return reply.view('admin', {error:err1, auth: auth});
+						}
+						else {
+							design.approved = true;
+							design.save(function(err2) {
+								if (err2) {
+									return reply.view('admin', {error:err2, auth: auth});
+								}
+								else {
+									user.approvedDesignIds.push(design._id);
+									user.save(function(err3){
+										if (err3) {
+											return reply.view('admin', {error:err2, auth: auth});
+										}
+										else {
+											return reply.view('admin', {sucess: 'Design Succesfully Approved', auth: auth});
+										}
+									});
+								}
+							});
+						}
+					});
+				}
+				else {
+					return reply.view('admin', {error: 'Design not found', auth: auth});
+				}
+			});
 		}
 	},
 
