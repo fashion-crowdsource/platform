@@ -1,17 +1,17 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 block content
 	.row
 		.col-md-12
 			h3 Admin Dashboard
 
-	.col-md-6
-		if designs
-			if auth
-				if auth.admin
-					each design in designs
-						a(href='/'+design._id)
-							img#imagesOnAdmin(src=design.mainImage.large.url)
+	if designs
+		if auth
+			if auth.admin
+				each design in designs
+					a(href='/'+design._id)
+						img#imagesOnAdmin(src=design.mainImage.large.url)
 
 
 		//- .col-md-6

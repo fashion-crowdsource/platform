@@ -9,7 +9,6 @@
 
 .homepageImages {
 	height: 100%;
-	width: 30%;
 	margin-left: 7.5px;
 	margin-right: 7.5px;
 	margin-bottom: 15px;
@@ -297,9 +296,9 @@ textarea {
 }
 
 #imagesOnAdmin {
-	width: 33%;
-	height: 200px;
-	padding: 3px;
+	display: inline-block;
+	height: 280px;
+	padding: 5px;
 }
 
 
