@@ -12,9 +12,9 @@ mixin times(limit)
 		block
 	- }
 
-mixin homepageGallery
+mixin homepageGallery(designs)
 	- var arraysOfThree = [];
-	- var originalArray = ['/img/700x400.gif', '/img/700x400.gif' , '/img/700x400.gif', '/img/700x400.gif','/img/700x400.gif', '/img/700x400.gif', '/img/700x400.gif', '/img/700x400.gif'];
+	- var originalArray = designs;
 	- var i = 0;
 	- for (j=originalArray.length; i<j; i+=3) {
 	- tempArray = originalArray.slice(i,i+3);
@@ -22,9 +22,9 @@ mixin homepageGallery
 	- }
 
 	each array in arraysOfThree
-		container
-			row
-				col-md-8
+			.row
 					each elem in array
-						img.lazy.homepageImages(src=elem)
+						.col-md-4
+							img.lazy.homepageImages(src=elem.mainImage.medium.url)
+							a.paypal-img-logo(href="https://www.paypal.com/uk/webapps/mpp/home" class="paypal-img-logo">PayPal)
 

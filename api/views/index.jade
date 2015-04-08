@@ -1,15 +1,13 @@
 extends ./layouts/default.jade
 include ./mixins.jade
+
 block content
 	.row
 		.col-md-12
-			h1 Home Page
-			+homepageGallery
-
+			h1 Designs Gallery
 			if designs
-				each design in designs
-					a(href='/'+design._id)
-						img(src=design.mainImage.medium.url)
+				+homepageGallery(designs)
+
 
 append footer
 
