@@ -17,12 +17,14 @@
 						a(href="/profile/" + auth.username ) My Profile
 					li
 						a(href="/upload") Upload
+					if auth.admin
+						li
+							a(href="/admin") Admin
+
 				ul.nav.navbar-nav.navbar-right
 					li
 						a(href="/logout") Log Out
-				if auth.admin
-					li
-						a(href="/admin") Admin
+
 
 	else
 		nav.navbar.navbar-default
