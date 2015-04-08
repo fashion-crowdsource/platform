@@ -56,7 +56,6 @@ module.exports = {
 			else {
 				return reply.redirect('/');
 			}
-
 		}
 	},
 
@@ -339,7 +338,7 @@ module.exports = {
 								}
 								else {
 									// TODO - on save , redirect to view of design
-									return reply.redirect('/'+ design.id);
+									return reply.view('upload', {success: 'Design Succesfully Submited', auth: auth});
 								}
 							});
 						}
