@@ -172,6 +172,17 @@ function getAllApprovedDesigns(callback) {
 	});
 }
 
+function getAllPendingDesigns(callback) {
+	Design.find({approved: false}, function(err, designs){
+		if (err) {
+			return callback(err);
+		}
+		else {
+			return callback(null, designs);
+		}
+	});
+}
+
 // TODO finish! Need to edit design and SAVE to invoke middleware. ?? for var prop in newDesignObject, design[prop] = newDesignObject[prop], design.save()
 function updateDesignById(designId, newDesignObject , callback) {
 	Design.findOne({_id: designId}, function(err, design){
@@ -264,6 +275,7 @@ module.exports = {
 	getDesignById: getDesignById,
 	getAllDesigns: getAllDesigns,
 	getAllApprovedDesigns: getAllApprovedDesigns,
+	getAllPendingDesigns: getAllPendingDesigns,
 	updateDesignById: updateDesignById,
 	deleteDesignById: deleteDesignById,
 	getDesignsByDesignerUserName: getDesignsByDesignerUserName,

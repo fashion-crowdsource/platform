@@ -8,7 +8,7 @@ extends ./layouts/default.jade
 //- I intend to add an admin property to the auth variable we're passing in. So auth: {username: '', admin: true}
 
 block content
-	.row
+	.row#centreDiv
 		.col-md-12
 			h1 Designs
 				if design
@@ -37,7 +37,7 @@ block content
 						if design.additionalFiles
 							h3 Additional Files:
 								each file in design.additionalFiles
-									a(href=file.url download=file.name)  #{file.name}
+									a(href=file.url download=file.name) #{file.name}
 					.row
 						.col-md-12
 							button.form-control#acceptDesign Accept Design
