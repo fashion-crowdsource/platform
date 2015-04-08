@@ -379,23 +379,24 @@ module.exports = {
 		}
 	},
 
-	adminView: {
+
+	adminView:  {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
-			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
-		}
-	},
-
-	adminDesignView:  {
-		handler: function (request, reply ){
-			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
-
-			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
+			designs.getAllPendingDesigns(function(err, designs){
+			  if (err) {
+				return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: err, auth: auth}) : reply.redirect('/');
+			  }
+			  else if (designs) {
+			   return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {designs: designs, auth: auth}) : reply.redirect('/');
+			  }
+			   else {
+				 return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: 'No pending designs found', auth: auth}) : reply.redirect('/');
+			   }
+		  });
 		}
 	},
 
