@@ -1,14 +1,13 @@
 extends ./layouts/default.jade
 include ./mixins.jade
+
 block content
 	.row
 		.col-md-12
 			h1 Designs Gallery
 			if designs
-				each design in designs
-					a(href='/'+design._id)
-						img.galleryImg(src=design.mainImage.medium.url)
-						a.paypal-img-logo(href="https://www.paypal.com/uk/webapps/mpp/home" class="paypal-img-logo">PayPal)
+				+homepageGallery(designs)
+
 
 append footer
 
