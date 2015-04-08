@@ -2,6 +2,14 @@
 	display: none;
 }
 
+.homepageImages {
+	height: 100%;
+	width: 30%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
+}
+
 body {
   background-color: white;
   color: #444444;
