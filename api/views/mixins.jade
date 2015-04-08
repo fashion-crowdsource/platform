@@ -3,14 +3,9 @@ mixin imgPreview
 		img(src='/img/fikay-square.jpg', id='preview' + val)
 
 mixin attach-doc
-	each val in [1,2,]
+	each val in [1,2]
 		input(name='additionalFile' + val, type='file')
 
-//- Repeat a block without writing inline JS
-mixin times(limit)
-	- for (var i = 1; i <= limit; i++) {
-		block
-	- }
 
 mixin homepageGallery(designs)
 	- var arraysOfThree = [];
@@ -25,6 +20,6 @@ mixin homepageGallery(designs)
 			.row
 					each elem in array
 						.col-md-4
-							img.lazy.homepageImages(src=elem.mainImage.medium.url)
-							//a.paypal-img-logo(href="https://www.paypal.com/uk/webapps/mpp/home" class="paypal-img-logo")
+							a(href='/' + elem._id)
+								img.galleryImg.lazy(src=elem.mainImage.medium.url)
 

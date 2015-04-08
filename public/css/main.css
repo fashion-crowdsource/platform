@@ -1,24 +1,3 @@
-
-/*Potential Background Picture*/
-/*body{
-	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
-	background-size: 100%;
-}*/
-
-/* Olu's CSS */
-
-/*
-.homepageImages {
-	height: 100%;
-	width: 30%;
-	margin-left: 7.5px;
-	margin-right: 7.5px;
-	margin-bottom: 15px;
-}
-*/
-
-/*Adam's CSS*/
-
 .hidden {
 	display: none;
 }
@@ -169,6 +148,7 @@ textarea {
 
 }
 
+/*SVG*/
 .icon {
     fill: white;
     display: inline;
@@ -342,6 +322,9 @@ textarea {
 }
 /*.........end of design page.........*/
 
+/*-----------home page-------------*/
+
+/*
 .paypal-img-logo {
   display: inline-block;
   width: 126px;
@@ -358,8 +341,19 @@ textarea {
   display: block;
   margin: 2px;
 }
+*/
 
 .galleryImg {
   	margin: 5px;
   	display: inline-block;
 }
+
+.galleryImg {
+  	width: 300px;
+  	height: 300px;
+	object-fit: none;
+  	object-position: center;
+/*  	background-color: #dddddd;*/
+}
+
+/*.........end of home page.........*/
