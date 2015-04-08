@@ -1,3 +1,22 @@
+
+/*Potential Background Picture*/
+/*body{
+	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
+	background-size: 100%;
+}*/
+
+/* Olu's CSS */
+
+.homepageImages {
+	height: 100%;
+	width: 30%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
+}
+
+/*Adam's CSS*/
+
 .hidden {
 	display: none;
 }

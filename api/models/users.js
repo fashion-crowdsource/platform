@@ -1,6 +1,6 @@
-var fs 			= require('fs');
-var mongoose 	= require("mongoose");
-var schemae		= require("./schemae.js");
+var mongoose 	= require('mongoose');
+var schemae		= require('./schemae');
+var designs 	= require('./designs');
 var User 		= schemae.User;
 
 // GENERAL SEARCH FUNCTION - returns an ARRAY
@@ -31,38 +31,6 @@ function search(query, callback) {
 		});
 	}
 }
-
-// function createUser(userData, imagePath, callback) {
-// 	var newUser = new User(userData);
-// 	if (imagePath) {
-// 		newUser.attach('profileImage', {path: imagePath}, function(err){
-// 			if (err) {
-// 				console.error(err);
-// 				return callback(err);
-// 			}
-// 			else{
-// 				newUser.save(function(err1, user){
-// 					if (err1) {
-// 						return callback(err1);
-// 					}
-// 					else {
-// 						return callback(null, user);
-// 					}
-// 				});
-// 			}
-// 		});
-// 	}
-// 	else {
-// 		newUser.save(function(err1, user){
-// 			if (err1) {
-// 				return callback(err1);
-// 			}
-// 			else {
-// 				return callback(null, user);
-// 			}
-// 		});
-// 	}
-// }
 
 function createUser(userData, imagePath, callback) {
 	var newUserObj = new User(userData);
@@ -106,9 +74,6 @@ function createUser(userData, imagePath, callback) {
 }
 
 
-
-
-
 function getUser(userName, callback) {
 	User.findOne({username: userName}, function(err, user){
 		if (err) {
@@ -132,6 +97,7 @@ function getAllUsers(callback) {
 }
 
 // TODO Refactor update to allow middleware to excecute for s3 edit. Use findOne, then save doc.
+// NOT CURRENTLY WORKING
 function updateUser(userName, callback) {
 	User.findOneAndUpdate({username: userName}, function(err, user){
 		if (err) {
@@ -143,6 +109,7 @@ function updateUser(userName, callback) {
 	});
 }
 
+// NB: Also deletes all users designs
 function deleteUser(userName, callback) {
 	User.findOne({username: userName}, function(err, user){
 		if (err) {
@@ -154,9 +121,31 @@ function deleteUser(userName, callback) {
 					return callback(err1);
 				}
 				else {
-					return callback(null, user);
+					designs.getDesignsByDesignerUserName(userName, function(err2, designs){
+						if (err2) {
+							return callback(err2);
+						}
+						else if (designs) {
+							designs.forEach(function(design, ind) {
+								design.remove(function(err3){
+									if (err3) {
+										console.log('Error deleting design');
+									}
+									if (ind === designs.length - 1) {
+										return callback(null, user);
+									}
+								});
+							});
+						}
+						else {
+							return callback(null, user);
+						}
+					});
 				}
 			});
+		}
+		else {
+			return callback('user not found');
 		}
 	});
 }
