@@ -5,14 +5,13 @@ block content
 		.col-md-12
 			h3 Admin Dashboard
 
-	.row
-		.col-md-6
-			if designs
-				if auth
-					if auth.admin
-						each design in designs
-							a(href='/'+design._id)
-								img#imagesOnAdmin(src=design.mainImage.medium.url)
+	.col-md-6
+		if designs
+			if auth
+				if auth.admin
+					each design in designs
+						a(href='/'+design._id)
+							img#imagesOnAdmin(src=design.mainImage.large.url)
 
 
 		//- .col-md-6

@@ -297,8 +297,9 @@ textarea {
 }
 
 #imagesOnAdmin {
-	display: block;
-	position: relative;
+	width: 33%;
+	height: 200px;
+	padding: 3px;
 }
 
 
