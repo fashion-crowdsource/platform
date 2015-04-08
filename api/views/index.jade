@@ -6,4 +6,10 @@ block content
 			h1 Home Page
 			+homepageGallery
 
+			if designs
+				each design in designs
+					a(href='/'+design._id)
+						img(src=design.mainImage.medium.url)
+
 append footer
+

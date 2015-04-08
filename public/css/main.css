@@ -1,3 +1,4 @@
+
 /*Potential Background Picture*/
 /*body{
 	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
@@ -8,11 +9,14 @@
 
 .homepageImages {
 	height: 100%;
-	width: 100%;
+	width: 30%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
 	margin-bottom: 15px;
 }
 
 /*Adam's CSS*/
+
 .hidden {
 	display: none;
 }
@@ -20,44 +24,14 @@
 body {
   background-color: white;
   color: #444444;
-/*  font-family: Lato;*/
 }
 /*--------upload page---------*/
-/*
-#background {
-    display: inline;
-    background-repeat: none;
-    -webkit-filter: blur(10px);
-    position: fixed;
-  	top: 0;
-  	left: 0;
-  	min-width: 100%;
-  	min-height: 100%;
-}
-*/
 
 #greyback {
   	background: rgba(0,0,0,0.05);
   	padding: 10px 25px 20px;
   	border-radius: 3px;
 }
-
-
-label{
-    float: left;
-    clear: left;
-    width: 200px;
-    text-align: left;
-}
-
-
-/*
-hr {
-  	box-sizing: content-box;
-  	height: 0;
-  	width: 300px;
-}
-*/
 
 
 .hidden-input {
@@ -80,32 +54,28 @@ hr {
 
 #designName {
 	margin-left: 20px;
-  	display: inline;
+  	display: inline-grid;
 }
 
 #mainImgLabel {
   	display: inline;
-  	margin: 0 auto;
-  	margin-bottom: 10px;
+  	margin: 10px;
+    color: white;
+
+}
+
+#uptext {
+    display: inline-block;
+    font-weight: 300;
+    position: relative;
+  	text-align: center;
+  	top: 50%;
+  	transform: translateY(-50%);
+  	background-color: #2f6bee;
   	width: 150px;
   	height: 25px;
     border-radius: 25px;
-    color: white;
-}
-
-#attach {
-    width: 80px;
-    height: 25px;
-    border-radius: 25px;
-    color: white;
-    position: relative;
-  	margin: 10px 5px 10px 10px;
-  	font-size: 10px;
-/*
-  	top: 10%;
-  	transform: translateY(330%);
-    border: none;
-*/
+  	margin-top: 25px;
 }
 
 #preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
@@ -115,10 +85,6 @@ hr {
 /*  	-webkit-filter: blur(1.5px);*/
 }
 
-#attach, #mainImgLabel {
-    background-color: #2f6bee;
-  	display: inline;
-}
 
 #bin {
   	display: inline;
@@ -129,6 +95,7 @@ hr {
   	margin-right: 20px;
   	font-weight: 300;
   	padding-bottom: 2px;
+  	border: none;
 }
 
 .no-border {
@@ -153,14 +120,6 @@ hr {
     position: relative;
 }
 
-#uptext {
-    display: block;
-    font-weight: 300;
-    position: relative;
-  	text-align: center;
-  	top: 50%;
-  	transform: translateY(-50%);
-}
 
 #preview {
   	margin: 20px 0 10px;
@@ -190,7 +149,7 @@ textarea {
 
 /*-----------profile page-------------*/
 
-.profilePic {
+.profilePic, #imagesOnProfile {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
   	margin-bottom: 10px;
@@ -278,8 +237,12 @@ textarea {
 .myDesigns {
   	width: 70%;
   	height: 80%;
-
 }
+
+#imagesOnProfile {
+  	margin: 8px 0 3px;
+}
+
 /*.........end of profile page.........*/
 
 
@@ -308,3 +271,41 @@ textarea {
 
 
 /*.........end of admin page.........*/
+
+/*-----------design page-------------*/
+
+.designMainImg {
+  	margin: 10px 10px 20px;
+  	display: block;
+}
+
+#acceptDesign {
+  	background-color: #21c462;
+}
+
+#rejectDesign {
+  	background-color: #e4333c;
+}
+
+#acceptDesign, #rejectDesign {
+  	margin: 10px 10px;
+  	width: 150px;
+    height: 30px;
+    border-radius: 30px;
+    color: white;
+  	border: none;
+
+}
+
+.form-control {
+  	display: inline;
+}
+
+
+#centreDiv {
+	display: inline-block;
+  	margin: auto;
+}
+/*.........end of design page.........*/
+
+

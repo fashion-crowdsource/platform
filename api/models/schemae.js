@@ -13,7 +13,10 @@ var designSchema = new Schema({
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
 	additionalInfo: 	{type: String},
-	dateAdded: 			{type: Date, required: true}
+	dateAdded: 			{type: Date, required: true},
+	approved: 			{type: Boolean, default: false},
+	additionalImages: 	[],
+	additionalFiles: 	[]
 });
 
 designSchema.plugin(crate, {
@@ -100,6 +103,7 @@ var userSchema = new Schema({
 	isAdmin: 		{type: Boolean, required: true, default: false},
 	// isDesigner	{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
 	designIds: 		[ObjectId],
+	approvedDesignIds: [ObjectId],
 	address: 		{
 						firstLine: {type: String},
 						secondLine: {type: String},
