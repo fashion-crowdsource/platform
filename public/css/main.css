@@ -130,7 +130,7 @@ textarea {
 
 /*-----------profile page-------------*/
 
-.profilePic, #imagesOnProfile {
+.profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
   	margin-bottom: 10px;
@@ -289,4 +289,24 @@ textarea {
 }
 /*.........end of design page.........*/
 
+.paypal-img-logo {
+  display: inline-block;
+  width: 126px;
+  height: 33px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg) center center no-repeat;
+  background-image: url(https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png)\9;
+  background-size: 124px 33px;
+  vertical-align: middle;
+  border: 1.5px solid lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  display: block;
+  margin: 2px;
+}
 
+.galleryImg {
+  	margin: 5px;
+  	display: inline-block;
+}
