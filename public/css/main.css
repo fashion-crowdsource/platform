@@ -33,6 +33,24 @@ body {
   	border-radius: 3px;
 }
 
+/*Sign up page*/
+#signup{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: left;
+}
+
+
+/*
+hr {
+  	box-sizing: content-box;
+  	height: 0;
+  	width: 300px;
+}
+*/
+
 
 .hidden-input {
     display: none !important;
@@ -120,6 +138,15 @@ body {
     position: relative;
 }
 
+
+#uptext {
+    display: block;
+    font-weight: 300;
+    position: relative;
+  	text-align: center;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
 
 #preview {
   	margin: 20px 0 10px;
@@ -267,6 +294,11 @@ textarea {
  	background-color: rbga(0,0,0, 0.3);
   	color: #fd8686;
   	padding: 20px;
+}
+
+#imagesOnAdmin {
+	display: block;
+	position: relative;
 }
 
 
