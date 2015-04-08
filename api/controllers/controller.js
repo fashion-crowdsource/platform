@@ -69,8 +69,8 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
-			designs.getAllDesigns(function(err, designs){
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			designs.getAllApprovedDesigns(function(err, designs){
 				if (err) {
 					return reply.view('index', {error: err, auth: auth});
 				}
@@ -89,7 +89,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 			if (auth) {
 				return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup', {auth: auth});
 			}
@@ -112,7 +112,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			console.log('Payload:');
 			console.dir(request.payload);
@@ -173,7 +173,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			users.getAllUsers(function(err, users){
 				if (err) {
@@ -190,7 +190,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			var userName = request.params.username;
 			users.getUser(userName, function(err, user){
@@ -226,7 +226,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			var editor = request.auth.credentials.username;
 			var updatedUser = request.payload;
@@ -256,7 +256,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 			return request.auth.credentials.hasAccount ? reply.view('upload', {auth:auth}) : reply.redirect('signup');
 		}
 	},
@@ -274,7 +274,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 			console.dir(request.payload);
 			// ADD NEW SUBMISSION TO DB
 			// 1. get user doc from db
@@ -331,12 +331,12 @@ module.exports = {
 							user.save(function(err2){
 								if (err2) {
 									console.error(err2);
-									// TODO delete design if saving designId fails??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
+									// TODO??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
 									return reply.view('upload', {error: err2, auth: auth});
 								}
 								else {
 									// TODO - on save , redirect to view of design
-									return reply.redirect('/profile/' + user.username);
+									return reply.redirect('/'+ design.id);
 								}
 							});
 						}
@@ -348,12 +348,12 @@ module.exports = {
 			});
 		}
 	},
-
+	// TODO make sure vistor cant view an unapproved design. Check for approved bool in template
 	designView: {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			var designId = request.params.design;
 			designs.getDesignById(designId, function(err, design){
@@ -383,7 +383,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
 		}
@@ -393,7 +393,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
 			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
 		}
