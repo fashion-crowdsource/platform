@@ -69,6 +69,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 			designs.getAllDesigns(function(err, designs){
 				if (err) {
 					return reply.view('index', {error: err, auth: auth});
@@ -88,6 +89,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 			if (auth) {
 				return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup', {auth: auth});
 			}
@@ -110,6 +112,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 
 			console.log('Payload:');
 			console.dir(request.payload);
@@ -170,6 +173,8 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
+
 			users.getAllUsers(function(err, users){
 				if (err) {
 					return reply.view('designers', {error: err, auth: auth});
@@ -183,9 +188,11 @@ module.exports = {
 // TODO pass {auth: {username: request.auth.credentials.username}} to all views if auth
 	profileView: {
 		handler: function (request, reply ){
-			var userName = request.params.username;
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
+
+			var userName = request.params.username;
 			users.getUser(userName, function(err, user){
 				if (err) {
 					console.error(err);
@@ -219,6 +226,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 
 			var editor = request.auth.credentials.username;
 			var updatedUser = request.payload;
@@ -248,6 +256,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 			return request.auth.credentials.hasAccount ? reply.view('upload', {auth:auth}) : reply.redirect('signup');
 		}
 	},
@@ -265,6 +274,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
 			console.dir(request.payload);
 			// ADD NEW SUBMISSION TO DB
 			// 1. get user doc from db
@@ -343,7 +353,8 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			// var designId = mongoose.Types.ObjectId(request.params.design);
+			if (request.auth.credentials.isAdmin) auth.admin = true;
+
 			var designId = request.params.design;
 			designs.getDesignById(designId, function(err, design){
 				if (err) {
@@ -369,18 +380,22 @@ module.exports = {
 	},
 
 	adminView: {
-		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
-		  console.log(request.auth.credentials);
-			return request.auth.credentials.isAdmin ? reply.view('admin') : reply.redirect('signup');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
+
+			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
 		}
 	},
 
 	adminDesignView:  {
-		// check auth for isAdmin - add it on login
 		handler: function (request, reply ){
-			// REQUIRE AUTH!
-			return reply.view('admin');
+			var auth = false;
+			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
+			if (request.auth.credentials.isAdmin) auth.admin = true;
+
+			return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {auth: auth}) : reply.redirect('signup');
 		}
 	},
 
