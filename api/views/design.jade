@@ -1,11 +1,5 @@
 extends ./layouts/default.jade
 
-//- NOTES -
-//- Have removed 'if auth'. We want everyone to see this page, not just signed in users.
-//- re: 'if an admin is viewing this page, shouldnt it be 'request.auth.credentials.isAdmin' ??'
-//- No, request.auth.isAdmin is only available in node, not in jade templates.
-//- If we want to know if someone is an admin, we need to pass it to the template.
-//- I intend to add an admin property to the auth variable we're passing in. So auth: {username: '', admin: true}
 
 block content
 		#centreDiv
@@ -46,3 +40,6 @@ block content
 
 						else
 							h4 Error - Design not found
+
+append footer
+	script(src='/scripts/design.js')
