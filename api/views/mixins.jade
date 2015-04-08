@@ -11,3 +11,19 @@ mixin times(limit)
 	- for (var i = 1; i <= limit; i++) {
 		block
 	- }
+
+mixin homepageGallery
+	- var arraysOfThree = [];
+	- var originalArray = ['/img/700x400.gif', '/img/700x400.gif' , '/img/700x400.gif', '/img/700x400.gif','/img/700x400.gif', '/img/700x400.gif', '/img/700x400.gif', '/img/700x400.gif'];
+	- var i = 0;
+	- for (j=originalArray.length; i<j; i+=3) {
+	- tempArray = originalArray.slice(i,i+3);
+	- arraysOfThree.push(tempArray);
+	- }
+
+	each array in arraysOfThree
+			row
+				col-md-8
+					each elem in array
+						img.lazy.homepageImages(src=elem)
+

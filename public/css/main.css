@@ -1,3 +1,22 @@
+
+/*Potential Background Picture*/
+/*body{
+	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
+	background-size: 100%;
+}*/
+
+/* Olu's CSS */
+
+.homepageImages {
+	height: 100%;
+	width: 30%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
+}
+
+/*Adam's CSS*/
+
 .hidden {
 	display: none;
 }
@@ -13,6 +32,24 @@ body {
   	padding: 10px 25px 20px;
   	border-radius: 3px;
 }
+
+/*Sign up page*/
+#signup{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: left;
+}
+
+
+/*
+hr {
+  	box-sizing: content-box;
+  	height: 0;
+  	width: 300px;
+}
+*/
 
 
 .hidden-input {
@@ -101,6 +138,15 @@ body {
     position: relative;
 }
 
+
+#uptext {
+    display: block;
+    font-weight: 300;
+    position: relative;
+  	text-align: center;
+  	top: 50%;
+  	transform: translateY(-50%);
+}
 
 #preview {
   	margin: 20px 0 10px;
@@ -248,6 +294,11 @@ textarea {
  	background-color: rbga(0,0,0, 0.3);
   	color: #fd8686;
   	padding: 20px;
+}
+
+#imagesOnAdmin {
+	display: block;
+	position: relative;
 }
 
 
