@@ -23,7 +23,6 @@ module.exports = [
 	//{path: '/{design}', 				method: 'DELETE', 	config: controller.binSubmittedDesign},
 
 	{path: '/admin', 					method: 'GET', 		config: controller.adminView},
-	{path: '/admin/{design}', 			method: 'GET', 		config: controller.adminDesignView},
 	{path: '/admin/{design}', 			method: 'POST', 	config: controller.adminApproveDesign},
 	{path: '/admin/{design}', 			method: 'DELETE', 	config: controller.adminBinDesign},
 ];
