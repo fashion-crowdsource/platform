@@ -3,13 +3,12 @@ include ./mixins.jade
 block content
 	.row
 		.col-md-12
-			h1 Home Page
-			+homepageGallery
-
+			h1 Designs Gallery
 			if designs
 				each design in designs
 					a(href='/'+design._id)
-						img(src=design.mainImage.medium.url)
+						img.galleryImg(src=design.mainImage.medium.url)
+						a.paypal-img-logo(href="https://www.paypal.com/uk/webapps/mpp/home" class="paypal-img-logo">PayPal)
 
 append footer
 
