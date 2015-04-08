@@ -408,45 +408,51 @@ module.exports = {
 			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
 			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
 
-			var designId = request.params.design;
-			console.log('Approving Design' + designId );
-			designs.getDesignById(designId, function(err, design){
-				if (err) {
-					return reply.view('admin', {error:err, auth: auth});
-				}
-				else if (design) {
-					var designerUserName = design.designerUserName;
-					users.getUser(designerUserName, function(err1, user){
-						if (err1) {
-							return reply.view('admin', {error:err1, auth: auth});
-						}
-						else {
-							design.approved = true;
-							design.save(function(err2) {
-								if (err2) {
-									return reply.view('admin', {error:err2, auth: auth});
-								}
-								else {
-									// TODO prevent multiples of the same ObjectId in approvd array
-									user.approvedDesignIds.push(design._id);
-									user.save(function(err3){
-										if (err3) {
-											return reply.view('admin', {error:err2, auth: auth});
-										}
-										else {
-											console.log('Succesfully Approved');
-											return reply.view('admin', {sucess: 'Design Succesfully Approved', auth: auth});
-										}
-									});
-								}
-							});
-						}
-					});
-				}
-				else {
-					return reply.view('admin', {error: 'Design not found', auth: auth});
-				}
-			});
+			if (request.auth.credentials.isAdmin) {
+				var designId = request.params.design;
+				console.log('Approving Design' + designId );
+				designs.getDesignById(designId, function(err, design){
+					if (err) {
+						return reply.view('admin', {error:err, auth: auth});
+					}
+					else if (design) {
+						var designerUserName = design.designerUserName;
+						users.getUser(designerUserName, function(err1, user){
+							if (err1) {
+								return reply.view('admin', {error:err1, auth: auth});
+							}
+							else {
+								design.approved = true;
+								design.save(function(err2) {
+									if (err2) {
+										return reply.view('admin', {error:err2, auth: auth});
+									}
+									else {
+										// TODO prevent multiples of the same ObjectId in approvd array
+										user.approvedDesignIds.push(design._id);
+										user.save(function(err3){
+											if (err3) {
+												return reply.view('admin', {error:err2, auth: auth});
+											}
+											else {
+												console.log('Succesfully Approved');
+												return reply.view('admin', {sucess: 'Design Succesfully Approved', auth: auth});
+											}
+										});
+									}
+								});
+							}
+						});
+					}
+					else {
+						return reply.view('admin', {error: 'Design not found', auth: auth});
+					}
+				});
+			}
+			// NB - this is to prevent hax...
+			else {
+				reply.redirect('/');
+			}
 		}
 	},
 
