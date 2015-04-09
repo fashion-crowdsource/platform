@@ -4,7 +4,7 @@ include ./mixins.jade
 block content
 	.row
 		.col-md-12
-			h4 Step 1.
+			h4 Part 1.
 			p Please attach up to 6 images to be viewed in the gallery should your design be approved. Please also write a <b>short</b> paragraph about the design.
 
 	#greyback
@@ -13,7 +13,6 @@ block content
 				form(action="/upload", method="POST", enctype="multipart/form-data")
 					label#designName Design Name* :
 						input.text-input(type="text", name="designName", class='form-control', placeholder="Insert your design name" required)
-					div
 					label#mainImgLabel
 						span#uptext Attach Main Image
 						input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
@@ -22,11 +21,12 @@ block content
 					.row
 						.col-md-12
 							img#mainPreview(src="/img/fikay-square.jpg")
+							br
 
 					.row
 						.col-md-12
 								each val in [1,2,3,4,5]
-									input(name='additionalImage' + val, type='file', accept='image/gif, image/jpeg, image/png')
+									input.uploadInput(name='additionalImage' + val, type='file', accept='image/gif, image/jpeg, image/png')
 
 					.row
 						.col-md-12

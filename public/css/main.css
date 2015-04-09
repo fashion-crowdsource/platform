@@ -83,7 +83,9 @@ hr {
   	width: 300px;
 }
 */
-
+.uploadInput {
+  	padding: 3px;
+}
 
 .hidden-input {
     display: none !important;
@@ -129,7 +131,7 @@ hr {
   	margin-top: 25px;
 }
 
-#preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
+#mainPreview {
   	width: 150px;
   	height: 150px;
   	margin: 5px;
