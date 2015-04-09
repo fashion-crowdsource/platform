@@ -39,11 +39,12 @@ block content
 							unless design.approved
 								.row
 									.col-md-12
-										button.form-control#acceptDesign Accept Design
+										a(href='/admin/approve/'+ design._id)
+											button.form-control#acceptDesign Accept Design
 										button.form-control#rejectDesign Reject Design
 
 						else
 							h4 Error - Design not found
 
 append footer
-	script(src='/scripts/design.js')
+	//- script(src='/scripts/design.js')
