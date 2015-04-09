@@ -385,16 +385,18 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = request.auth.credentials;
+			var success = false;
+			if (request.query && request.query.success) success = request.query.success;
 
 			designs.getAllPendingDesigns(function(err, designs){
 			  if (err) {
-				return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: err, auth: auth}) : reply.redirect('/');
+				return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: err, success: success, auth: auth}) : reply.redirect('/');
 			  }
 			  else if (designs) {
-			   return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {designs: designs, auth: auth}) : reply.redirect('/');
+			   return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {designs: designs, success: success, auth: auth}) : reply.redirect('/');
 			  }
 			   else {
-				 return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: 'No pending designs found', auth: auth}) : reply.redirect('/');
+				 return (request.auth.isAuthenticated && request.auth.credentials.isAdmin) ? reply.view('admin', {error: 'No pending designs found', success: success, auth: auth}) : reply.redirect('/');
 			   }
 		  });
 		}
@@ -433,7 +435,7 @@ module.exports = {
 											}
 											else {
 												console.log('Succesfully Approved');
-												return reply.view('admin', {success: 'Design Succesfully Approved', auth: auth});
+												return reply.redirect('/admin?success=Design%20Succesfully%20Approved');
 											}
 										});
 									}
