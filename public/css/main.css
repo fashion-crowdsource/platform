@@ -57,7 +57,19 @@ body {
   	display: block;
   	margin: auto;
   	text-align: center;
+  	padding: 10px 0 20px;
 }
+
+.footerdiv {
+  	height: 50px;
+}
+
+.profilePic, #imagesOnProfile, .galleryImg, .designMainImg, #mainPreview, .additionalImages {
+	border: solid 1px lightgrey;
+  	border-radius: 4px;
+  	margin-bottom: 10px;
+}
+
 /*--------upload page---------*/
 
 #greyback {
@@ -118,12 +130,14 @@ hr {
 }
 
 #uptext {
-    display: inline-block;
+    display: inline;
     font-weight: 300;
+/*
     position: relative;
   	text-align: center;
   	top: 50%;
   	transform: translateY(-50%);
+*/
   	background-color: #2f6bee;
   	width: 150px;
   	height: 25px;
@@ -211,12 +225,6 @@ textarea {
 
 
 /*-----------profile page-------------*/
-
-.profilePic, #imagesOnProfile, .galleryImg {
-	border: solid 1px lightgrey;
-  	border-radius: 4px;
-  	margin-bottom: 10px;
-}
 
 .profileInfo {
 /*  	margin-left: 10px;*/
@@ -332,8 +340,8 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
-  	margin: 10px 10px 20px;
   	display: block;
+  	margin: auto;
 }
 
 #acceptDesign {
@@ -345,13 +353,16 @@ textarea {
 }
 
 #acceptDesign, #rejectDesign {
-  	margin: 10px 10px;
+  	margin: 20px 10px;
   	width: 150px;
     height: 30px;
     border-radius: 30px;
     color: white;
   	border: none;
+}
 
+.additionalImages {
+  	margin: 5px;
 }
 
 .form-control {
@@ -393,7 +404,6 @@ textarea {
 
 
 /*.........end of home page.........*/
-
 
 
 .designerName {
