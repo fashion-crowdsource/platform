@@ -61,7 +61,13 @@ body {
 }
 
 .footerdiv {
-  	height: 40px;
+  	height: 50px;
+}
+
+.profilePic, #imagesOnProfile, .galleryImg, .designMainImg, #mainPreview, .additionalImages {
+	border: solid 1px lightgrey;
+  	border-radius: 4px;
+  	margin-bottom: 10px;
 }
 
 /*--------upload page---------*/
@@ -124,12 +130,14 @@ hr {
 }
 
 #uptext {
-    display: inline-block;
+    display: inline;
     font-weight: 300;
+/*
     position: relative;
   	text-align: center;
   	top: 50%;
   	transform: translateY(-50%);
+*/
   	background-color: #2f6bee;
   	width: 150px;
   	height: 25px;
@@ -217,12 +225,6 @@ textarea {
 
 
 /*-----------profile page-------------*/
-
-.profilePic, #imagesOnProfile, .galleryImg, .designMainImg {
-	border: solid 1px lightgrey;
-  	border-radius: 4px;
-  	margin-bottom: 10px;
-}
 
 .profileInfo {
 /*  	margin-left: 10px;*/
@@ -357,7 +359,10 @@ textarea {
     border-radius: 30px;
     color: white;
   	border: none;
+}
 
+.additionalImages {
+  	margin: 5px;
 }
 
 .form-control {
