@@ -18,6 +18,8 @@ block content
 						//-just placeholders for now
 						a(href=user.links)
 							img#profileTwitter(src="/img/1428206576_twitter.svg")
+						a(href=user.links)
+							img#profileFacebook(src="http://nationalevents.cityofhope.org/images/content/pagebuilder/facebook-icon.png")
 						p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
 						if user.isAdmin
 								p (Administrator)

@@ -277,7 +277,7 @@ textarea {
  	 background-color: #f67673;
 }
 
-#profileTwitter {
+#profileTwitter, #profileFacebook {
   	width: 35px;
     height: 35px;
     border-radius: 50px;

@@ -31,6 +31,19 @@ block content
 					h3 Description:
 					p #{design.description}
 
+			br
+			br
+
+			.row
+				.col-md-12
+					h3 Share!
+					p Like what you see? Why not share with your friends?!
+					a#profileEmail.glyphicon.glyphicon-envelope(href="https://mail.google.com/" target="_top")
+					a#profileWebsite.glyphicon.glyphicon-globe(href="website")
+					a(href="https://twitter.com/")
+						img#profileTwitter(src="/img/1428206576_twitter.svg")
+					a(href="https://facebook.com/")
+						img#profileFacebook(src="http://nationalevents.cityofhope.org/images/content/pagebuilder/facebook-icon.png")
 
 			if auth && auth.isAdmin
 				if design.additionalFiles
