@@ -13,31 +13,6 @@ figcaption {
 	padding: 10px 15px;
 }
 
-
-/* Gallery Mixin CSS */
-
-/*Please leave for the moment*/
-/*html, body {
-	height: 100%;
-	width: 100%;
-}*/
-
-/*.gallery-row{
-	height: 100%;
-	width: 100%;
-}*/
-
-/*.gallery-col{
-	height: 300px;
-	width: 300px;
-	overflow: hidden;
-}
-
-.gallery-div{
-	height:100%;
-	width: 100%;
-}*/
-
 .homepageImages {
 	height: auto;
 	width: 100%;
@@ -140,7 +115,6 @@ hr {
 }
 
 #uptext {
-<<<<<<< HEAD
 	display: inline-block;
 	font-weight: 300;
 	position: relative;
@@ -152,21 +126,12 @@ hr {
 	height: 25px;
 	border-radius: 25px;
 	margin-top: 25px;
-=======
-	display: inline;
-	font-weight: 300;
 /*
 	position: relative;
 	text-align: center;
 	top: 50%;
 	transform: translateY(-50%);
 */
-	background-color: #2f6bee;
-	width: 150px;
-	height: 25px;
-	border-radius: 25px;
-	margin-top: 25px;
->>>>>>> pre-deploy
 }
 
 #mainPreview {
@@ -211,16 +176,6 @@ hr {
 	position: relative;
 }
 
-
-#uptext {
-	display: block;
-	font-weight: 300;
-	position: relative;
-	text-align: center;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
 #preview {
 	margin: 20px 0 10px;
 	display: inline;
@@ -235,11 +190,6 @@ textarea {
 	border-color: lightgrey;
 }
 
-
-#description {
-
-}
-
 /*SVG*/
 .icon {
 	fill: white;
@@ -250,18 +200,13 @@ textarea {
 
 /*-----------profile page-------------*/
 
-<<<<<<< HEAD
+
 .profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
 	margin-bottom: 10px;
 }
 
-=======
->>>>>>> pre-deploy
-.profileInfo {
-/*  	margin-left: 10px;*/
-}
 
 .designs {
 	width: 400px;
