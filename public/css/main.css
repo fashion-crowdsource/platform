@@ -318,13 +318,9 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
-<<<<<<< HEAD
 	margin: 10px 10px 20px;
 	display: block;
-=======
-	display: block;
-	margin: auto;
->>>>>>> pre-deploy
+	/*margin: auto;*/
 }
 
 #acceptDesign {
@@ -336,22 +332,14 @@ textarea {
 }
 
 #acceptDesign, #rejectDesign {
-<<<<<<< HEAD
 	margin: 10px 10px;
 	width: 150px;
 	height: 30px;
 	border-radius: 30px;
 	color: white;
 	border: none;
-=======
-	margin: 20px 10px;
-	width: 150px;
-	height: 30px;
-	border-radius: 30px;
-	color: white;
-	border: none;
 }
->>>>>>> pre-deploy
+
 
 .additionalImages {
 	margin: 5px;
