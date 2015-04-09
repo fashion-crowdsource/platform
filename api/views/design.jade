@@ -28,7 +28,7 @@ block content
 								p #{design.description}
 
 
-						if auth && auth.admin
+						if auth && auth.isAdmin
 							if design.additionalFiles
 								h3 Additional Files:
 									each file in design.additionalFiles
@@ -45,6 +45,3 @@ block content
 
 						else
 							h4 Error - Design not found
-
-append footer
-	//- script(src='/scripts/design.js')

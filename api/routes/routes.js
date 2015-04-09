@@ -24,5 +24,5 @@ module.exports = [
 
 	{path: '/admin', 					method: 'GET', 		config: controller.adminView},
 	{path: '/admin/approve/{design}', 	method: 'GET', 		config: controller.adminApproveDesign},
-	{path: '/admin/{design}', 			method: 'DELETE', 	config: controller.adminBinDesign},
+	{path: '/admin/reject/{design}', 	method: 'GET', 		config: controller.adminBinDesign},
 ];

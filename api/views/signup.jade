@@ -45,11 +45,21 @@ block content
 					label(for='links') Links
 					textarea(name='links', id='links', class='form-control', placeholder='Links to your website, videos, social-media... One link per line')
 		.row
-			.col-md-6
+			.col-md-4
 				.form-group
 					label(for='profileImage') Profile Picture - upload a file up to 5mb - optional.
 					input(type='file', id='profileImage', name='profileImage', class='form-control', accept="image/gif, image/jpeg, image/png")
-			.col-md-6
+			.col-md-4
+					p Are you a Designer?
+					.radio
+						label(for='designer-no')
+							input(type='radio', name='designer', id='designer-no', value='No', checked)
+							| No
+					.radio
+						label(for='designer-yes')
+							input(type='radio', name='admin', id='designer-yes', value='Yes')
+							| Yes
+			.col-md-4
 					p Are you an Administrator? NB - DEVELOPMENT ONLY!!
 					.radio
 						label(for='admin-no')

@@ -96,6 +96,17 @@ function getAllUsers(callback) {
 	});
 }
 
+function getAllDesigners(callback) {
+	User.find({isDesigner: true}, function(err, users){
+		if (err) {
+			return callback(err);
+		}
+		else {
+			return callback(null, users);
+		}
+	});
+}
+
 // TODO Refactor update to allow middleware to excecute for s3 edit. Use findOne, then save doc.
 // NOT CURRENTLY WORKING
 function updateUser(userName, callback) {
@@ -156,6 +167,7 @@ module.exports = {
 	createUser: createUser,
 	getUser: getUser,
 	getAllUsers: getAllUsers,
+	getAllDesigners: getAllDesigners,
 	updateUser: updateUser,
 	deleteUser: deleteUser
 };
