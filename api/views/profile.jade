@@ -26,7 +26,8 @@ block content
 							.row
 								.col-md-12
 										h4 About Me
-										p #{user.bio}
+										if user.bio
+											p #{user.bio}
 										//- .input-group
 										//- 	input.form-control.editField#edit(type='text', value=user.bio, readonly)
 										//- 	//- look into adjusting the height according to length of paragraph
@@ -50,22 +51,20 @@ block content
 													a(href='/'+design._id)
 														img#imagesOnProfile(src=design.mainImage.medium.url)
 
-						else
-							h3 Error - user not found
+									if auth && auth.isAdmin
+										legend
+										h4 Address
+										p #{user.address.firstLine}
+										if user.address.secondLine
+											p #{user.address.secondLine}
 
-					if auth && auth.isAdmin
-						legend
-						h4 Address
-						p #{user.address.firstLine}
-						if user.address.secondLine
-							p #{user.address.secondLine}
+										p #{user.address.town}
+										if user.address.county
+											p #{user.address.county}
 
-						p #{user.address.town}
-						if user.address.county
-							p #{user.address.county}
+										p #{user.address.postcode}
+										p #{user.phoneNumber}
 
-						p #{user.address.postcode}
-						p #{user.phoneNumber}
 
 append footer
 	script(src="/scripts/profile.js")
