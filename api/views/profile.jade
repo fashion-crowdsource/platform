@@ -52,7 +52,6 @@ block content
 											unless design.approved
 												a(href='/'+design._id)
 													img#imagesOnProfile(src=design.mainImage.medium.url)
-
 								if auth && auth.isAdmin
 									legend
 									h4 Address
@@ -66,7 +65,6 @@ block content
 
 									p #{user.address.postcode}
 									p #{user.phoneNumber}
-
 
 append footer
 	script(src="/scripts/profile.js")
