@@ -261,7 +261,7 @@ module.exports = {
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = request.auth.credentials;
-			return request.auth.credentials.hasAccount ? reply.view('upload', {auth:auth}) : reply.redirect('signup');
+			return request.auth.credentials.hasAccount && request.auth.credentials.isDesigner ? reply.view('upload', {auth:auth}) : reply.redirect('/');
 		}
 	},
 
@@ -279,78 +279,83 @@ module.exports = {
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 			console.dir(request.payload);
-			// ADD NEW SUBMISSION TO DB
-			// 1. get user doc from db
-			var userName = request.auth.credentials.username;
-			users.getUser(userName, function(err, user){
-				if (err) {
-					console.error(err);
-					return reply.view('upload', {error: err, auth: auth});
-				}
-				// 2. save payload data to new design doc
-				else if (user) {
-					var design = request.payload;
-					var newDesignObj = {
-						designerUserName: request.auth.credentials.username,
-						designerId: user._id,
-						name: design.designName,
-						description: design.description,
-						dateAdded: new Date()
-					};
-					if (design.additionalInfo) newDesignObj.additionalInfo = design.additionalInfo;
-					var mainImagePath = design.designMainImage.path;
 
-					var imagePathArray = [];
-					var filePathArray = [];
-					var tempFiles = [mainImagePath];
-
-					for (var prop in design) {
-						if (/additionalImage/.test(prop) ) {
-							tempFiles.push(design[prop].path);
-							if (/additionalImage/.test(prop) && design[prop].filename.length > 0 ) {
-								imagePathArray.push(design[prop].path);
-							}
-						}
-						else if (/additionalFile/.test(prop) ) {
-							tempFiles.push(design[prop].path);
-							if (/additionalFile/.test(prop) && design[prop].filename.length > 0 ) {
-								filePathArray.push(design[prop].path);
-							}
-						}
+			if (request.auth.credentials.isDesigner) {
+				// 1. get user doc from db
+				var userName = request.auth.credentials.username;
+				users.getUser(userName, function(err, user){
+					if (err) {
+						console.error(err);
+						return reply.view('upload', {error: err, auth: auth});
 					}
+					// 2. save payload data to new design doc
+					else if (user) {
+						var design = request.payload;
+						var newDesignObj = {
+							designerUserName: request.auth.credentials.username,
+							designerId: user._id,
+							name: design.designName,
+							description: design.description,
+							dateAdded: new Date()
+						};
+						if (design.additionalInfo) newDesignObj.additionalInfo = design.additionalInfo;
+						var mainImagePath = design.designMainImage.path;
 
-					designs.createDesign(newDesignObj, mainImagePath, imagePathArray, filePathArray, function(err1, design){
-						if (err1) {
-							console.error(err1);
-							trash.cleanUp(tempFiles);
-							return reply.view('upload', {error: err1, auth: auth});
-						}
-						// 3. save design doc ObjId to user designs[]
-						else {
-							// console.dir(design);
-							trash.cleanUp(tempFiles);
-							var designId = design._id;
-							user.designIds.push(designId);
-							user.save(function(err2){
-								if (err2) {
-									console.error(err2);
-									// TODO??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
-									return reply.view('upload', {error: err2, auth: auth});
+						var imagePathArray = [];
+						var filePathArray = [];
+						var tempFiles = [mainImagePath];
+
+						for (var prop in design) {
+							if (/additionalImage/.test(prop) ) {
+								tempFiles.push(design[prop].path);
+								if (/additionalImage/.test(prop) && design[prop].filename.length > 0 ) {
+									imagePathArray.push(design[prop].path);
 								}
-								else {
-									return reply.view('upload', {success: 'Design Succesfully Submited', auth: auth});
+							}
+							else if (/additionalFile/.test(prop) ) {
+								tempFiles.push(design[prop].path);
+								if (/additionalFile/.test(prop) && design[prop].filename.length > 0 ) {
+									filePathArray.push(design[prop].path);
 								}
-							});
+							}
 						}
-					});
-				}
-				else {
-					return reply.redirect('/'); //TODO <- user not found response. should never happen...
-				}
-			});
+
+						designs.createDesign(newDesignObj, mainImagePath, imagePathArray, filePathArray, function(err1, design){
+							if (err1) {
+								console.error(err1);
+								trash.cleanUp(tempFiles);
+								return reply.view('upload', {error: err1, auth: auth});
+							}
+							// 3. save design doc ObjId to user designs[]
+							else {
+								// console.dir(design);
+								trash.cleanUp(tempFiles);
+								var designId = design._id;
+								user.designIds.push(designId);
+								user.save(function(err2){
+									if (err2) {
+										console.error(err2);
+										// TODO??? Maybe add a scheduled task that searches designs by username, checks if indexed in user
+										return reply.view('upload', {error: err2, auth: auth});
+									}
+									else {
+										return reply.view('upload', {success: 'Design Succesfully Submited', auth: auth});
+									}
+								});
+							}
+						});
+					}
+					else {
+						return reply.redirect('/'); //TODO <- user not found response. should never happen...
+					}
+				});
+			}
+			else { // <-user not designer
+				reply.redirect('/');
+			}
 		}
 	},
-	// TODO make sure vistor cant view an unapproved design. Check for approved bool in template
+	// TODO make sure vistor can't view an unapproved design. Check for approved bool in template
 	designView: {
 		handler: function (request, reply ){
 			var auth = false;
@@ -376,7 +381,7 @@ module.exports = {
 			// REQUIRE AUTH!
 			// ADD UPVOTE/PREORDER TO DB
 			// redirect to design view with upvote/preorder registered
-			return reply.redirect('/{design}');
+			return reply.redirect('/');
 		}
 	},
 
@@ -459,7 +464,7 @@ module.exports = {
 		handler: function (request, reply ){
 			// REQUIRE AUTH!
 			// reject a design. purge all db refs to it.
-			return reply.redirect('admin');
+			return reply.redirect('/admin');
 		}
 	}
 };
