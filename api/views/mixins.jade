@@ -17,9 +17,9 @@ mixin homepageGallery(designs)
 	- }
 
 	each array in arraysOfThree
-			.row
+			.row.gallery-row
 					each elem in array
-						.col-md-4
+						.col-md-4.gallery-col
 							a(href='/' + elem._id)
 								img.lazy.homepageImages(src=elem.mainImage.medium.url)
 
