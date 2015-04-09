@@ -302,6 +302,11 @@ textarea {
   	padding: 20px;
 }
 
+.lazy.homepageImages {
+	width: 250px;
+	height: 250px;
+	padding: 3px;
+}
 
 
 /*.........end of admin page.........*/

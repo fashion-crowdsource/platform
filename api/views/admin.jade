@@ -2,12 +2,11 @@ extends ./layouts/default.jade
 include ./mixins.jade
 
 block content
-	.row
-		.col-md-12
-			h3 Admin Dashboard
+	.col-md-12
+		h3 Admin Dashboard
 
-		if designs
-			+homepageGallery(designs)
+	if designs
+		+homepageGallery(designs)
 
 
 	//- if designs
