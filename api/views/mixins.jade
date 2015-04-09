@@ -37,5 +37,5 @@ mixin designersList(designers)
 			.row
 					each elem in array
 						.col-md-4
-							a(href='/' + elem.designerUserName)
-								img.galleryImg.lazy(src=elem.profileImage.small.url)
+							a(href='/' + elem.firstName)
+								img.galleryImg(src=elem.profileImage.medium.url)

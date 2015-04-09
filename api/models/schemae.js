@@ -101,7 +101,7 @@ var userSchema = new Schema({
 	links: 			[String], 		//optional
 	dateJoined: 	{type: Date, required: true},
 	isAdmin: 		{type: Boolean, required: true, default: false},
-	// isDesigner	{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
+	isDesigner:		{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
 	designIds: 		[ObjectId],
 	approvedDesignIds: [ObjectId],
 	address: 		{

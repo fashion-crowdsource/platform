@@ -1,4 +1,5 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 block content
 	.row
@@ -7,7 +8,4 @@ block content
 			br
 
 			if designers
-				ul
-					each designer in designers
-						li
-							a(href="/profile/" + designer.username) #{designer.username}
+				+designersList(designers)
