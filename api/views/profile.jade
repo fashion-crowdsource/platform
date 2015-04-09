@@ -1,71 +1,70 @@
 extends ./layouts/default.jade
 
+append head
+	link(href='/css/profile.css', rel='stylesheet')
+
 block content
-		body.profilePage
-			div
-				.row.profileBox
-					.col-md-12
 
-						if user
-							if user.profileImage
-								img.profilePic(src=user.profileImage.small.url)
-								h3.profileInfo #{user.firstName} #{user.lastName}
+	if user
+		div
+			.row.profileBox
+				.col-md-12
+						if user.profileImage
+							img.profilePic(src=user.profileImage.small.url)
+							h3.profileInfo #{user.firstName} #{user.lastName}
 
-							a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
-							a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
-							//-just placeholders for now
-							a(href=user.links)
-								img#profileTwitter(src="/img/1428206576_twitter.svg")
-							p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
-							if user.isAdmin
-									p (Administrator)
+						a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
+						a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
+						//-just placeholders for now
+						a(href=user.links)
+							img#profileTwitter(src="/img/1428206576_twitter.svg")
+						p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
+						if user.isAdmin
+								p (Administrator)
 
-							if user.isDesigner
-								p (Designer)
+						if user.isDesigner
+							p (Designer)
 
-							.row
-								.col-md-12
-										h4 About Me
+						.row
+							.col-md-12
+									h4 About Me
+									if user.bio
 										p #{user.bio}
-										//- .input-group
-										//- 	input.form-control.editField#edit(type='text', value=user.bio, readonly)
-										//- 	//- look into adjusting the height according to length of paragraph
-										//- 	.input-group-addon
-										//- 		span.glyphicon.glyphicon-ok.hide
-										//- 		span.glyphicon.glyphicon-pencil.hide
+									//- .input-group
+									//- 	input.form-control.editField#edit(type='text', value=user.bio, readonly)
+									//- 	//- look into adjusting the height according to length of paragraph
+									//- 	.input-group-addon
+									//- 		span.glyphicon.glyphicon-ok.hide
+									//- 		span.glyphicon.glyphicon-pencil.hide
 
-							.row
-								.col-md-12
-									if designs
-										h4 My Design(s)
+						.row
+							.col-md-12
+								if designs
+									h4 My Design(s)
+									each design in designs
+										if design.approved
+											a(href='/'+design._id)
+												img#imagesOnProfile(src=design.mainImage.medium.url)
+
+								if designs && auth && auth.isAdmin
+									h4 Pending Design(s)
 										each design in designs
-											if design.approved
+											unless design.approved
 												a(href='/'+design._id)
 													img#imagesOnProfile(src=design.mainImage.medium.url)
+								if auth && auth.isAdmin
+									legend
+									h4 Address
+									p #{user.address.firstLine}
+									if user.address.secondLine
+										p #{user.address.secondLine}
 
-									if designs && auth && auth.isAdmin
-										h4 Pending Design(s)
-											each design in designs
-												unless design.approved
-													a(href='/'+design._id)
-														img#imagesOnProfile(src=design.mainImage.medium.url)
+									p #{user.address.town}
+									if user.address.county
+										p #{user.address.county}
 
-						else
-							h3.centeredTitle Error - user not found
-
-					if auth && auth.isAdmin
-						hr
-						h4 Address
-						p #{user.address.firstLine}
-						if user.address.secondLine
-							p #{user.address.secondLine}
-
-						p #{user.address.town}
-						if user.address.county
-							p #{user.address.county}
-
-						p #{user.address.postcode}
-						p #{user.phoneNumber}
+									p #{user.address.postcode}
+									p #{user.phoneNumber}
 
 append footer
 	script(src="/scripts/profile.js")
