@@ -140,19 +140,6 @@ hr {
 }
 
 #uptext {
-<<<<<<< HEAD
-	display: inline-block;
-	font-weight: 300;
-	position: relative;
-	text-align: center;
-	top: 50%;
-	transform: translateY(-50%);
-	background-color: #2f6bee;
-	width: 150px;
-	height: 25px;
-	border-radius: 25px;
-	margin-top: 25px;
-=======
 	display: inline;
 	font-weight: 300;
 /*
@@ -166,7 +153,6 @@ hr {
 	height: 25px;
 	border-radius: 25px;
 	margin-top: 25px;
->>>>>>> pre-deploy
 }
 
 #mainPreview {
@@ -250,15 +236,12 @@ textarea {
 
 /*-----------profile page-------------*/
 
-<<<<<<< HEAD
 .profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
 	margin-bottom: 10px;
 }
 
-=======
->>>>>>> pre-deploy
 .profileInfo {
 /*  	margin-left: 10px;*/
 }
@@ -310,11 +293,11 @@ textarea {
 	 background-color: #f67673;
 }
 
-#profileTwitter {
-	width: 35px;
-	height: 35px;
-	border-radius: 50px;
-	margin: 6.5px 5px 10px 10px;
+#profileTwitter, #profileFacebook {
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  	margin: 6.5px 5px 10px 10px;
 }
 
 #edit {
@@ -373,13 +356,8 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
-<<<<<<< HEAD
-	margin: 10px 10px 20px;
-	display: block;
-=======
 	display: block;
 	margin: auto;
->>>>>>> pre-deploy
 }
 
 #acceptDesign {
@@ -391,14 +369,6 @@ textarea {
 }
 
 #acceptDesign, #rejectDesign {
-<<<<<<< HEAD
-	margin: 10px 10px;
-	width: 150px;
-	height: 30px;
-	border-radius: 30px;
-	color: white;
-	border: none;
-=======
 	margin: 20px 10px;
 	width: 150px;
 	height: 30px;
@@ -406,7 +376,6 @@ textarea {
 	color: white;
 	border: none;
 }
->>>>>>> pre-deploy
 
 .additionalImages {
 	margin: 5px;
