@@ -20,9 +20,9 @@ mixin homepageGallery(designs)
 			.row.gallery-row
 					each elem in array
 						.col-md-4.gallery-col
-							img.galleryImg.caption.lazy(src=elem.mainImage.medium.url, alt=elem.name +' - '+elem.designerUserName)
+							a(href='/' + elem._id)
+								img.galleryImg.caption.lazy(src=elem.mainImage.medium.url, alt=elem.name +' - '+elem.designerUserName)
 
-							//- 							a(href='/' + elem._id)
 
 
 mixin designersList(designers)
