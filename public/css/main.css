@@ -10,7 +10,10 @@
 /*
 .homepageImages {
 	height: 100%;
+<<<<<<< HEAD
+=======
 	width: 100%;
+>>>>>>> pre-deploy
 	margin-left: 7.5px;
 	margin-right: 7.5px;
 	margin-bottom: 15px;
@@ -299,9 +302,10 @@ textarea {
   	padding: 20px;
 }
 
-#imagesOnAdmin {
-	display: block;
-	position: relative;
+.lazy.homepageImages {
+	width: 250px;
+	height: 250px;
+	padding: 3px;
 }
 
 
