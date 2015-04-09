@@ -1,3 +1,54 @@
+<<<<<<< HEAD
+=======
+
+/*Potential Background Picture*/
+/*body{
+	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
+	background-size: 100%;
+}*/
+
+/* Gallery Mixin CSS */
+
+/*Please leave for the moment*/
+/*html, body {
+	height: 100%;
+	width: 100%;
+}*/
+
+/*.gallery-row{
+	height: 100%;
+	width: 100%;
+}*/
+
+/*.gallery-col{
+	height: 300px;
+	width: 300px;
+	overflow: hidden;
+}
+
+.gallery-div{
+	height:100%;
+	width: 100%;
+}*/
+
+.homepageImages {
+	height: auto;
+	width: 100%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
+}
+
+/*.lazy.homepageImages {
+	width: 250px;
+	height: 250px;
+	padding: 3px;
+}*/
+
+
+/*Adam's CSS*/
+
+>>>>>>> pre-deploy
 .hidden {
 	display: none;
 }
@@ -276,12 +327,6 @@ textarea {
  	background-color: rbga(0,0,0, 0.3);
   	color: #fd8686;
   	padding: 20px;
-}
-
-.lazy.homepageImages {
-	width: 250px;
-	height: 250px;
-	padding: 3px;
 }
 
 

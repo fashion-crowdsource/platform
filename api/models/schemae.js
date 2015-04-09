@@ -37,19 +37,21 @@ designSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
-						format: '.jpg'
-					},
-					extraLarge: {
-						resize: '1000x1000',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}
@@ -65,23 +67,24 @@ designSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
-						format: '.jpg'
-					},
-					extraLarge: {
-						resize: '1000x1000',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}
-
 			})
 		},
 		additionalFiles: {
@@ -101,7 +104,7 @@ var userSchema = new Schema({
 	links: 			[String], 		//optional
 	dateJoined: 	{type: Date, required: true},
 	isAdmin: 		{type: Boolean, required: true, default: false},
-	isDesigner:		{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
+	isDesigner:		{type: Boolean, required: true, default: false},
 	designIds: 		[ObjectId],
 	approvedDesignIds: [ObjectId],
 	address: 		{
@@ -133,15 +136,21 @@ userSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}

@@ -436,7 +436,7 @@ module.exports = {
 											}
 											else {
 												console.log('Succesfully Approved');
-												return reply.view('admin', {sucess: 'Design Succesfully Approved', auth: auth});
+												return reply.view('admin', {success: 'Design Succesfully Approved', auth: auth});
 											}
 										});
 									}
