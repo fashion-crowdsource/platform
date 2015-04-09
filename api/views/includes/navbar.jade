@@ -15,9 +15,12 @@
 						a(href="/designers") Designers
 					li
 						a(href="/profile/" + auth.username ) My Profile
+
+					if auth.isDesigner
 					li
 						a(href="/upload") Upload
-					if auth.admin
+
+					if auth.isAdmin
 						li
 							a(href="/admin") Admin
 

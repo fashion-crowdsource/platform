@@ -8,21 +8,3 @@ block content
 	if designs
 		+homepageGallery(designs)
 
-
-	//- if designs
-		if auth
-			if auth.admin
-				each design in designs
-					a(href='/'+design._id)
-						img#imagesOnAdmin(src=design.mainImage.large.url)
-
-
-		//- .col-md-6
-		//- 	.designBox
-		//- 		img.designThumbnail(src="https://download.unsplash.com/photo-1414924347000-9823c338079b")
-		//- .col-md-6
-		//- 	.designBox
-		//- .col-md-6
-		//- 	.designBox
-
-append footer

@@ -35,7 +35,8 @@ module.exports = {
 					email 		: gPlus.profile.email,
 					picture 	: gPlus.profile.raw.picture,
 					hasAccount	: false,
-					isAdmin		: false
+					isAdmin		: false,
+					isDesigner	: false
 				};
 
 				// NB. We are assuming user.username will be set to profile.username
@@ -45,6 +46,9 @@ module.exports = {
 					if (user) profile.hasAccount = true;
 					if (user) {
 						if (user.isAdmin) profile.isAdmin = true;
+					}
+					if (user) {
+						if (user.isDesigner) profile.isDesigner = true;
 					}
 
 					request.auth.session.clear();
@@ -70,8 +74,8 @@ module.exports = {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
+
 			designs.getAllApprovedDesigns(function(err, designs){
 				if (err) {
 					return reply.view('index', {error: err, auth: auth});
@@ -91,8 +95,8 @@ module.exports = {
 		handler: function (request, reply ){
 			// return reply.view('signup');
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
+
 			if (auth) {
 				return request.auth.credentials.hasAccount ? reply.redirect('/profile/'+request.auth.credentials.username) : reply.view('signup', {auth: auth});
 			}
@@ -114,8 +118,7 @@ module.exports = {
 		},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			console.log('Payload:');
 			console.dir(request.payload);
@@ -151,6 +154,7 @@ module.exports = {
 			// TODO links. ??? -> array
 			var profileImagePath = null;
 			if (user.profileImage) profileImagePath = user.profileImage.path;
+			if (user.designer === 'Yes') newUserObj.isDesigner = true;
 			if (user.admin === 'Yes') newUserObj.isAdmin = true; //!!!! REMOVE IN PRODUCTION
 
 			var tempFiles = [profileImagePath];
@@ -163,6 +167,7 @@ module.exports = {
 				}
 				else {
 					request.auth.session.set('hasAccount', true);
+					if (user.isDesigner) request.auth.session.set('isDesigner', true);
 					if (user.isAdmin) request.auth.session.set('isAdmin', true); //!!!! REMOVE IN PRODUCTION
 					if (profileImagePath) trash.cleanUp(tempFiles);
 					reply.redirect('/profile/'+user.username);
@@ -175,10 +180,9 @@ module.exports = {
 		auth: {mode: 'optional'},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
-			users.getAllUsers(function(err, users){
+			users.getAllDesigners(function(err, users){
 				if (err) {
 					return reply.view('designers', {error: err, auth: auth});
 				}
@@ -188,12 +192,11 @@ module.exports = {
 			});
 		}
 	},
-// TODO pass {auth: {username: request.auth.credentials.username}} to all views if auth
+
 	profileView: {
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			var userName = request.params.username;
 			users.getUser(userName, function(err, user){
@@ -228,8 +231,7 @@ module.exports = {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			var editor = request.auth.credentials.username;
 			var updatedUser = request.payload;
@@ -258,8 +260,7 @@ module.exports = {
 		auth: {mode: 'required'},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 			return request.auth.credentials.hasAccount ? reply.view('upload', {auth:auth}) : reply.redirect('signup');
 		}
 	},
@@ -276,8 +277,7 @@ module.exports = {
 		},
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 			console.dir(request.payload);
 			// ADD NEW SUBMISSION TO DB
 			// 1. get user doc from db
@@ -354,8 +354,7 @@ module.exports = {
 	designView: {
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			var designId = request.params.design;
 			designs.getDesignById(designId, function(err, design){
@@ -385,8 +384,7 @@ module.exports = {
 	adminView:  {
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			designs.getAllPendingDesigns(function(err, designs){
 			  if (err) {
@@ -405,8 +403,7 @@ module.exports = {
 	adminApproveDesign:  {
 		handler: function (request, reply ){
 			var auth = false;
-			if (request.auth.isAuthenticated) auth = {username: request.auth.credentials.username };
-			if (request.auth.isAuthenticated && request.auth.credentials.isAdmin) auth.admin = true;
+			if (request.auth.isAuthenticated) auth = request.auth.credentials;
 
 			if (request.auth.credentials.isAdmin) {
 				var designId = request.params.design;
