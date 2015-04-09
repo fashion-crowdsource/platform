@@ -13,31 +13,6 @@ figcaption {
 	padding: 10px 15px;
 }
 
-
-/* Gallery Mixin CSS */
-
-/*Please leave for the moment*/
-/*html, body {
-	height: 100%;
-	width: 100%;
-}*/
-
-/*.gallery-row{
-	height: 100%;
-	width: 100%;
-}*/
-
-/*.gallery-col{
-	height: 300px;
-	width: 300px;
-	overflow: hidden;
-}
-
-.gallery-div{
-	height:100%;
-	width: 100%;
-}*/
-
 .homepageImages {
 	height: auto;
 	width: 100%;
@@ -140,19 +115,26 @@ hr {
 }
 
 #uptext {
-	display: inline;
+	display: inline-block;
 	font-weight: 300;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2f6bee;
+	width: 150px;
+	height: 25px;
+	border-radius: 25px;
+	margin-top: 25px;
+	/*display: inline;*/
+
+
 /*
 	position: relative;
 	text-align: center;
 	top: 50%;
 	transform: translateY(-50%);
 */
-	background-color: #2f6bee;
-	width: 150px;
-	height: 25px;
-	border-radius: 25px;
-	margin-top: 25px;
 }
 
 #mainPreview {
@@ -197,16 +179,6 @@ hr {
 	position: relative;
 }
 
-
-#uptext {
-	display: block;
-	font-weight: 300;
-	position: relative;
-	text-align: center;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
 #preview {
 	margin: 20px 0 10px;
 	display: inline;
@@ -219,11 +191,6 @@ textarea {
 	height: 100px;
 	border-radius: 5px;
 	border-color: lightgrey;
-}
-
-
-#description {
-
 }
 
 /*SVG*/
@@ -242,9 +209,6 @@ textarea {
 	margin-bottom: 10px;
 }
 
-.profileInfo {
-/*  	margin-left: 10px;*/
-}
 
 .designs {
 	width: 400px;
@@ -356,8 +320,9 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
+	margin: 10px 10px 20px;
 	display: block;
-	margin: auto;
+	/*margin: auto;*/
 }
 
 #acceptDesign {
@@ -369,13 +334,14 @@ textarea {
 }
 
 #acceptDesign, #rejectDesign {
-	margin: 20px 10px;
+	margin: 10px 10px;
 	width: 150px;
 	height: 30px;
 	border-radius: 30px;
 	color: white;
 	border: none;
 }
+
 
 .additionalImages {
 	margin: 5px;
