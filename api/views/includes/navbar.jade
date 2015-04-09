@@ -1,6 +1,7 @@
-.container-fluid
-	if auth
-		nav.navbar.navbar-default
+
+if auth
+	nav.navbar.navbar-default
+		.container-fluid
 			.navbar-header
 				button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="collapselist")
 					span.sr-only Toggle navigation
@@ -29,8 +30,9 @@
 						a(href="/logout") Log Out
 
 
-	else
-		nav.navbar.navbar-default
+else
+	nav.navbar.navbar-default
+		.container-fluid
 			.navbar-header
 				button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="collapselist")
 					span.sr-only Toggle navigation
