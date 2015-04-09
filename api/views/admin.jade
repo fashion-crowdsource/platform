@@ -2,9 +2,9 @@ extends ./layouts/default.jade
 include ./mixins.jade
 
 block content
-	.col-md-12
-		h3 Admin Dashboard
+	.row
+		.col-md-12
+			h3 Images Awaiting Approval
 
 	if designs
 		+homepageGallery(designs)
-
