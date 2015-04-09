@@ -57,7 +57,13 @@ body {
   	display: block;
   	margin: auto;
   	text-align: center;
+  	padding: 10px 0 20px;
 }
+
+.footerdiv {
+  	height: 40px;
+}
+
 /*--------upload page---------*/
 
 #greyback {
@@ -212,7 +218,7 @@ textarea {
 
 /*-----------profile page-------------*/
 
-.profilePic, #imagesOnProfile, .galleryImg {
+.profilePic, #imagesOnProfile, .galleryImg, .designMainImg {
 	border: solid 1px lightgrey;
   	border-radius: 4px;
   	margin-bottom: 10px;
@@ -332,8 +338,8 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
-  	margin: 10px 10px 20px;
   	display: block;
+  	margin: auto;
 }
 
 #acceptDesign {
@@ -345,7 +351,7 @@ textarea {
 }
 
 #acceptDesign, #rejectDesign {
-  	margin: 10px 10px;
+  	margin: 20px 10px;
   	width: 150px;
     height: 30px;
     border-radius: 30px;
@@ -393,7 +399,6 @@ textarea {
 
 
 /*.........end of home page.........*/
-
 
 
 .designerName {
