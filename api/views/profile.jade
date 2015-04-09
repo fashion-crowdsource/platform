@@ -50,8 +50,11 @@ block content
 													a(href='/'+design._id)
 														img#imagesOnProfile(src=design.mainImage.medium.url)
 
+						else
+							h3.centeredTitle Error - user not found
+
 					if auth && auth.isAdmin
-						legend
+						hr
 						h4 Address
 						p #{user.address.firstLine}
 						if user.address.secondLine
