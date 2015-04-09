@@ -4,6 +4,29 @@
 	background-size: 100%;
 }*/
 
+figcaption {
+	background-color: rgba(0, 0, 0, 0.75);
+	color: #fff;
+	text-align: center;
+	font-size: 13px;
+	line-height: 1.5;
+	padding: 10px 15px;
+}
+
+.homepageImages {
+	height: auto;
+	width: 100%;
+	margin-left: 7.5px;
+	margin-right: 7.5px;
+	margin-bottom: 15px;
+}
+
+/*.lazy.homepageImages {
+	width: 250px;
+	height: 250px;
+	padding: 3px;
+}*/
+
 
 /*Adam's CSS*/
 .hidden {
@@ -13,239 +36,228 @@
 body {
   background-color: white;
   color: #444444;
-/*  font-family: Lato;*/
 }
+
+.centeredTitle {
+	display: block;
+	margin: auto;
+	text-align: center;
+	padding: 10px 0 20px;
+}
+
+.footerdiv {
+	height: 50px;
+}
+
+.profilePic, #imagesOnProfile, .galleryImg, .designMainImg, #mainPreview, .additionalImages {
+	border: solid 1px lightgrey;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
 /*--------upload page---------*/
-/*
-#background {
-    display: inline;
-    background-repeat: none;
-    -webkit-filter: blur(10px);
-    position: fixed;
-  	top: 0;
-  	left: 0;
-  	min-width: 100%;
-  	min-height: 100%;
-}
-*/
 
 #greyback {
-  	background: rgba(0,0,0,0.05);
-  	padding: 10px 25px 20px;
-  	border-radius: 3px;
+	background: rgba(0,0,0,0.05);
+	padding: 10px 25px 20px;
+	border-radius: 3px;
 }
 
-
-label{
-    float: left;
-    clear: left;
-    width: 200px;
-    text-align: left;
+/*Sign up page*/
+#signup{
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 200px;
+	text-align: left;
 }
 
 
 /*
 hr {
-  	box-sizing: content-box;
-  	height: 0;
-  	width: 300px;
+	box-sizing: content-box;
+	height: 0;
+	width: 300px;
 }
 */
-
+.uploadInput {
+	padding: 3px;
+}
 
 .hidden-input {
-    display: none !important;
+	display: none !important;
 }
 
 .text-input {
-  	width: 200px;
-    height: 25px;
-    border-radius: 25px;
-  	-webkit-box-shadow: none;
+	width: 200px;
+	height: 25px;
+	border-radius: 25px;
+	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	border: solid 1px lightgrey;
-  	margin-top: 8px;
-  	padding: 6px;
-  	display: inline;
-  	font-weight: 200;
+	margin-top: 8px;
+	padding: 6px;
+	display: inline;
+	font-weight: 200;
 }
 
 #designName {
 	margin-left: 20px;
-  	display: inline;
+	display: inline-grid;
 }
 
 #mainImgLabel {
-  	display: inline;
-  	margin: 0 auto;
-  	margin-bottom: 10px;
-  	width: 150px;
-  	height: 25px;
-    border-radius: 25px;
-    color: white;
+	display: inline;
+	margin: 10px;
+	color: white;
+
 }
 
-#attach {
-    width: 80px;
-    height: 25px;
-    border-radius: 25px;
-    color: white;
-    position: relative;
-  	margin: 10px 5px 10px 10px;
-  	font-size: 10px;
+#uptext {
+	display: inline-block;
+	font-weight: 300;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2f6bee;
+	width: 150px;
+	height: 25px;
+	border-radius: 25px;
+	margin-top: 25px;
+	/*display: inline;*/
+
+
 /*
-  	top: 10%;
-  	transform: translateY(330%);
-    border: none;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
 */
 }
 
-#preview1, #preview2, #preview3, #preview4, #preview5, #mainPreview {
-  	width: 150px;
-  	height: 150px;
-  	margin: 5px;
+#mainPreview {
+	width: 150px;
+	height: 150px;
+	margin: 5px;
 /*  	-webkit-filter: blur(1.5px);*/
 }
 
-#attach, #mainImgLabel {
-    background-color: #2f6bee;
-  	display: inline;
-}
 
 #bin {
-  	display: inline;
-  	width: 35px;
-    height: 25px;
-    border-radius: 25px;
-  	background-color: #e4333c;
-  	margin-right: 20px;
-  	font-weight: 300;
-  	padding-bottom: 2px;
+	display: inline;
+	width: 35px;
+	height: 25px;
+	border-radius: 25px;
+	background-color: #e4333c;
+	margin-right: 20px;
+	font-weight: 300;
+	padding-bottom: 2px;
+	border: none;
 }
 
 .no-border {
-  	border: none;
+	border: none;
 }
 
 .trashlogo {
-  	color: white;
-  	padding-top: 3.5px;
+	color: white;
+	padding-top: 3.5px;
 }
 
 
 #submit {
-  	background-color: #21c462;
-  	margin: 20px 50px 30px 10px;
-  	float: right;
-  	width: 150px;
-    height: 30px;
-    border-radius: 30px;
-    color: white;
-    display: block;
-    position: relative;
-}
-
-#uptext {
-    display: block;
-    font-weight: 300;
-    position: relative;
-  	text-align: center;
-  	top: 50%;
-  	transform: translateY(-50%);
+	background-color: #21c462;
+	margin: 20px 50px 30px 10px;
+	float: right;
+	width: 150px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	display: block;
+	position: relative;
 }
 
 #preview {
-  	margin: 20px 0 10px;
-  	display: inline;
-  	border: 2px black;
+	margin: 20px 0 10px;
+	display: inline;
+	border: 2px black;
 }
 
 textarea {
-  	display: block;
-  	width: 600px;
-  	height: 100px;
-  	border-radius: 5px;
-  	border-color: lightgrey;
+	display: block;
+	width: 600px;
+	height: 100px;
+	border-radius: 5px;
+	border-color: lightgrey;
 }
 
-
-#description {
-
-}
-
+/*SVG*/
 .icon {
-    fill: white;
-    display: inline;
+	fill: white;
+	display: inline;
 }
 /*.........end of upload page.........*/
 
 
 /*-----------profile page-------------*/
 
-.profilePic {
+.profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
-  	border-radius: 4px;
-  	display: inline;
-  	margin-bottom: 10px;
-
+	border-radius: 4px;
+	margin-bottom: 10px;
 }
 
-/*
-.profileInfo {
-  	float: right;
-}
-*/
 
 .designs {
-  	width: 400px;
-  	height: 250;
+	width: 400px;
+	height: 250;
 }
 
-.box {
-/*
-  	border: solid 10px;
-
-	  border: 13px solid #e5e5e5;
-
+.profileBox {
+	  border: 3.5px solid #e5e5e5;
+/*	border: solid 15px;
 	  -moz-border-image: -moz-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  -webkit-border-image: -webkit-linear-gradient(top left, #360033 20%, #0b8793 80%);
 	  border-image: linear-gradient(to bottom right, #360033 20%, #0b8793 80%);
 
 	  border-image-slice: 1;
 */
-  	max-width: 40%;
-  	height: auto;
-  	padding: 20px;
-  	display: block;
-  	margin: auto;
-  	margin-bottom: 30px;
+	max-width: 40%;
+	height: auto;
+	padding: 20px;
+	display: block;
+	margin: auto;
+	margin-bottom: 30px;
 /*  	box-shadow: 0 15px 10px #b7b7b7;*/
+	background-color: white;
+	border-radius: 5px;
 }
 
-#profile-email, #profile-website {
-  	display: inline-block;
-  	width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    color: white;
-    position: relative;
-  	margin: 10px 5px 10px 10px;
-  	padding-top: 11px;
-  	text-decoration: none;
-  	text-align: center;
+#profileEmail, #profileWebsite {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	color: white;
+	position: relative;
+	margin: 10px 5px 10px 10px;
+	padding-top: 11px;
+	text-decoration: none;
+	text-align: center;
 }
 
-#profile-email {
+#profileEmail {
   /*#5334ee*/
-  	background-color: #5446d2;
+	background-color: #5446d2;
 }
 
-#profile-website {
- 	 background-color: #f67673;
+#profileWebsite {
+	 background-color: #f67673;
 }
 
-#twitter {
+#profileTwitter, #profileFacebook {
   	width: 35px;
     height: 35px;
     border-radius: 50px;
@@ -253,32 +265,133 @@ textarea {
 }
 
 #edit {
-  	background-color: white;
-  	width: 100%;
-    height: 25px;
-    border-bottom-left-radius: 25px;
-  	border-top-left-radius: 25px;
-  	padding: 20px;
+	background-color: white;
+	width: 100%;
+	height: 25px;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
+	padding: 20px;
 }
 
 .input-group-addon {
-  	height: 25px;
-    border-bottom-right-radius: 25px;
-  	border-top-right-radius: 25px;
-}
-
-body {
-  	/*background: url("/img/pencils.png") no-repeat center center fixed;*/
-	background-size: 100%;
-}
-
-.box {
-  background-color: white;
+	height: 25px;
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
 }
 
 .myDesigns {
-  	width: 70%;
-  	height: 80%;
-
+	width: 70%;
+	height: 80%;
 }
+
+#imagesOnProfile {
+	margin: 8px 0 3px;
+}
+
 /*.........end of profile page.........*/
+
+
+/*-----------admin page-------------*/
+
+.designBox {
+	width: 375px;
+	height: 250px;
+	border: 2px solid lightgrey;
+	margin: 20px;
+}
+
+.designThumbnail {
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+	display: inline-block;
+}
+
+.hoverName {
+	display: none;
+	background-color: rbga(0,0,0, 0.3);
+	color: #fd8686;
+	padding: 20px;
+}
+
+
+/*.........end of admin page.........*/
+
+/*-----------design page-------------*/
+
+.designMainImg {
+	margin: 10px 10px 20px;
+	display: block;
+	/*margin: auto;*/
+}
+
+#acceptDesign {
+	background-color: #21c462;
+}
+
+#rejectDesign {
+	background-color: #e4333c;
+}
+
+#acceptDesign, #rejectDesign {
+	margin: 10px 10px;
+	width: 150px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	border: none;
+}
+
+
+.additionalImages {
+	margin: 5px;
+}
+
+#paypal {
+	float: left;
+}
+
+.form-control {
+	display: inline;
+}
+
+
+#centreDiv {
+	display: inline-block;
+	margin: auto;
+}
+/*.........end of design page.........*/
+
+/*-----------home page-------------*/
+
+/*
+.paypal-img-logo {
+  display: inline-block;
+  width: 126px;
+  height: 33px;
+  overflow: hidden;
+  text-indent: -999em;
+  background: transparent url(https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg) center center no-repeat;
+  background-image: url(https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.png)\9;
+  background-size: 124px 33px;
+  vertical-align: middle;
+  border: 1.5px solid lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  display: block;
+  margin: 2px;
+}
+*/
+
+.galleryImg {
+	margin: 5px;
+	display: inline-block;
+}
+
+
+/*.........end of home page.........*/
+
+
+.designerName {
+	display: inline-block;
+}

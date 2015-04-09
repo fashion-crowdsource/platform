@@ -1,6 +1,7 @@
-var mongoose 	= require("mongoose");
-var schemae	= require("./schemae.js");
+var mongoose 	= require('mongoose');
+var schemae	= require('./schemae.js');
 var Design = schemae.Design;
+
 
 // GENERAL SEARCH FUNCTION - returns an ARRAY
 // takes a query object, q:{} is required, f:{} is optional (a filter)
@@ -62,6 +63,8 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 												// return callback(err2);
 											}
 											else if (ind === fileArray.length - 1) {
+												newDesign.markModified('additionalImages');
+												newDesign.markModified('additionalFiles');
 												newDesign.save(function(err3){
 													if (err) {
 														return callback(err3);
@@ -85,6 +88,7 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 									// return callback(err1);
 								}
 								else if (ind === imageArray.length - 1) {
+									newDesign.markModified('additionalImages');
 									newDesign.save(function(err2){
 										if (err) {
 											return callback(err2);
@@ -105,6 +109,7 @@ function createDesign(designData, mainImagePath, imageArray, fileArray, callback
 									return callback(err1);
 								}
 								else if (ind === fileArray.length - 1) {
+									newDesign.markModified('additionalFiles');
 									newDesign.save(function(err2){
 										if (err) {
 											return callback(err2);
@@ -156,6 +161,28 @@ function getAllDesigns(callback) {
 	});
 }
 
+function getAllApprovedDesigns(callback) {
+	Design.find({approved: true}, function(err, designs){
+		if (err) {
+			return callback(err);
+		}
+		else {
+			return callback(null, designs);
+		}
+	});
+}
+
+function getAllPendingDesigns(callback) {
+	Design.find({approved: false}, function(err, designs){
+		if (err) {
+			return callback(err);
+		}
+		else {
+			return callback(null, designs);
+		}
+	});
+}
+
 // TODO finish! Need to edit design and SAVE to invoke middleware. ?? for var prop in newDesignObject, design[prop] = newDesignObject[prop], design.save()
 function updateDesignById(designId, newDesignObject , callback) {
 	Design.findOne({_id: designId}, function(err, design){
@@ -168,22 +195,77 @@ function updateDesignById(designId, newDesignObject , callback) {
 	});
 }
 
-// TODO - also delete onbId from designers designs array
-// TODO? Call remove directly, still exectues middleware?
+// TODO fix this...
 function deleteDesignById(designId, callback) {
+	console.log('Deleting');
 	Design.findOne({_id: designId}, function(err, design){
 		if (err) {
 			return callback(err);
 		}
-		else {
+		else if (design) {
+			var userName = design.designerUserName;
+			console.log(userName);
 			design.remove(function(err1) {
 				if (err1) {
 					return callback(err1);
 				}
 				else {
-					return callback(null, design);
+					var users = require('./users');
+					users.getUser(userName, function(err2, user){
+						if (err2) {
+							return callback(err2);
+						}
+						else if (user) {
+							if (user.designIds) {
+								user.designIds.forEach(function(id, index){
+									if (id.toString() === designId) {
+										user.designIds.splice(index, 1);
+									}
+									if (index === user.designIds.length - 1) {
+										if (user.approvedDesignIds) {
+											user.approvedDesignIds.forEach(function(id1, index1) {
+												if (id1.toString() === designId) {
+													user.approvedDesignIds.splice(index1, 1);
+												}
+												if (index1 === user.approvedDesignIds.length - 1) {
+													user.save(function (err3){
+														if (err3) {
+															return callback(err3);
+														}
+														else {
+															return callback(null, design);
+														}
+													});
+												}
+											});
+										}
+										else {
+											user.save(function (err3){
+												if (err3) {
+													return callback(err3);
+												}
+												else {
+													return callback(null, design);
+												}
+											});
+										}
+									}
+								});
+							}
+							else {
+								return callback(null, design);
+							}
+						}
+						else {
+							return callback(null, design);
+						}
+					});
 				}
 			});
+		}
+		else {
+			console.error('design not found');
+			return callback('design not found');
 		}
 	});
 }
@@ -195,13 +277,13 @@ function getDesignsByDesignerUserName(designerUserName, callback) {
 			return callback(err);
 		}
 		else {
-			return callback(null, design);
+			return callback(null, designs);
 		}
 	});
 }
 
-// TODO Empty designers design array
-function deleteDesignsByDesignerUserName(designId, callback) {
+// TODO Empty designer's design array
+function deleteDesignsByDesignerUserName(designerUserName, callback) {
 	Design.find({designerUserName: designerUserName}, function(err, designs){
 		if (err) {
 			return callback(err);
@@ -223,23 +305,6 @@ function deleteDesignsByDesignerUserName(designId, callback) {
 	});
 }
 
-function testAddDesign(designData, imagePath ,callback) {
-	var newDesign = new Design(designData);
-
-	newDesign.attach('image', {path: imagePath}, function(error) {
-		if (error) console.log('attach error:', error);
-		else {
-			newDesign.save(function(err, design){
-				if (err) {
-					return callback(err);
-				}
-				else {
-					return callback(null, design);
-				}
-			});
-		}
-	});
-}
 
 
 module.exports = {
@@ -247,9 +312,10 @@ module.exports = {
 	createDesign: createDesign,
 	getDesignById: getDesignById,
 	getAllDesigns: getAllDesigns,
+	getAllApprovedDesigns: getAllApprovedDesigns,
+	getAllPendingDesigns: getAllPendingDesigns,
 	updateDesignById: updateDesignById,
 	deleteDesignById: deleteDesignById,
 	getDesignsByDesignerUserName: getDesignsByDesignerUserName,
-	deleteDesignsByDesignerUserName: deleteDesignsByDesignerUserName,
-	testAddDesign: testAddDesign
+	deleteDesignsByDesignerUserName: deleteDesignsByDesignerUserName
 };

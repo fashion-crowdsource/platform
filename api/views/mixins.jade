@@ -1,23 +1,42 @@
-mixin attach
-	each val in [1,2,3,4,5]
-		label#attach
-			span#uptext Attach
-				input(name='additionalImage' + val, class='hidden-input', type='file', onchange='loadImg(this)', accept='image/gif, image/jpeg, image/png')
-		button#bin
-			span.glyphicon.glyphicon-trash.trashlogo
-
 mixin imgPreview
 	each val in [1,2,3,4,5]
 		img(src='/img/fikay-square.jpg', id='preview' + val)
 
 mixin attach-doc
-	each val in [1,2,]
-		label#attach
-			span#uptext Attach file
-				input(name='additionalFile' + val, class='hidden-input' type='file')
+	each val in [1,2]
+		input.uploadInput(name='additionalFile' + val, type='file')
 
-//- Repeat a block without writing inline JS
-mixin times(limit)
-	- for (var i = 1; i <= limit; i++) {
-		block
+
+mixin homepageGallery(designs)
+	- var arraysOfThree = [];
+	- var originalArray = designs;
+	- var i = 0;
+	- for (j=originalArray.length; i<j; i+=3) {
+	- tempArray = originalArray.slice(i,i+3);
+	- arraysOfThree.push(tempArray);
 	- }
+
+	each array in arraysOfThree
+			.row.gallery-row
+					each elem in array
+						.col-md-4.gallery-col
+							a(href='/' + elem._id)
+								img.galleryImg.caption.lazy(src=elem.mainImage.medium.url, alt=elem.name +' - '+elem.designerUserName)
+
+
+
+mixin designersList(designers)
+	- var arraysOfThree = [];
+	- var originalArray = designers;
+	- var i = 0;
+	- for (j=originalArray.length; i<j; i+=3) {
+	- tempArray = originalArray.slice(i,i+3);
+	- arraysOfThree.push(tempArray);
+	- }
+
+	each array in arraysOfThree
+			.row
+					each elem in array
+						.col-md-4
+							a(href='/profile/' + elem.username)
+								img.galleryImg.caption.lazy(src=elem.profileImage.medium.url, alt=elem.username)

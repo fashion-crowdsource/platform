@@ -4,7 +4,7 @@ include ./mixins.jade
 block content
 	.row
 		.col-md-12
-			h4 Step 1.
+			h4 Part 1.
 			p Please attach up to 6 images to be viewed in the gallery should your design be approved. Please also write a <b>short</b> paragraph about the design.
 
 	#greyback
@@ -13,28 +13,25 @@ block content
 				form(action="/upload", method="POST", enctype="multipart/form-data")
 					label#designName Design Name* :
 						input.text-input(type="text", name="designName", class='form-control', placeholder="Insert your design name" required)
-						label#mainImgLabel
-							span#uptext Attach Main Image
-							input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
+					label#mainImgLabel
+						span#uptext Attach Main Image
+						input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
 						button#bin
 							span.glyphicon.glyphicon-trash.trashlogo
 					.row
 						.col-md-12
 							img#mainPreview(src="/img/fikay-square.jpg")
+							br
 
-					.row
 						.col-md-12
-								+attach
-
-					.row
-						.col-md-12
-							+imgPreview
+								each val in [1,2,3,4,5]
+									input.uploadInput(name='additionalImage' + val, type='file', accept='image/gif, image/jpeg, image/png')
 
 					.row
 						.col-md-12
 							#description
 								h4 Short Description:
-								textarea(name="description", class='form-control')
+								textarea.form-control(name="description")
 								hr
 
 					.row
@@ -55,8 +52,7 @@ block content
 
 					.row
 						.col-xs-12.col-sm-12
-							input(type='reset', value='RESET -DEV TOOL')
-							input#submit(type="submit", value="Submit", name="submitUpload", class='no-border')
+							input#submit.form-control(type="submit", value="Submit", class='no-border')
 
 append footer
 	script(src="/scripts/upload.js")

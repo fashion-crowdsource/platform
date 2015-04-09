@@ -8,12 +8,15 @@ var ObjectId 	= mongoose.Schema.Types.ObjectId;
 
 
 var designSchema = new Schema({
-	designerUserName: 	{type: String, required: true, unique: true},
-	designerId: 		{type: ObjectId, required: true, unique: true},
+	designerUserName: 	{type: String, required: true},
+	designerId: 		{type: ObjectId, required: true},
 	name: 				{type: String, required: true},
 	description: 		{type: String, required: true},
 	additionalInfo: 	{type: String},
-	dateAdded: 			{type: Date, required: true}
+	dateAdded: 			{type: Date, required: true},
+	approved: 			{type: Boolean, default: false},
+	additionalImages: 	[],
+	additionalFiles: 	[]
 });
 
 designSchema.plugin(crate, {
@@ -34,19 +37,21 @@ designSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
-						format: '.jpg'
-					},
-					extraLarge: {
-						resize: '1000x1000',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}
@@ -62,23 +67,24 @@ designSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
-						format: '.jpg'
-					},
-					extraLarge: {
-						resize: '1000x1000',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}
-
 			})
 		},
 		additionalFiles: {
@@ -98,15 +104,16 @@ var userSchema = new Schema({
 	links: 			[String], 		//optional
 	dateJoined: 	{type: Date, required: true},
 	isAdmin: 		{type: Boolean, required: true, default: false},
-	// isDesigner	{type: Boolean, required: true, default: false}, //if taking user signups, e.g. to preorder
+	isDesigner:		{type: Boolean, required: true, default: false},
 	designIds: 		[ObjectId],
+	approvedDesignIds: [ObjectId],
 	address: 		{
 						firstLine: {type: String},
 						secondLine: {type: String},
 						town: {type: String},
 						county: {type: String},
 						postcode: {type: String},
-						full: {type: String},
+						full: {type: String}
 	} //optional?? currently required on form and in controller code
 });
 
@@ -129,15 +136,21 @@ userSchema.plugin(crate, {
 						// keep the original file
 					},
 					small: {
-						resize: '200x200',
+						resize: '200x200^',
+						gravity: 'center',
+						extent: '200x200',
 						format: '.jpg'
 					},
 					medium: {
-						resize: '300x300',
+						resize: '300x300^',
+						gravity: 'center',
+						extent: '300x300',
 						format: '.jpg'
 					},
 					large: {
-						resize: '500x500',
+						resize: '500x500^',
+						gravity: 'center',
+						extent: '500x500',
 						format: '.jpg'
 					}
 				}

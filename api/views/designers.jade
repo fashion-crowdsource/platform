@@ -1,0 +1,11 @@
+extends ./layouts/default.jade
+include ./mixins.jade
+
+block content
+	.row
+		.col-md-12
+			h1.centeredTitle Designer Profiles
+			br
+
+			if designers
+				+designersList(designers)

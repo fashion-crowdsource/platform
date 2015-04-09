@@ -1,23 +1,14 @@
-var designs = require('./designs');
-var Path = require('path');
-var id = mongoose.Types.ObjectId();
-
 var mongoose 	= require("mongoose");
 var config 		= require("../config").db;
 
 var mongodbUri 	= "mongodb://" + config.dbuser + ":" + config.dbpwd + "@" + config.dburl;
 
+var users = require('./users');
+var designs = require('./designs');
 
-var designData = {
-	designerUserName: 	'DesignerMcDesignerson',
-	designerId: 		id,
-	name: 				'Hat',
-	description: 		'A most majestic design',
-	dateAdded: 			new Date()
-};
+var ObjectId = mongoose.Types.ObjectId();
 
-var imgPath = Path.join(__dirname, 'fikay-girl.png');
-
+// var id = new ObjectId('5523c1a656f343b0bbd24e35');
 
 
 
@@ -27,13 +18,37 @@ mongoose.connect(mongodbUri, function() {
 
 	db.on("error", console.error.bind(console, "connection error"));
 	db.once("open", function() {
-		designs.testAddDesign(designData, imgPath, function(err, design){
+		// designs.getDesignById('552424eb943920870bffc81d', function (err, design){
+		// 	if (err) {
+		// 		console.error(err);
+		// 	}
+		// 	else {
+		// 		console.dir(design);
+		// 	}
+		// });
+		designs.deleteDesignById('552424eb943920870bffc81d', function (err, design){
 			if (err) {
-				console.log(err);
+				console.error(err);
 			}
 			else {
-				console.log(design);
+				console.log('design deleted');
 			}
 		});
+		// designs.getAllDesigns(function(err, users){
+		// 	if (err) {
+		// 		console.error(err);
+		// 	}
+		// 	else {
+		// 		users.forEach(function(ele){console.log(ele._id);});
+		// 	}
+		// });
+		// users.deleteUser("amil v", function(err, user){
+		// 	if (err) {
+		// 		console.error(err);
+		// 	}
+		// 	else {
+		// 		console.log('User Deleted');
+		// 	}
+		// });
 	});
 });

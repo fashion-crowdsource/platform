@@ -30,14 +30,10 @@ server.connection(serverOptions);
 server.register([Bell, Cookie], function (err) {
 	if (err) console.error(err);
 
-	// IGNORE \/ Not currently true...
-	// NB session strategy set to 'optional' mode. Therefor, unless overriden in handler auth will be attempted for each page
-	// however, page will still be served, we need to discriminate between signed in /not signed in users and adjust response appropriately
-	// for some pages (e.g. upload), stratgey should be set to true
-	server.auth.strategy('session', 'cookie', {
+	server.auth.strategy('session', 'cookie',{
 		password: config.cookie.password,
 		cookie: 'sid',
-		redirectTo: '/',
+		// redirectTo: '/', // <- better not to use auto redirect? A lot of our pages are visible to un-authed users.
 		redirectOnTry: false,
 		isSecure: false
 	});
@@ -65,7 +61,7 @@ server.register([Bell, Cookie], function (err) {
 	});
 
 	server.auth.default('session'); //TODO try removing default, putting optional in session strategy
-	server.route( routes );
+	server.route(routes);
 });
 
 server.register({

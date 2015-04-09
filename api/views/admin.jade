@@ -1,6 +1,10 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 block content
 	.row
 		.col-md-12
-			h1 Admin Page
+			h1.centeredTitle Designs Awaiting Approval
+
+	if designs
+		+homepageGallery(designs)
