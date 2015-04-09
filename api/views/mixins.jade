@@ -4,7 +4,7 @@ mixin imgPreview
 
 mixin attach-doc
 	each val in [1,2]
-		input(name='additionalFile' + val, type='file')
+		input.uploadInput(name='additionalFile' + val, type='file')
 
 
 mixin homepageGallery(designs)

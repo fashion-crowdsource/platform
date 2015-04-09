@@ -53,7 +53,7 @@ block content
 												a(href='/'+design._id)
 													img#imagesOnProfile(src=design.mainImage.medium.url)
 								if auth && auth.isAdmin
-									legend
+									hr
 									h4 Address
 									p #{user.address.firstLine}
 									if user.address.secondLine
