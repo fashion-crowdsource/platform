@@ -7,6 +7,7 @@
 
 /* Olu's CSS */
 
+/*
 .homepageImages {
 	height: 100%;
 	width: 100%;
@@ -14,6 +15,7 @@
 	margin-right: 7.5px;
 	margin-bottom: 15px;
 }
+*/
 
 /*Adam's CSS*/
 
@@ -297,9 +299,10 @@ textarea {
   	padding: 20px;
 }
 
-#imagesOnAdmin {
-	display: block;
-	position: relative;
+.lazy.homepageImages {
+	width: 250px;
+	height: 250px;
+	padding: 3px;
 }
 
 
