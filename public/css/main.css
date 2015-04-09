@@ -4,6 +4,16 @@
 	background-size: 100%;
 }*/
 
+figcaption {
+	background-color: rgba(0, 0, 0, 0.75);
+	color: #fff;
+	text-align: center;
+	font-size: 13px;
+	line-height: 1.5;
+	padding: 10px 15px;
+}
+
+
 /* Gallery Mixin CSS */
 
 /*Please leave for the moment*/
@@ -54,147 +64,147 @@ body {
 }
 
 .centeredTitle {
-  	display: block;
-  	margin: auto;
-  	text-align: center;
+	display: block;
+	margin: auto;
+	text-align: center;
 }
 /*--------upload page---------*/
 
 #greyback {
-  	background: rgba(0,0,0,0.05);
-  	padding: 10px 25px 20px;
-  	border-radius: 3px;
+	background: rgba(0,0,0,0.05);
+	padding: 10px 25px 20px;
+	border-radius: 3px;
 }
 
 /*Sign up page*/
 #signup{
-    display: inline-block;
-    float: left;
-    clear: left;
-    width: 200px;
-    text-align: left;
+	display: inline-block;
+	float: left;
+	clear: left;
+	width: 200px;
+	text-align: left;
 }
 
 
 /*
 hr {
-  	box-sizing: content-box;
-  	height: 0;
-  	width: 300px;
+	box-sizing: content-box;
+	height: 0;
+	width: 300px;
 }
 */
 .uploadInput {
-  	padding: 3px;
+	padding: 3px;
 }
 
 .hidden-input {
-    display: none !important;
+	display: none !important;
 }
 
 .text-input {
-  	width: 200px;
-    height: 25px;
-    border-radius: 25px;
-  	-webkit-box-shadow: none;
+	width: 200px;
+	height: 25px;
+	border-radius: 25px;
+	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
 	border: solid 1px lightgrey;
-  	margin-top: 8px;
-  	padding: 6px;
-  	display: inline;
-  	font-weight: 200;
+	margin-top: 8px;
+	padding: 6px;
+	display: inline;
+	font-weight: 200;
 }
 
 #designName {
 	margin-left: 20px;
-  	display: inline-grid;
+	display: inline-grid;
 }
 
 #mainImgLabel {
-  	display: inline;
-  	margin: 10px;
-    color: white;
+	display: inline;
+	margin: 10px;
+	color: white;
 
 }
 
 #uptext {
-    display: inline-block;
-    font-weight: 300;
-    position: relative;
-  	text-align: center;
-  	top: 50%;
-  	transform: translateY(-50%);
-  	background-color: #2f6bee;
-  	width: 150px;
-  	height: 25px;
-    border-radius: 25px;
-  	margin-top: 25px;
+	display: inline-block;
+	font-weight: 300;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #2f6bee;
+	width: 150px;
+	height: 25px;
+	border-radius: 25px;
+	margin-top: 25px;
 }
 
 #mainPreview {
-  	width: 150px;
-  	height: 150px;
-  	margin: 5px;
+	width: 150px;
+	height: 150px;
+	margin: 5px;
 /*  	-webkit-filter: blur(1.5px);*/
 }
 
 
 #bin {
-  	display: inline;
-  	width: 35px;
-    height: 25px;
-    border-radius: 25px;
-  	background-color: #e4333c;
-  	margin-right: 20px;
-  	font-weight: 300;
-  	padding-bottom: 2px;
-  	border: none;
+	display: inline;
+	width: 35px;
+	height: 25px;
+	border-radius: 25px;
+	background-color: #e4333c;
+	margin-right: 20px;
+	font-weight: 300;
+	padding-bottom: 2px;
+	border: none;
 }
 
 .no-border {
-  	border: none;
+	border: none;
 }
 
 .trashlogo {
-  	color: white;
-  	padding-top: 3.5px;
+	color: white;
+	padding-top: 3.5px;
 }
 
 
 #submit {
-  	background-color: #21c462;
-  	margin: 20px 50px 30px 10px;
-  	float: right;
-  	width: 150px;
-    height: 30px;
-    border-radius: 30px;
-    color: white;
-    display: block;
-    position: relative;
+	background-color: #21c462;
+	margin: 20px 50px 30px 10px;
+	float: right;
+	width: 150px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	display: block;
+	position: relative;
 }
 
 
 #uptext {
-    display: block;
-    font-weight: 300;
-    position: relative;
-  	text-align: center;
-  	top: 50%;
-  	transform: translateY(-50%);
+	display: block;
+	font-weight: 300;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
 }
 
 #preview {
-  	margin: 20px 0 10px;
-  	display: inline;
-  	border: 2px black;
+	margin: 20px 0 10px;
+	display: inline;
+	border: 2px black;
 }
 
 textarea {
-  	display: block;
-  	width: 600px;
-  	height: 100px;
-  	border-radius: 5px;
-  	border-color: lightgrey;
+	display: block;
+	width: 600px;
+	height: 100px;
+	border-radius: 5px;
+	border-color: lightgrey;
 }
 
 
@@ -204,8 +214,8 @@ textarea {
 
 /*SVG*/
 .icon {
-    fill: white;
-    display: inline;
+	fill: white;
+	display: inline;
 }
 /*.........end of upload page.........*/
 
@@ -214,8 +224,8 @@ textarea {
 
 .profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
-  	border-radius: 4px;
-  	margin-bottom: 10px;
+	border-radius: 4px;
+	margin-bottom: 10px;
 }
 
 .profileInfo {
@@ -223,8 +233,8 @@ textarea {
 }
 
 .designs {
-  	width: 400px;
-  	height: 250;
+	width: 400px;
+	height: 250;
 }
 
 .profileBox {
@@ -236,68 +246,68 @@ textarea {
 
 	  border-image-slice: 1;
 */
-  	max-width: 40%;
-  	height: auto;
-  	padding: 20px;
-  	display: block;
-  	margin: auto;
-  	margin-bottom: 30px;
+	max-width: 40%;
+	height: auto;
+	padding: 20px;
+	display: block;
+	margin: auto;
+	margin-bottom: 30px;
 /*  	box-shadow: 0 15px 10px #b7b7b7;*/
-  	background-color: white;
-  	border-radius: 5px;
+	background-color: white;
+	border-radius: 5px;
 }
 
 #profileEmail, #profileWebsite {
-  	display: inline-block;
-  	width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    color: white;
-    position: relative;
-  	margin: 10px 5px 10px 10px;
-  	padding-top: 11px;
-  	text-decoration: none;
-  	text-align: center;
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	color: white;
+	position: relative;
+	margin: 10px 5px 10px 10px;
+	padding-top: 11px;
+	text-decoration: none;
+	text-align: center;
 }
 
 #profileEmail {
   /*#5334ee*/
-  	background-color: #5446d2;
+	background-color: #5446d2;
 }
 
 #profileWebsite {
- 	 background-color: #f67673;
+	 background-color: #f67673;
 }
 
 #profileTwitter {
-  	width: 35px;
-    height: 35px;
-    border-radius: 50px;
-  	margin: 6.5px 5px 10px 10px;
+	width: 35px;
+	height: 35px;
+	border-radius: 50px;
+	margin: 6.5px 5px 10px 10px;
 }
 
 #edit {
-  	background-color: white;
-  	width: 100%;
-    height: 25px;
-    border-bottom-left-radius: 25px;
-  	border-top-left-radius: 25px;
-  	padding: 20px;
+	background-color: white;
+	width: 100%;
+	height: 25px;
+	border-bottom-left-radius: 25px;
+	border-top-left-radius: 25px;
+	padding: 20px;
 }
 
 .input-group-addon {
-  	height: 25px;
-    border-bottom-right-radius: 25px;
-  	border-top-right-radius: 25px;
+	height: 25px;
+	border-bottom-right-radius: 25px;
+	border-top-right-radius: 25px;
 }
 
 .myDesigns {
-  	width: 70%;
-  	height: 80%;
+	width: 70%;
+	height: 80%;
 }
 
 #imagesOnProfile {
-  	margin: 8px 0 3px;
+	margin: 8px 0 3px;
 }
 
 /*.........end of profile page.........*/
@@ -306,24 +316,24 @@ textarea {
 /*-----------admin page-------------*/
 
 .designBox {
-  	width: 375px;
+	width: 375px;
 	height: 250px;
-  	border: 2px solid lightgrey;
-  	margin: 20px;
+	border: 2px solid lightgrey;
+	margin: 20px;
 }
 
 .designThumbnail {
-  	max-height: 100%;
-  	max-width: 100%;
-  	margin: auto;
-  	display: inline-block;
+	max-height: 100%;
+	max-width: 100%;
+	margin: auto;
+	display: inline-block;
 }
 
 .hoverName {
-  	display: none;
- 	background-color: rbga(0,0,0, 0.3);
-  	color: #fd8686;
-  	padding: 20px;
+	display: none;
+	background-color: rbga(0,0,0, 0.3);
+	color: #fd8686;
+	padding: 20px;
 }
 
 
@@ -332,36 +342,36 @@ textarea {
 /*-----------design page-------------*/
 
 .designMainImg {
-  	margin: 10px 10px 20px;
-  	display: block;
+	margin: 10px 10px 20px;
+	display: block;
 }
 
 #acceptDesign {
-  	background-color: #21c462;
+	background-color: #21c462;
 }
 
 #rejectDesign {
-  	background-color: #e4333c;
+	background-color: #e4333c;
 }
 
 #acceptDesign, #rejectDesign {
-  	margin: 10px 10px;
-  	width: 150px;
-    height: 30px;
-    border-radius: 30px;
-    color: white;
-  	border: none;
+	margin: 10px 10px;
+	width: 150px;
+	height: 30px;
+	border-radius: 30px;
+	color: white;
+	border: none;
 
 }
 
 .form-control {
-  	display: inline;
+	display: inline;
 }
 
 
 #centreDiv {
 	display: inline-block;
-  	margin: auto;
+	margin: auto;
 }
 /*.........end of design page.........*/
 
@@ -387,8 +397,8 @@ textarea {
 */
 
 .galleryImg {
-  	margin: 5px;
-  	display: inline-block;
+	margin: 5px;
+	display: inline-block;
 }
 
 
@@ -397,5 +407,5 @@ textarea {
 
 
 .designerName {
-  	display: inline-block;
+	display: inline-block;
 }
