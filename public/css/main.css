@@ -126,6 +126,9 @@ hr {
 	height: 25px;
 	border-radius: 25px;
 	margin-top: 25px;
+	/*display: inline;*/
+
+
 /*
 	position: relative;
 	text-align: center;
@@ -200,7 +203,6 @@ textarea {
 
 /*-----------profile page-------------*/
 
-
 .profilePic, #imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
@@ -255,11 +257,11 @@ textarea {
 	 background-color: #f67673;
 }
 
-#profileTwitter {
-	width: 35px;
-	height: 35px;
-	border-radius: 50px;
-	margin: 6.5px 5px 10px 10px;
+#profileTwitter, #profileFacebook {
+  	width: 35px;
+    height: 35px;
+    border-radius: 50px;
+  	margin: 6.5px 5px 10px 10px;
 }
 
 #edit {
