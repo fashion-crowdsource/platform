@@ -1,4 +1,3 @@
-
 /*Potential Background Picture*/
 /*body{
 	background: url("https://download.unsplash.com/photo-1426443177319-df7c639993c8") no-repeat center center fixed;
@@ -44,7 +43,7 @@
 }*/
 
 
-
+/*Adam's CSS*/
 .hidden {
 	display: none;
 }
@@ -52,6 +51,12 @@
 body {
   background-color: white;
   color: #444444;
+}
+
+.centeredTitle {
+  	display: block;
+  	margin: auto;
+  	text-align: center;
 }
 /*--------upload page---------*/
 
