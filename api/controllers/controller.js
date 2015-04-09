@@ -194,6 +194,7 @@ module.exports = {
 	},
 
 	profileView: {
+		auth: {mode: 'optional'},
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = request.auth.credentials;
@@ -357,6 +358,7 @@ module.exports = {
 	},
 	// TODO make sure vistor can't view an unapproved design. Check for approved bool in template
 	designView: {
+		auth: {mode: 'optional'},
 		handler: function (request, reply ){
 			var auth = false;
 			if (request.auth.isAuthenticated) auth = request.auth.credentials;

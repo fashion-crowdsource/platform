@@ -1,6 +1,6 @@
-// $(document).ready(function(){
-// 	$('img.lazy').lazyload();
-// });
+$(document).ready(function(){
+	$('img.lazy').lazyload();
+});
 
 $(window).load(function() {
 	$('img.caption').captionjs({
