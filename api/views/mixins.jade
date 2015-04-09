@@ -23,3 +23,19 @@ mixin homepageGallery(designs)
 							a(href='/' + elem._id)
 								img.galleryImg.lazy(src=elem.mainImage.medium.url)
 
+
+mixin designersList(designers)
+	- var arraysOfThree = [];
+	- var originalArray = designers;
+	- var i = 0;
+	- for (j=originalArray.length; i<j; i+=3) {
+	- tempArray = originalArray.slice(i,i+3);
+	- arraysOfThree.push(tempArray);
+	- }
+
+	each array in arraysOfThree
+			.row
+					each elem in array
+						.col-md-4
+							a(href='/' + elem.designerUserName)
+								img.galleryImg.lazy(src=elem.profileImage.small.url)
