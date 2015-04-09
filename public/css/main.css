@@ -365,6 +365,10 @@ textarea {
   	margin: 5px;
 }
 
+#paypal {
+	float: left;
+}
+
 .form-control {
   	display: inline;
 }
