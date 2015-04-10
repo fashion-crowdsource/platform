@@ -40,3 +40,21 @@ mixin designersList(designers)
 						.col-md-4
 							a(href='/profile/' + elem.username)
 								img.galleryImg.caption.lazy(src=elem.profileImage.medium.url, alt=elem.username)
+
+
+mixin profileDesigns(designs)
+	- var arraysOfThree = [];
+	- var originalArray = designs;
+	- var i = 0;
+	- for (j=originalArray.length; i<j; i+=3) {
+	- tempArray = originalArray.slice(i,i+3);
+	- arraysOfThree.push(tempArray);
+	- }
+
+	each array in arraysOfThree
+			.row
+					each elem in array
+						.col-md-4
+							a(href='/profile/' + elem._id)
+								img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)
+
