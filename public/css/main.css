@@ -224,7 +224,7 @@ textarea {
 
 	  border-image-slice: 1;
 */
-	max-width: 85%;
+	max-width: 100%;
 	height: auto;
 	padding: 20px;
 	display: block;
