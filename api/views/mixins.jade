@@ -43,24 +43,17 @@ mixin designersList(designers)
 
 
 mixin designAdditionalImages(images)
-	- var arraysOfTwo = []
-	- for (var i=0; i<images.length; i+=2) {
-	-		var tempArray = images.slice(i, i+2);
-	-		arraysOfTwo.push(tempArray);
+	- var arraysOfThree = []
+	- for (var i=0; i<images.length; i+=3) {
+	-		var tempArray = images.slice(i, i+3);
+	-		arraysOfThree.push(tempArray);
 	- }
 
-	each array in arraysOfTwo
+	each array in arraysOfThree
 		.row
-			if array.length === 2
-				each image in array
-					.col-md-6
-						img(src=image.medium.url)
-
-			else if array.length === 1
-				each image in array
-					.col-md-3
-					.col-md-6
-						img(src=image.medium.url)
+			each image in array
+				.col-md-4
+					img.galleryImg(src=image.medium.url)
 
 
 mixin profileDesigns(designs)
@@ -76,5 +69,5 @@ mixin profileDesigns(designs)
 		.row
 			each elem in array
 				.col-md-4
-					a(href='/profile/' + elem._id)
+					a(href='/'+elem._id)
 						img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)
