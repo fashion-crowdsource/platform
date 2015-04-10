@@ -112,7 +112,10 @@ hr {
 	display: inline;
 	margin: 10px;
 	color: white;
+}
 
+#description {
+	margin: 20px;
 }
 
 #uptext {
@@ -121,6 +124,7 @@ hr {
 	position: relative;
 	text-align: center;
 	top: 50%;
+	color: white;
 	transform: translateY(-50%);
 	background-color: #2f6bee;
 	width: 150px;
@@ -139,8 +143,8 @@ hr {
 }
 
 #mainPreview {
-	width: 150px;
-	height: 150px;
+	width: 300px;
+	height: 300px;
 	margin: 5px;
 /*  	-webkit-filter: blur(1.5px);*/
 }
