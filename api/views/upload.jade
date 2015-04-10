@@ -22,17 +22,24 @@ block content
 					.row
 						.col-md-12
 							img#mainPreview(src="/img/fikay-square.jpg")
-							br
+				br
+				button#bin
+					span.glyphicon.glyphicon-trash.trashlogo
 
-						.col-md-12
-								each val in [1,2,3,4,5]
-									input.uploadInput(name='additionalImage' + val, type='file', accept='image/gif, image/jpeg, image/png')
+				.row
+					.col-md-3
+						img#mainPreview(src="/img/fikay-square.jpg")
+						br
+
+					.col-md-4.col-md-push-2
+							each val in [1,2,3,4,5]
+								input.uploadInput(name='additionalImage' + val, type='file', accept='image/gif, image/jpeg, image/png')
 
 					.row
 						.col-md-12
 							#description
 								h4 Short Description:
-								textarea.form-control(name="description")
+								textarea.form-control(name="description", rows="6")
 								hr
 
 					.row
