@@ -73,8 +73,8 @@ mixin profileDesigns(designs)
 	- }
 
 	each array in arraysOfThree
-			.row
-					each elem in array
-						.col-md-4
-							a(href='/profile/' + elem._id)
-								img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)
+		.row
+			each elem in array
+				.col-md-4
+					a(href='/profile/' + elem._id)
+						img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)
