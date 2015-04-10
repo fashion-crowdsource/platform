@@ -49,7 +49,7 @@ body {
 	height: 50px;
 }
 
-.profilePic, #imagesOnProfile, .galleryImg, .designMainImg, #mainPreview, .additionalImages {
+.profilePic, .imagesOnProfile, .galleryImg, .designMainImg, #mainPreview, .additionalImages {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
 	margin-bottom: 10px;
@@ -126,9 +126,7 @@ hr {
 	height: 25px;
 	border-radius: 25px;
 	margin-top: 25px;
-	/*display: inline;*/
-
-
+	/*display: inline;
 /*
 	position: relative;
 	text-align: center;
@@ -203,7 +201,7 @@ textarea {
 
 /*-----------profile page-------------*/
 
-.profilePic, #imagesOnProfile, .galleryImg {
+.profilePic, .imagesOnProfile, .galleryImg {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
 	margin-bottom: 10px;
@@ -284,7 +282,7 @@ textarea {
 	height: 80%;
 }
 
-#imagesOnProfile {
+.imagesOnProfile {
 	margin: 8px 0 3px;
 }
 
@@ -321,7 +319,7 @@ textarea {
 
 .designMainImg {
 	margin: 10px 10px 20px;
-	display: block;
+	/*display: block;*/
 	/*margin: auto;*/
 }
 
