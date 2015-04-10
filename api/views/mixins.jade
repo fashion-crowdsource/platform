@@ -11,9 +11,9 @@ mixin homepageGallery(designs)
 	- var arraysOfThree = [];
 	- var originalArray = designs;
 	- var i = 0;
-	- for (j=originalArray.length; i<j; i+=3) {
-	- tempArray = originalArray.slice(i,i+3);
-	- arraysOfThree.push(tempArray);
+	- for (var j=originalArray.length; i<j; i+=3) {
+	- 	var tempArray = originalArray.slice(i,i+3);
+	- 	arraysOfThree.push(tempArray);
 	- }
 
 	each array in arraysOfThree
@@ -29,9 +29,9 @@ mixin designersList(designers)
 	- var arraysOfThree = [];
 	- var originalArray = designers;
 	- var i = 0;
-	- for (j=originalArray.length; i<j; i+=3) {
-	- tempArray = originalArray.slice(i,i+3);
-	- arraysOfThree.push(tempArray);
+	- for (var j=originalArray.length; i<j; i+=3) {
+	- 	var tempArray = originalArray.slice(i,i+3);
+	- 	arraysOfThree.push(tempArray);
 	- }
 
 	each array in arraysOfThree
@@ -40,6 +40,27 @@ mixin designersList(designers)
 						.col-md-4
 							a(href='/profile/' + elem.username)
 								img.galleryImg.caption.lazy(src=elem.profileImage.medium.url, alt=elem.username)
+
+
+mixin designAdditionalImages(images)
+	- var arraysOfTwo = []
+	- for (var i=0; i<images.length; i+=2) {
+	-		var tempArray = images.slice(i, i+2);
+	-		arraysOfTwo.push(tempArray);
+	- }
+
+	each array in arraysOfTwo
+		.row
+			if array.length === 2
+				each image in array
+					.col-md-6
+						img(src=image.medium.url)
+
+			else if array.length === 1
+				each image in array
+					.col-md-3
+					.col-md-6
+						img(src=image.medium.url)
 
 
 mixin profileDesigns(designs)
@@ -52,9 +73,8 @@ mixin profileDesigns(designs)
 	- }
 
 	each array in arraysOfThree
-			.row
-					each elem in array
-						.col-md-4
-							a(href='/profile/' + elem._id)
-								img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)
-
+		.row
+			each elem in array
+				.col-md-4
+					a(href='/profile/' + elem._id)
+						img.profileGalleryImg.caption(src=elem.mainImage.medium.url, alt=elem.name)

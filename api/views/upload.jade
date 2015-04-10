@@ -13,10 +13,15 @@ block content
 				form(action="/upload", method="POST", enctype="multipart/form-data")
 					label#designName Design Name* :
 						input.text-input(type="text", name="designName", class='form-control', placeholder="Insert your design name" required)
-				label#mainImgLabel
-				span#uptext Attach Main Image
-						input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
 
+					label#mainImgLabel
+						span#uptext Attach Main Image
+						input(name="designMainImage", id="mainImgInput", class='hidden-input', type="file", onchange="loadImg(this)", accept="image/gif, image/jpeg, image/png")
+					button#bin
+						span.glyphicon.glyphicon-trash.trashlogo
+					.row
+						.col-md-12
+							img#mainPreview(src="/img/fikay-square.jpg")
 				br
 				button#bin
 					span.glyphicon.glyphicon-trash.trashlogo
