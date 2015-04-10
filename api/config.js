@@ -13,9 +13,9 @@ module.exports = {
 				region 	: process.env.S3REGION 	|| require('./creds.json').s3.region,
 	},
 	google : {
-				secret 	: process.env.SECRET 	|| require('./creds.json').google.secret,
-				cKey	: process.env.CKEY 		|| require('./creds.json').google.cKey,
-				cSecret	: process.env.CSECRET 	|| require('./creds.json').google.cSecret,
+				secret 	: process.env.GOOGLESECRET 		|| require('./creds.json').google.secret,
+				cKey	: process.env.GOOGLECKEY 		|| require('./creds.json').google.cKey,
+				cSecret	: process.env.GOOGLECSECRET 	|| require('./creds.json').google.cSecret,
 	},
 	cookie : {
 				password: process.env.COOKIESECRET || require('./creds.json').cookieSecret
