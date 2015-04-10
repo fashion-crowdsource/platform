@@ -203,7 +203,7 @@ textarea {
 
 /*-----------profile page-------------*/
 
-.profilePic, #imagesOnProfile, .galleryImg {
+.profilePic, #imagesOnProfile, .galleryImg, .profileGalleryImg {
 	border: solid 1px lightgrey;
 	border-radius: 4px;
 	margin-bottom: 10px;
@@ -287,6 +287,12 @@ textarea {
 #imagesOnProfile {
 	margin: 8px 0 3px;
 }
+
+.profileGalleryImg {
+  	padding-right: 0;
+  	padding-left: 0;
+}
+
 
 /*.........end of profile page.........*/
 

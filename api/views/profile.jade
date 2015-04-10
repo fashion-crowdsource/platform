@@ -1,4 +1,5 @@
 extends ./layouts/default.jade
+include ./mixins.jade
 
 append head
 	link(href='/css/profile.css', rel='stylesheet')
@@ -16,7 +17,6 @@ block content
 						h3.profileInfo #{user.firstName} #{user.lastName}
 						p.profileInfo Member since: #{user.dateJoined.getDate() + "/" + (user.dateJoined.getMonth() + 1) + "/" + user.dateJoined.getFullYear()}
 
-				.col-md-7
 						a#profileEmail.glyphicon.glyphicon-envelope(href="mailto:" + user.email, target="_top")
 						a#profileWebsite.glyphicon.glyphicon-globe(href=user.links)
 						//-just placeholders for now
@@ -50,17 +50,12 @@ block content
 				.col-md-12
 					if designs
 						h4 My Designs
-						each design in designs
-							if design.approved
-								a(href='/'+design._id)
-									img#imagesOnProfile(src=design.mainImage.medium.url)
+						+profileDesigns(designs)
 
 					if designs && auth && auth.isAdmin
 						h4 Pending Designs
-							each design in designs
-								unless design.approved
-									a(href='/'+design._id)
-										img#imagesOnProfile(src=design.mainImage.medium.url)
+						+profileDesigns(designs)
+
 					if auth && auth.isAdmin
 						legend
 						h4 Address
