@@ -211,8 +211,22 @@ module.exports = {
 							if (err1) {
 								return reply.view('profile', {user: user, auth: auth, error: err1});
 							}
+							else if (designs) {
+								var sortedDesigns = {approved: [], pending: [] };
+								designs.forEach(function(design, index){
+									if (design.approved) {
+										sortedDesigns.approved.push(design);
+									}
+									else {
+										sortedDesigns.pending.push(design);
+									}
+									if (index === designs.length - 1) {
+										return reply.view('profile', {designs: sortedDesigns, user: user, auth: auth});
+									}
+								});
+							}
 							else {
-								return reply.view('profile', {designs: designs, user: user, auth: auth});
+								return reply.view('profile', {user: user, auth: auth});
 							}
 						});
 					}
