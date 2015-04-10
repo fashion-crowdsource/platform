@@ -5,7 +5,9 @@ var Path 	= require('path');
 var routes 	= require('./routes/routes.js');
 var config 	= require('./config.js');
 
-var serverOptions 	= {port: (process.env.port || 3000 ), host: 'localhost' }; //TODO set host as 0.0.0.0 for heroku - put in config, make conditional on process.env.PORT
+var host = 'localhost';
+if (process.env.PORT) host = '0.0.0.0';
+var serverOptions 	= {port: (process.env.PORT || 3000 ), host: host };
 
 var goodOptions = {
 	opsInterval: 1000,
