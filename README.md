@@ -90,9 +90,9 @@ In addition, the administrator:
 
 ### Screenshots
 
-![Main Page](/screenshots/homeView.png?raw=true 'Main Page')
-![Designer Profile](/screenshots/profileView.png?raw=true 'Designer Profile')
-![Design Page](/screenshots/designView.png?raw=true 'Design Page')
-![Admin Page](/screenshots/adminView.png?raw=true 'Admin Page')
-![Accept/Reject](/screenshots/acceptView.png?raw=true 'Accept/Reject')
+![Main Page](/screenshots/homeView.jpg?raw=true 'Main Page')
+![Designer Profile](/screenshots/profileView.jpg?raw=true 'Designer Profile')
+![Design Page](/screenshots/designView.jpg?raw=true 'Design Page')
+![Admin Page](/screenshots/adminView.jpg?raw=true 'Admin Page')
+![Accept/Reject](/screenshots/acceptView.jpg?raw=true 'Accept/Reject')
 
