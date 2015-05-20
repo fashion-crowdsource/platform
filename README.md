@@ -1,3 +1,4 @@
+
 #[Crowd Sourced Fashion Platform](http://rocky-sierra-8226.herokuapp.com/)
 
 Currently live on [heroku](http://rocky-sierra-8226.herokuapp.com/)
@@ -95,4 +96,3 @@ In addition, the administrator:
 ![Design Page](/screenshots/designView.jpg?raw=true 'Design Page')
 ![Admin Page](/screenshots/adminView.jpg?raw=true 'Admin Page')
 ![Accept/Reject](/screenshots/acceptView.jpg?raw=true 'Accept/Reject')
-
