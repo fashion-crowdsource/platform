@@ -166,3 +166,23 @@ module.exports= {
 	User: User,
 	Design: Design
 };
+
+exports.addID = function(memberDocument, imagePath, callback) {
+	memberDocument.attach('IDImage', {path: imagePath}, function(err){
+		if (err) {
+			console.error(err);
+			return callback(err);
+		}
+
+			else {
+				memberDocument.save(function(err1){
+					if (err1) {   // <---NB, typo here in your code
+						return callback(err1);
+					}
+					else {
+						return callback(null, newID);
+					}
+				});
+			}
+	});
+};

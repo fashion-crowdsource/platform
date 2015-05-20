@@ -1,4 +1,4 @@
-#[Fikay Fresh](http://rocky-sierra-8226.herokuapp.com/)
+#[Crowd Sourced Fashion Platform](http://rocky-sierra-8226.herokuapp.com/)
 
 Currently live on [heroku](http://rocky-sierra-8226.herokuapp.com/)
 
@@ -6,7 +6,7 @@ Currently live on [heroku](http://rocky-sierra-8226.herokuapp.com/)
 
 ### Description
 
-An MVP of a crowd-sourcing platform to connect fashion designers and ethical manufacturers, built for [Fikay](http://fikay.co.uk/). 
+An MVP of a crowd-sourcing platform to connect fashion designers and manufacturers. 
 
 Designers will submit designs for administrator review and, if accepted, the designs they will be made live on the site for visitors to view, share and pre-order.
 
