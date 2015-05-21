@@ -1,7 +1,7 @@
 
-#[Crowd Sourced Fashion Platform](http://rocky-sierra-8226.herokuapp.com/)
+#[Crowd Sourced Fashion Platform](http://crowdsourced-fashion.herokuapp.com/)
 
-Currently live on [heroku](http://rocky-sierra-8226.herokuapp.com/)
+Currently live on [heroku](http://crowdsourced-fashion.herokuapp.com/)
 
 ## Connecting designers and makers
 
